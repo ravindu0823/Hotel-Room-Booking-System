@@ -41,7 +41,7 @@ export const routes = [
         icon: <UserGroupIcon {...icon} />,
         name: "Staff Management",
         path: "/staff",
-        element: <Staff/>,
+        element: <Staff />,
       },
       {
         // Randika --Food Managements
@@ -51,7 +51,7 @@ export const routes = [
         element: <Food />,
       },
       {
-        // Ravindu --Reservation Management 
+        // Ravindu --Reservation Management
         icon: <TicketIcon {...icon} />,
         name: "Reservation Management",
         path: "/reservation",

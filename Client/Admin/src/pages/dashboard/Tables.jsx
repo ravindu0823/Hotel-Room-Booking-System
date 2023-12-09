@@ -13,22 +13,22 @@ import { authorsTableData, projectsTableData } from "@/data";
 
 export function Tables() {
   return (
-    <div className="mt-12 mb-8 flex flex-col gap-12">
+    <div className="mb-8 mt-12 flex flex-col gap-12">
       {/* Staf management Card */}
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
           <Typography variant="h6" color="white">
-          •	Staff Management
+            • Staff Management
           </Typography>
         </CardHeader>
-        <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
+        <CardBody className="overflow-x-scroll px-0 pb-2 pt-0">
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
                 {["author", "function", "status", "employed", ""].map((el) => (
                   <th
                     key={el}
-                    className="border-b border-blue-gray-50 py-3 px-5 text-left"
+                    className="border-b border-blue-gray-50 px-5 py-3 text-left"
                   >
                     <Typography
                       variant="small"
@@ -53,7 +53,12 @@ export function Tables() {
                     <tr key={name}>
                       <td className={className}>
                         <div className="flex items-center gap-4">
-                          <Avatar src={img} alt={name} size="sm" variant="rounded" />
+                          <Avatar
+                            src={img}
+                            alt={name}
+                            size="sm"
+                            variant="rounded"
+                          />
                           <div>
                             <Typography
                               variant="small"
@@ -81,7 +86,7 @@ export function Tables() {
                           variant="gradient"
                           color={online ? "green" : "blue-gray"}
                           value={online ? "online" : "offline"}
-                          className="py-0.5 px-2 text-[11px] font-medium w-fit"
+                          className="w-fit px-2 py-0.5 text-[11px] font-medium"
                         />
                       </td>
                       <td className={className}>
@@ -100,7 +105,7 @@ export function Tables() {
                       </td>
                     </tr>
                   );
-                }
+                },
               )}
             </tbody>
           </table>
@@ -110,10 +115,10 @@ export function Tables() {
         {/* Rooms management card */}
         <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
           <Typography variant="h6" color="white">
-          •	Rooms management
+            • Rooms management
           </Typography>
         </CardHeader>
-        <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
+        <CardBody className="overflow-x-scroll px-0 pb-2 pt-0">
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
@@ -121,7 +126,7 @@ export function Tables() {
                   (el) => (
                     <th
                       key={el}
-                      className="border-b border-blue-gray-50 py-3 px-5 text-left"
+                      className="border-b border-blue-gray-50 px-5 py-3 text-left"
                     >
                       <Typography
                         variant="small"
@@ -130,7 +135,7 @@ export function Tables() {
                         {el}
                       </Typography>
                     </th>
-                  )
+                  ),
                 )}
               </tr>
             </thead>
@@ -210,7 +215,7 @@ export function Tables() {
                       </td>
                     </tr>
                   );
-                }
+                },
               )}
             </tbody>
           </table>
@@ -219,10 +224,10 @@ export function Tables() {
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
           <Typography variant="h6" color="white">
-          •	Food Management (Breakfast, Lunch, Dinner)  
+            • Food Management (Breakfast, Lunch, Dinner)
           </Typography>
         </CardHeader>
-        <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
+        <CardBody className="overflow-x-scroll px-0 pb-2 pt-0">
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
@@ -230,7 +235,7 @@ export function Tables() {
                   (el) => (
                     <th
                       key={el}
-                      className="border-b border-blue-gray-50 py-3 px-5 text-left"
+                      className="border-b border-blue-gray-50 px-5 py-3 text-left"
                     >
                       <Typography
                         variant="small"
@@ -239,7 +244,7 @@ export function Tables() {
                         {el}
                       </Typography>
                     </th>
-                  )
+                  ),
                 )}
               </tr>
             </thead>
@@ -319,7 +324,7 @@ export function Tables() {
                       </td>
                     </tr>
                   );
-                }
+                },
               )}
             </tbody>
           </table>
@@ -328,10 +333,10 @@ export function Tables() {
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
           <Typography variant="h6" color="white">
-          •	Reservation Management 
+            • Reservation Management
           </Typography>
         </CardHeader>
-        <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
+        <CardBody className="overflow-x-scroll px-0 pb-2 pt-0">
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
@@ -339,7 +344,7 @@ export function Tables() {
                   (el) => (
                     <th
                       key={el}
-                      className="border-b border-blue-gray-50 py-3 px-5 text-left"
+                      className="border-b border-blue-gray-50 px-5 py-3 text-left"
                     >
                       <Typography
                         variant="small"
@@ -348,7 +353,7 @@ export function Tables() {
                         {el}
                       </Typography>
                     </th>
-                  )
+                  ),
                 )}
               </tr>
             </thead>
@@ -428,7 +433,7 @@ export function Tables() {
                       </td>
                     </tr>
                   );
-                }
+                },
               )}
             </tbody>
           </table>
@@ -437,10 +442,10 @@ export function Tables() {
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
           <Typography variant="h6" color="white">
-          •	Manage Special Offers 
+            • Manage Special Offers
           </Typography>
         </CardHeader>
-        <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
+        <CardBody className="overflow-x-scroll px-0 pb-2 pt-0">
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
@@ -448,7 +453,7 @@ export function Tables() {
                   (el) => (
                     <th
                       key={el}
-                      className="border-b border-blue-gray-50 py-3 px-5 text-left"
+                      className="border-b border-blue-gray-50 px-5 py-3 text-left"
                     >
                       <Typography
                         variant="small"
@@ -457,7 +462,7 @@ export function Tables() {
                         {el}
                       </Typography>
                     </th>
-                  )
+                  ),
                 )}
               </tr>
             </thead>
@@ -537,7 +542,7 @@ export function Tables() {
                       </td>
                     </tr>
                   );
-                }
+                },
               )}
             </tbody>
           </table>
