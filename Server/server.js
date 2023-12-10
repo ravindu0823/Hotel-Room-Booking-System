@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { connectToDB } from "./db/conn.js";
 import userRouter from "./routes/users.js";
 import roomsRouter from "./routes/rooms.js";
 import dotenv from "dotenv";
@@ -16,6 +17,7 @@ app.use("/user", userRouter);
 app.use("/rooms", roomsRouter);
 
 // start the Express server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  await connectToDB();
   console.log(`Server listening on port ${PORT}`);
 });
