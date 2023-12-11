@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ "temp" ]
+    branches: [ "ravindu" ]
   pull_request:
     branches: [ "dev" ]
 
