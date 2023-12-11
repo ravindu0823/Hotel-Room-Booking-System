@@ -4,6 +4,7 @@ import { connectToDB } from "./db/conn.js";
 import userRouter from "./routes/users.js";
 import roomsRouter from "./routes/rooms.js";
 import dotenv from "dotenv";
+import foodsRouter from "./routes/foods.js";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use("/user", userRouter);
 app.use("/rooms", roomsRouter);
+app.use("/foods",foodsRouter)
 
 // start the Express server
 app.listen(PORT, async () => {
