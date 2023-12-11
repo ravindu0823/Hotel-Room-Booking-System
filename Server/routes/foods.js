@@ -5,16 +5,17 @@ import express from "express";
 const foodsRouter = express.Router();
 
 foodsRouter.post("/new", async (req, res) => {
-  const {
-    foodName,
-    foodCategory,
-    foodType,
-    price,
-    persons,
-    spicinessLevel
-  } = req.body;
+  const { foodName, foodCategory, foodType, price, persons, spicinessLevel } =
+    req.body;
 
-  if (!foodName || !foodCategory || !foodType || !price || !persons || !spicinessLevel) {
+  if (
+    !foodName ||
+    !foodCategory ||
+    !foodType ||
+    !price ||
+    !persons ||
+    !spicinessLevel
+  ) {
     return res.status(400).json({ message: "Missing required fields" });
   }
 
@@ -86,16 +87,16 @@ foodsRouter.put("/:id", async (req, res) => {
   }
 });
 
-foodsRouter.delete('/:id', async (req, res) => {
+foodsRouter.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
     await connectToDB();
     const deletedFood = await Food.findByIdAndDelete(id);
     if (!deletedFood) {
-      return res.status(404).json({ message: 'Food not found' });
+      return res.status(404).json({ message: "Food not found" });
     }
-    res.json({ message: 'Food deleted successfully' });
+    res.json({ message: "Food deleted successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server Error" });
