@@ -21,5 +21,5 @@ app.use("/foods",foodsRouter)
 // start the Express server
 app.listen(PORT, async () => {
   await connectToDB();
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });
