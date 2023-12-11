@@ -7,7 +7,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  Docker:
+  Docker_Client:
     defaults:
       run:
         working-directory: ./Client/Admin
@@ -43,7 +43,45 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         
       - name: Build Docker image
-        run: docker build . --file Dockerfile --tag ravindu0823/hotel-room-booking-system:${{steps.version.outputs.tag}}
+        run: docker build . --file Dockerfile --tag ravindu0823/hotel-room-booking-system:${{steps.version.outputs.tag}}-client
         
       - name: Push to Docker Hub
-        run: docker push ravindu0823/hotel-room-booking-system:${{steps.version.outputs.tag}}
+        run: docker push ravindu0823/hotel-room-booking-system:${{steps.version.outputs.tag}}-client
+
+  Docker_Server:
+    defaults:
+      run:
+        working-directory: ./Server
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      
+      - name: Dependecies
+        run: npm ci
+        
+      - name: Save version
+        id: version
+        run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
+        
+      - name: Increase version
+        run: npm version patch
+        
+      - name: Push new version
+        run: git push
+      
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+        
+      - name: Build Docker image
+        run: docker build . --file Dockerfile --tag ravindu0823/hotel-room-booking-system:${{steps.version.outputs.tag}}-server
+        
+      - name: Push to Docker Hub
+        run: docker push ravindu0823/hotel-room-booking-system:${{steps.version.outputs.tag}}-server
