@@ -7,7 +7,7 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Publish Docker image (Clinet)
+name: Publish Docker image
 
 on:
   push:
@@ -41,8 +41,8 @@ jobs:
           context: .
           file: ./Client/Admin/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }} + client
-          labels: ${{ steps.meta.outputs.labels }} + client
+          tags: ${{ steps.meta.outputs.tags }}-client
+          labels: ${{ steps.meta.outputs.labels }}-client
 
       - name: Build and push Docker image (Server)
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -50,5 +50,5 @@ jobs:
           context: .
           file: ./Server/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }} + server
-          labels: ${{ steps.meta.outputs.labels }} + server
+          tags: ${{ steps.meta.outputs.tags }}-server
+          labels: ${{ steps.meta.outputs.labels }}-server
