@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ "ravindu" ]
+    branches: [ "ravindu", "dev", "temp" ]
   pull_request:
     branches: [ "dev" ]
 
@@ -37,7 +37,12 @@ jobs:
         run: npm version patch
         
       - name: Push new version
-        run: git push --force
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            git push origin HEAD:dev
+          else
+            git push --force
+          fi
       
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
@@ -75,7 +80,12 @@ jobs:
         run: npm version patch
         
       - name: Push new version
-        run: git push --force
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            git push origin HEAD:dev
+          else
+            git push --force
+          fi
       
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
