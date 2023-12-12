@@ -3,6 +3,7 @@ import cors from "cors";
 import { connectToDB } from "./db/conn.js";
 import userRouter from "./routes/users.js";
 import roomsRouter from "./routes/rooms.js";
+import offerRouter from "./routes/offers.js"
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use("/user", userRouter);
 app.use("/rooms", roomsRouter);
+app.use("/offers", offerRouter);
 
 // start the Express server
 app.listen(PORT, async () => {
