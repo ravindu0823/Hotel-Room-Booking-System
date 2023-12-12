@@ -39,6 +39,7 @@ jobs:
       - name: Push new version
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
+            git pull
             git push origin HEAD:dev
           else
             git push --force
