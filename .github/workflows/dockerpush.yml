@@ -2,9 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ "ravindu", "dev" ]
-  # pull_request:
-  #   branches: [ "dev" ]
+    branches: [ "dev" ]
 
 jobs:
   Docker_Client:
