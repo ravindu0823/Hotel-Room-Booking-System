@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "dev", "ravindu" ]
 
 jobs:
   Docker_Client:
@@ -22,7 +22,9 @@ jobs:
           git config user.email "<>"
       
       - name: Dependecies
-        run: npm ci
+        run: |
+          npm install
+          npm ci
       
       - name: Build
         run: npm run build
