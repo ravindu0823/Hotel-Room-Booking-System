@@ -5,7 +5,7 @@ on:
     branches: [ "dev", "ravindu" ]
 
 jobs:
-  Docker_Client:
+  Docker-Client-Admin:
     defaults:
       run:
         working-directory: ./Client/Admin
@@ -48,7 +48,7 @@ jobs:
       - name: Push to Docker Hub
         run: docker push ravindu0823/hotel-room-booking-system:${{steps.version.outputs.tag}}-client
 
-  Docker_Server:
+  Docker-Server:
     defaults:
       run:
         working-directory: ./Server
@@ -65,7 +65,9 @@ jobs:
           git config user.email "<>"
       
       - name: Dependecies
-        run: npm ci
+        run: |
+          npm install
+          npm ci
         
       - name: Save version
         id: version
