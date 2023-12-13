@@ -53,6 +53,8 @@ adminRouter.post("/login", async (req, res) => {
       return res.status(404).json({ error: "Admin not found" });
     }
 
+    console.log(loggedAdmin);
+
     if (!loggedAdmin.validPassword(password, loggedAdmin.password)) {
       //password did not match
       return res.status(401).json({ error: "Incorrect password" });
@@ -60,7 +62,7 @@ adminRouter.post("/login", async (req, res) => {
       // password matched. proceed forward
       console.log("password matched");
       const token = jwt.sign(
-        { adminId: loggedAdmin._id },
+        { adminId: loggedAdmin._id, adminName: loggedAdmin.fullName },
         process.env.JWT_SECRET,
         {
           expiresIn: "10m",
@@ -83,6 +85,7 @@ adminRouter.get("/protected", async (req, res) => {
     // console.log(decoded.userId);
 
     if (!decoded) {
+        
       return res.status(400).json({ message: "Expired" });
     } else if (decoded.exp < Date.now() / 1000) {
       return res.status(400).json({ message: "Expired" });
