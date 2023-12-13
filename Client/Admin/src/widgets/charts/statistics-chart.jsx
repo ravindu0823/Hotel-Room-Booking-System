@@ -11,7 +11,12 @@ import Chart from "react-apexcharts";
 export function StatisticsChart({ color, chart, title, description, footer }) {
   return (
     <Card className="border border-blue-gray-100 shadow-sm">
-      <CardHeader variant="gradient" color={color} floated={false} shadow={false}>
+      <CardHeader
+        variant="gradient"
+        color={color}
+        floated={false}
+        shadow={false}
+      >
         <Chart {...chart} />
       </CardHeader>
       <CardBody className="px-6 pt-0">

@@ -1,8 +1,4 @@
-import {
-  Input,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
+import { Input, Button, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "@/api/axios";
@@ -13,15 +9,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export function SignIn() {
-  
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!userName || !password)
+    if (!userName || !password)
       return toast.error("Please enter your username and password!", {
         position: "bottom-right",
         autoClose: 3000,
@@ -36,23 +31,22 @@ const handleSubmit = async (e) => {
           fontSize: "1rem",
         },
       });
-  
 
-  try {
-    const response = await axios.post(
-      LOGIN_URL,
-      JSON.stringify({ userName, password }),
-      {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      }
-    );
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ userName, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        },
+      );
 
-    console.log(response);
+      console.log(response);
 
-    if (!response.statusText) throw new Error("Admin Login Failed");
+      if (!response.statusText) throw new Error("Admin Login Failed");
 
-    const { token } = await response.data;
+      const { token } = await response.data;
       document.cookie = `token=${token}; path=/`;
 
       const decodedToken = jwtDecode(token);
@@ -64,12 +58,10 @@ const handleSubmit = async (e) => {
       }).then(() => {
         navigate("/dashboard/home");
       });
-    
-  } catch (err) {
-    console.error(err);
-  }
-};
-
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <section className="m-8 flex gap-4">
@@ -86,7 +78,10 @@ const handleSubmit = async (e) => {
             Enter your username and password to Sign In.
           </Typography>
         </div>
-        <form className="mx-auto mb-2 mt-8 w-80 max-w-screen-lg lg:w-1/2" onSubmit={handleSubmit}>
+        <form
+          className="mx-auto mb-2 mt-8 w-80 max-w-screen-lg lg:w-1/2"
+          onSubmit={handleSubmit}
+        >
           <div className="mb-1 flex flex-col gap-6">
             <Typography
               variant="small"

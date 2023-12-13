@@ -1,7 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { Cog6ToothIcon } from "@heroicons/react/24/solid";
-import { IconButton } from "@material-tailwind/react";
 import { Sidenav, DashboardNavbar, Footer } from "@/widgets/layout";
 import routes from "@/routes";
 import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
@@ -26,14 +24,11 @@ export function Dashboard() {
 
     const validateToken = async () => {
       try {
-        const res = await axios.get(
-          ADMIN_PROTECTED_URL,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const res = await axios.get(ADMIN_PROTECTED_URL, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (!res.statusText) throw new Error("Not Authorized");
       } catch (error) {
@@ -44,7 +39,6 @@ export function Dashboard() {
 
     validateToken();
   }, [navigate]);
-
 
   const handleLogout = async () => {
     Swal.fire({

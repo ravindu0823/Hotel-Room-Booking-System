@@ -16,7 +16,7 @@ export function Navbar({ brandName, routes, action }) {
   React.useEffect(() => {
     window.addEventListener(
       "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false)
+      () => window.innerWidth >= 960 && setOpenNav(false),
     );
   }, []);
 
@@ -48,7 +48,7 @@ export function Navbar({ brandName, routes, action }) {
         <Link to="/">
           <Typography
             variant="small"
-            className="mr-4 ml-2 cursor-pointer py-1.5 font-bold"
+            className="ml-2 mr-4 cursor-pointer py-1.5 font-bold"
           >
             {brandName}
           </Typography>
@@ -82,9 +82,7 @@ export function Navbar({ brandName, routes, action }) {
   );
 }
 
-// 
-
-
+//
 
 Navbar.displayName = "/src/widgets/layout/navbar.jsx";
 
