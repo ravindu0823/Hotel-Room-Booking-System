@@ -26,7 +26,7 @@ import {
   setOpenSidenav,
 } from "@/context";
 
-export function DashboardNavbar() {
+export function DashboardNavbar({onClick}) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { fixedNavbar, openSidenav } = controller;
   const { pathname } = useLocation();
@@ -84,7 +84,7 @@ export function DashboardNavbar() {
           >
             <Bars3Icon strokeWidth={3} className="h-6 w-6 text-blue-gray-500" />
           </IconButton>
-          <Link to="/auth/sign-in">
+          <Link onClick={onClick}>
             <Button
               variant="text"
               color="dark"
