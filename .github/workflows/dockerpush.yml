@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ "dev", "ravindu" ]
+    branches: [ "dev" ]
 
 jobs:
   Docker-Client-Admin:
