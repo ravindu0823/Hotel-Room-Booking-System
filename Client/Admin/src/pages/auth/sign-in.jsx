@@ -1,13 +1,76 @@
 import {
-  Card,
   Input,
-  Checkbox,
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "@/api/axios";
+import { jwtDecode } from "jwt-decode";
+import Swal from "sweetalert2";
+import { LOGIN_URL } from "@/api/axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function SignIn() {
+  
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!userName || !password)
+      return toast.error("Please enter your username and password!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        bodyStyle: {
+          fontFamily: "Inter",
+          fontSize: "1rem",
+        },
+      });
+  
+
+  try {
+    const response = await axios.post(
+      LOGIN_URL,
+      JSON.stringify({ userName, password }),
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      }
+    );
+
+    console.log(response);
+
+    if (!response.statusText) throw new Error("Admin Login Failed");
+
+    const { token } = await response.data;
+      document.cookie = `token=${token}; path=/`;
+
+      const decodedToken = jwtDecode(token);
+
+      Swal.fire({
+        title: "Hotel Room Booking System",
+        text: `Welcome back Admin ${decodedToken.adminName}!`,
+        icon: "success",
+      }).then(() => {
+        navigate("/dashboard/home");
+      });
+    
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+
   return (
     <section className="m-8 flex gap-4">
       <div className="mt-48 w-full lg:w-3/5">
@@ -20,20 +83,22 @@ export function SignIn() {
             color="blue-gray"
             className="text-lg font-normal"
           >
-            Enter your email and password to Sign In.
+            Enter your username and password to Sign In.
           </Typography>
         </div>
-        <form className="mx-auto mb-2 mt-8 w-80 max-w-screen-lg lg:w-1/2">
+        <form className="mx-auto mb-2 mt-8 w-80 max-w-screen-lg lg:w-1/2" onSubmit={handleSubmit}>
           <div className="mb-1 flex flex-col gap-6">
             <Typography
               variant="small"
               color="blue-gray"
               className="-mb-3 font-medium"
             >
-              Your email / username
+              Your username
             </Typography>
             <Input
               size="lg"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               placeholder="name@mail.com"
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
@@ -48,6 +113,8 @@ export function SignIn() {
               Password
             </Typography>
             <Input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               size="lg"
               placeholder="********"
@@ -58,7 +125,7 @@ export function SignIn() {
             />
           </div>
 
-          <Button className="mt-6" fullWidth>
+          <Button className="mt-6" fullWidth type="submit">
             Sign In
           </Button>
         </form>
