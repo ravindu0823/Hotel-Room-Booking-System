@@ -26,7 +26,7 @@ import {
   setOpenSidenav,
 } from "@/context";
 
-export function DashboardNavbar({onClick}) {
+export function DashboardNavbar({ onClick }) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { fixedNavbar, openSidenav } = controller;
   const { pathname } = useLocation();
@@ -77,7 +77,6 @@ export function DashboardNavbar({onClick}) {
           </div> */}
           <IconButton
             variant="text"
-          
             color="blue-gray"
             className="grid xl:hidden"
             onClick={() => setOpenSidenav(dispatch, !openSidenav)}
@@ -88,7 +87,7 @@ export function DashboardNavbar({onClick}) {
             <Button
               variant="text"
               color="dark"
-              className="hidden items-center gap-1 px-4 xl:flex normal-case text-base"
+              className="hidden items-center gap-1 px-4 text-base normal-case xl:flex"
             >
               <UserCircleIcon className="h-6 w-6 text-blue-gray-500" />
               Log Out
