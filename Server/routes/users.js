@@ -82,7 +82,7 @@ userRouter.get("/", async (req, res) => {
       return res.status(404).json({ error: "No Users" });
     }
 
-    return res.status(200).json({ users });
+    return res.status(200).json(users);
   } catch (error) {
     console.log(error);
   }

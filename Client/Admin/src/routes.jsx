@@ -14,6 +14,9 @@ import Staff from "./pages/dashboard/Staff";
 import Food from "./pages/dashboard/Food";
 import Reservation from "./pages/dashboard/Reservations";
 import Offers from "./pages/dashboard/Offers";
+import AddReservation from "./pages/dashboard/AddReservation";
+import UpdateReservation from "@/pages/dashboard/UpdateReservation.jsx";
+import AddReservationExistingUser from "@/pages/dashboard/AddReservationExistingUser.jsx";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -64,6 +67,7 @@ export const routes = [
         path: "/offers",
         element: <Offers />,
       },
+
       /* {
         icon: <TableCellsIcon {...icon} />,
         name: "tables",
@@ -78,6 +82,7 @@ export const routes = [
       }, */
     ],
   },
+
   {
     title: "auth pages",
     layout: "auth",
@@ -94,6 +99,26 @@ export const routes = [
         path: "/sign-up",
         element: <SignUp />,
       }, */
+    ],
+  },
+  {
+    layout: "dashboard-sub",
+    pages: [
+      {
+        name: "Add Reservation",
+        path: "/reservation/add-new",
+        element: <AddReservation />,
+      },
+      {
+        name: "Add Reservation",
+        path: "/reservation/add-existing",
+        element: <AddReservationExistingUser />,
+      },
+      {
+        name: "Add Reservation",
+        path: "/reservation/update/:id",
+        element: <UpdateReservation />,
+      },
     ],
   },
 ];

@@ -1,4 +1,5 @@
 import Reservation from "../models/reservation.js";
+import User from "../models/user.js";
 import { connectToDB } from "../db/conn.js";
 import express from "express";
 import jwt from "jsonwebtoken";
@@ -7,9 +8,100 @@ import dotenv from "dotenv";
 dotenv.config();
 const reservationRouter = express.Router();
 
-reservationRouter.post("/new", async (req, res) => {
+reservationRouter.post("/create-with-new-user", async (req, res) => {
+  const { user, reservation } = await req.body;
+
+  try {
+    await connectToDB();
+
+    const newUser = new User(user);
+
+    newUser.password = newUser.generateHash(user.password);
+
+    await newUser.save();
+
+    const userId = newUser._id;
+
+    const savedReservation = new Reservation({
+      userId,
+      ...reservation,
+    });
+
+    await savedReservation.save();
+
+    console.log(savedReservation);
+    if (!savedReservation) res.send("Reservation creation failed").status(404);
+
+    return res.status(201).json(savedReservation);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+reservationRouter.post("/create-existing-user", async (req, res) => {
+  const { reservation } = await req.body;
+
+  try {
+    await connectToDB();
+
+    const savedReservation = new Reservation(reservation);
+
+    await savedReservation.save();
+
+    console.log(savedReservation);
+    if (!savedReservation) res.send("Reservation creation failed").status(404);
+
+    return res.status(201).json(savedReservation);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+reservationRouter.get("/", async (req, res) => {
+  try {
+    await connectToDB();
+
+    const reservations = await Reservation.find().populate("userId");
+
+    if (!reservations) {
+      return res.status(404).json({ error: "No Reservations" });
+    }
+
+    console.log(reservations);
+    return res.status(200).json(reservations);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+reservationRouter.delete("/delete/:reservationId", async (req, res) => {
+  const { reservationId } = req.params;
+
+  try {
+    await connectToDB();
+
+    const deletedReservation =
+      await Reservation.findByIdAndDelete(reservationId);
+
+    if (!deletedReservation) {
+      return res.status(404).json({ error: "Delete Failed" });
+    }
+
+    console.log(deletedReservation);
+    return res.status(200).json(deletedReservation);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+reservationRouter.put("/update/:reservationId", async (req, res) => {
+  const { reservationId } = req.params;
+
   const {
-    userId,
     arrivalDate,
     arrivalTime,
     departureDate,
@@ -25,44 +117,33 @@ reservationRouter.post("/new", async (req, res) => {
   try {
     await connectToDB();
 
-    const savedReservation = new Reservation({
-      userId,
-      arrivalDate,
-      arrivalTime,
-      departureDate,
-      departureTime,
-      roomType,
-      noOfRooms,
-      foodType,
-      noOfAdults,
-      noOfChildren,
-      specialRequirements,
-    });
+    const updateReservation = await Reservation.findByIdAndUpdate(
+      reservationId,
+      {
+        arrivalDate,
+        arrivalTime,
+        departureDate,
+        departureTime,
+        roomType,
+        noOfRooms,
+        foodType,
+        noOfAdults,
+        noOfChildren,
+        specialRequirements,
+      }
+    );
 
-    await savedReservation.save();
+    await updateReservation.save();
 
-    console.log(savedReservation);
-    if (!savedReservation) res.send("Reservation creation failed").status(404);
+    const updatedReservation =
+      await Reservation.findById(reservationId).populate("userId");
 
-    return res.status(201).json({ savedReservation });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-reservationRouter.get("/", async (req, res) => {
-  try {
-    await connectToDB();
-
-    const reservations = await Reservation.find({}).populate("userId");
-
-    if (!reservations) {
-      return res.status(404).json({ error: "No Reservations" });
+    if (!updatedReservation) {
+      return res.status(404).json({ error: "Update Failed" });
     }
 
-    console.log(reservations);
-    return res.status(200).json({ reservations });
+    console.log(updatedReservation);
+    return res.status(200).json(updatedReservation);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
@@ -75,16 +156,15 @@ reservationRouter.get("/:reservationId", async (req, res) => {
   try {
     await connectToDB();
 
-    const reservation = await Reservation.findById(reservationId).populate(
-      "userId"
-    );
+    const reservation =
+      await Reservation.findById(reservationId).populate("userId");
 
     if (!reservation) {
       return res.status(404).json({ error: "Reservation not found" });
     }
 
     console.log(reservation);
-    return res.status(200).json({ reservation });
+    return res.status(200).json(reservation);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
