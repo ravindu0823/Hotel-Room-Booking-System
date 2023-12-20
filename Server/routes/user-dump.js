@@ -1,4 +1,4 @@
-import express from "express";
+/* import express from "express";
 import db from "../db/conn.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -75,27 +75,5 @@ router.post("/feedback", async (req, res) => {
   }
 });
 
-router.get("/protected", async (req, res) => {
-  try {
-    const authHeader = await req.headers.authorization;
-    // console.log(authHeader);
-    const token = authHeader.split(" ")[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // console.log(decoded.userId);
-
-    if (!decoded) {
-      return res.status(400).json({ message: "Expired" });
-    } else if (decoded.exp < Date.now() / 1000) {
-      return res.status(400).json({ message: "Expired" });
-    } else {
-      // If the token is valid, return some protected data
-      return res.status(200).json({ data: "Protected data" });
-    }
-  } catch (error) {
-    console.log("Token Verification Error: ", error);
-    return res.status(400).json({ message: "Unauthorized" });
-  }
-});
-
 export default router;
+ */
