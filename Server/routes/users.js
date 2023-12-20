@@ -3,11 +3,15 @@ import { connectToDB } from "../db/conn.js";
 import express from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import {
+  validateUserAdd,
+  validateUserLogin,
+} from "../validations/userValidation.js";
 
 dotenv.config();
 const userRouter = express.Router();
 
-userRouter.post("/register", async (req, res) => {
+userRouter.post("/register", validateUserAdd, async (req, res) => {
   const { fullName, userName, password, contactNumber, address, nic } =
     await req.body;
 
@@ -40,7 +44,7 @@ userRouter.post("/register", async (req, res) => {
   }
 });
 
-userRouter.post("/login", async (req, res) => {
+userRouter.post("/login", validateUserLogin, async (req, res) => {
   const { userName, password } = await req.body;
 
   try {
@@ -65,7 +69,7 @@ userRouter.post("/login", async (req, res) => {
           expiresIn: "10m",
         }
       );
-      return res.json({ token });
+      return res.status(200).json({ token });
     }
   } catch (error) {
     console.log(error);
@@ -78,13 +82,36 @@ userRouter.get("/", async (req, res) => {
 
     const users = await User.find();
 
-    if (!users) {
-      return res.status(404).json({ error: "No Users" });
+    if (users.length == 0) {
+      return res.status(400).json({ message: "Unauthorized" });
     }
 
     return res.status(200).json(users);
   } catch (error) {
     console.log(error);
+  }
+});
+
+userRouter.get("/protected", async (req, res) => {
+  try {
+    const authHeader = await req.headers.authorization;
+    // console.log(authHeader);
+    const token = authHeader.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // console.log(decoded.userId);
+
+    if (!decoded) {
+      return res.status(400).json({ message: "Expired. Unauthorized" });
+    } else if (decoded.exp < Date.now() / 1000) {
+      return res.status(400).json({ message: "Expired. Unauthorized" });
+    } else {
+      // If the token is valid, return some protected data
+      return res.status(200).json({ data: "Protected data" });
+    }
+  } catch (error) {
+    console.log("Token Verification Error: ", error);
+    return res.status(400).json({ message: "Unauthorized" });
   }
 });
 
@@ -105,29 +132,6 @@ userRouter.get("/:userId", async (req, res) => {
     return res.status(200).json({ user });
   } catch (error) {
     console.log(error);
-  }
-});
-
-userRouter.get("/protected", async (req, res) => {
-  try {
-    const authHeader = await req.headers.authorization;
-    // console.log(authHeader);
-    const token = authHeader.split(" ")[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // console.log(decoded.userId);
-
-    if (!decoded) {
-      return res.status(400).json({ message: "Expired" });
-    } else if (decoded.exp < Date.now() / 1000) {
-      return res.status(400).json({ message: "Expired" });
-    } else {
-      // If the token is valid, return some protected data
-      return res.status(200).json({ data: "Protected data" });
-    }
-  } catch (error) {
-    console.log("Token Verification Error: ", error);
-    return res.status(400).json({ message: "Unauthorized" });
   }
 });
 
