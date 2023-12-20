@@ -14,8 +14,8 @@ export const connectToDB = async () => {
 
   try {
     await mongoose.connect(process.env.ATLAS_URI, {
-      // dbName: "hotel-room-booking",
-      dbName: "test-hotel-room-booking",
+      dbName: "hotel-room-booking",
+      // dbName: "test-hotel-room-booking",
     });
 
     isConnected = true;
