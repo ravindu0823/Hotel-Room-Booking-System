@@ -3,11 +3,15 @@ import { connectToDB } from "../db/conn.js";
 import express from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import {
+  validateAdminAdd,
+  validateAdminLogin,
+} from "../validations/adminValidation.js";
 
 dotenv.config();
 const adminRouter = express.Router();
 
-adminRouter.post("/add", async (req, res) => {
+adminRouter.post("/add", validateAdminAdd, async (req, res) => {
   const { fullName, userName, password } = await req.body;
 
   try {
@@ -41,7 +45,7 @@ adminRouter.post("/add", async (req, res) => {
   }
 });
 
-adminRouter.post("/login", async (req, res) => {
+adminRouter.post("/login", validateAdminLogin, async (req, res) => {
   const { userName, password } = await req.body;
 
   try {
@@ -68,7 +72,7 @@ adminRouter.post("/login", async (req, res) => {
           expiresIn: "10m",
         }
       );
-      return res.json({ token });
+      return res.status(200).json({ token });
     }
   } catch (error) {
     console.log(error);
@@ -85,7 +89,6 @@ adminRouter.get("/protected", async (req, res) => {
     // console.log(decoded.userId);
 
     if (!decoded) {
-        
       return res.status(400).json({ message: "Expired" });
     } else if (decoded.exp < Date.now() / 1000) {
       return res.status(400).json({ message: "Expired" });
