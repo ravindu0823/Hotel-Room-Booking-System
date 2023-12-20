@@ -13,15 +13,17 @@ jobs:
         working-directory: ./Server
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: "18.x"
-      - name: Install dependencies
+          node-version: 18
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: Dependecies
         run: |
           npm install
           npm ci
-      - name: Run tests (Jest and Supertest)
+      - name: Run Tests - CI
         run: npm run test
