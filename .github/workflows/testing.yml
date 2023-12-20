@@ -24,7 +24,6 @@ jobs:
       - name: Dependecies
         run: |
           npm install --legacy-peer-deps
-          npm install
           npm ci
       - name: Run Tests - CI
         run: npm run test
