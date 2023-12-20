@@ -1,3 +1,42 @@
+@import url(https://fonts.googleapis.com/css?family=Orbitron:regular,500,600,700,800,900);
+
+@import url(https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700);
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+@layer base {
+  body {
+    @apply antialiased font-inter tracking-normal leading-normal text-black min-h-full no-scrollbar overflow-x-hidden overflow-y-auto
+  }
+
+  html {
+    @apply scroll-smooth min-h-full overflow-x-hidden overflow-y-auto
+  }
+
+  p {
+    @apply font-oswald
+  }
+
+  li {
+    @apply font-orbitron cursor-pointer
+  }
+
+  button {
+    @apply border py-2 px-3 rounded-full font-medium font-orbitron
+  }
+}
