@@ -7,10 +7,10 @@ on:
     branches: ["dev"]
 
 jobs:
-  Run-Testings-CI:
+  Run-Tests-CI:
     defaults:
       run:
-        working-directory: ./Client/Admin
+        working-directory: ./Server
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
