@@ -14,7 +14,8 @@ export const connectToDB = async () => {
 
   try {
     await mongoose.connect(process.env.ATLAS_URI, {
-      dbName: "hotel-room-booking",
+      // dbName: "hotel-room-booking",
+      dbName: "test-hotel-room-booking",
     });
 
     isConnected = true;
@@ -23,3 +24,17 @@ export const connectToDB = async () => {
     console.log(error);
   }
 };
+
+export const disconnectFromDB = async () => {
+  if (!isConnected) {
+    return console.log("MongoDB is already disconnected");
+  }
+
+  try {
+    await mongoose.disconnect();
+    isConnected = false;
+    console.log("MongoDB Disconnected");
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -1,6 +1,7 @@
 import pkg from "mongoose";
 const { Schema, model, models } = pkg;
 import bcrypt from "bcrypt";
+import mongooseUniqueValidator from "mongoose-unique-validator";
 
 //(Full Name, username, password, Contact Number, Address, NIC)
 
@@ -13,6 +14,7 @@ const AdminSchema = new Schema({
   userName: {
     type: String,
     required: [true, "Please enter userName"],
+    unique: true,
   },
 
   password: {
@@ -30,6 +32,11 @@ AdminSchema.methods.generateHash = (password) => {
 AdminSchema.methods.validPassword = (password, dbPassword) => {
   return bcrypt.compareSync(password, dbPassword);
 };
+
+// Validate the username
+AdminSchema.plugin(mongooseUniqueValidator, {
+  message: "Username already exists. Duplicate key",
+});
 
 const Admin = models.Admin || model("Admin", AdminSchema);
 
