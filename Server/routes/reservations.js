@@ -77,6 +77,29 @@ reservationRouter.get("/", async (req, res) => {
   }
 });
 
+reservationRouter.get("/count", async (req, res) => {
+  try {
+    await connectToDB();
+
+    const reservations = await Reservation.countDocuments();
+    const users = await User.countDocuments();
+
+    if (!users) {
+      return res.status(404).json({ error: "No Reservations" });
+    }
+
+    if (!reservations) {
+      return res.status(404).json({ error: "No Reservations" });
+    }
+
+    console.log(users);
+    return res.status(200).json({ users, reservations });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 reservationRouter.delete("/delete/:reservationId", async (req, res) => {
   const { reservationId } = req.params;
 
