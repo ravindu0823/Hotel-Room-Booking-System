@@ -3,6 +3,8 @@ import User from "../models/user";
 import { connectToDB, disconnectFromDB } from "../db/conn";
 import request from "supertest";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 // a sample user object to use in tests
 const testUser = {
@@ -27,7 +29,7 @@ const getToken = async () => {
 
 // connect to the test database before running any tests
 beforeAll(async () => {
-  await connectToDB();
+  await connectToDB(process.env.DUMMY_ATLAS_URI);
 });
 
 // clear the test database after each test
