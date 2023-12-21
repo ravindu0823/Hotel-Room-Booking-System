@@ -4,8 +4,8 @@ dotenv.config();
 
 let isConnected = false;
 
-export const connectToDB = async () => {
-  console.log(process.env.ATLAS_URI);
+export const connectToDB = async (databaseUri = process.env.ATLAS_URI) => {
+  console.log(databaseUri);
   mongoose.set("strictQuery", true);
 
   if (isConnected) {
@@ -13,7 +13,7 @@ export const connectToDB = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.ATLAS_URI, {
+    await mongoose.connect(databaseUri, {
       dbName: "hotel-room-booking",
       // dbName: "test-hotel-room-booking",
     });
@@ -37,4 +37,4 @@ export const disconnectFromDB = async () => {
   } catch (error) {
     console.log(error);
   }
-}
+};
