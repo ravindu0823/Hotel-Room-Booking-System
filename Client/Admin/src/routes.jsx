@@ -17,6 +17,9 @@ import Offers from "./pages/dashboard/Offers";
 import AddReservation from "./pages/dashboard/AddReservation";
 import UpdateReservation from "@/pages/dashboard/UpdateReservation.jsx";
 import AddReservationExistingUser from "@/pages/dashboard/AddReservationExistingUser.jsx";
+import AddOffer from "./pages/dashboard/AddOffer";
+import UpdateOffer from "./pages/dashboard/UpdateOffer";
+
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -118,6 +121,17 @@ export const routes = [
         name: "Add Reservation",
         path: "/reservation/update/:id",
         element: <UpdateReservation />,
+      },
+      {
+        name: "Add Offer",
+        path: "/offers/add-new",
+        element: <AddOffer />,
+      },
+      
+      {
+        name: "Add Offer",
+        path: "/offers/update/:id",
+        element: <UpdateOffer />,
       },
     ],
   },

@@ -9,6 +9,12 @@ export const CREATE_RESERVATION_URL = "/reservations/create-with-new-user";
 export const CREATE_RESERVATION_WITH_EXISTING_USER_URL = "/reservations/create-existing-user";
 export const GET_ALL_USERS_URL = "/users";
 export const DELETE_RESERVATION_URL = "/reservations/delete";
+export const OFFER_URL = "/offer";
+export const OFFER_BY_ID_URL = "/offer/";
+export const OFFER_UPDATE_URL = "/offer/update/";
+export const CREATE_OFFER_URL = "/offer/new";
+export const DELETE_OFFER_URL = "/offer/delete";
+
 
 export default axios.create({
   baseURL: "http://localhost:3000",
