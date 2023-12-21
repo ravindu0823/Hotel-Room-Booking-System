@@ -11,6 +11,14 @@ const OfferSchema = new Schema({
     type: Number,
     required: [true, "Please add price"],
   },
+
+  Description: {
+    type: String,
+    required: [true, "Please add description"],
+  },
+ 
+  
+
 });
 
 const Offer = models.Offer || model("Offer", OfferSchema);
