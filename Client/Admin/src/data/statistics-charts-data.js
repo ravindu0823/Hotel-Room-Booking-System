@@ -114,7 +114,7 @@ export const statisticsChartsData = [
   },
   {
     color: "white",
-    title: "Daily Sales",
+    title: "Daily Reservations",
     description: "15% increase in today sales",
     footer: "updated 4 min ago",
     chart: dailySalesChart,
