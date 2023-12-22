@@ -2,6 +2,8 @@ import app from "../app";
 import Admin from "../models/admin";
 import { connectToDB, disconnectFromDB } from "../db/conn";
 import request from "supertest";
+import dotenv from "dotenv";
+dotenv.config();
 
 // a sample admin object to use in tests
 const testAdmin = {
@@ -23,7 +25,7 @@ const getToken = async () => {
 
 // connect to the test database before running any tests
 beforeAll(async () => {
-  await connectToDB();
+  await connectToDB(process.env.DUMMY_ATLAS_URI);
 });
 
 // clear the test database after each test

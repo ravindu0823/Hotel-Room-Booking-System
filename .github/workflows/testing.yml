@@ -3,8 +3,6 @@ name: Run Tests - CI
 on:
   push:
     branches: ["ravindu"]
-  pull_request:
-    branches: ["dev"]
 
 jobs:
   Run-Tests-CI:
