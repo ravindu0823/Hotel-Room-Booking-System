@@ -41,7 +41,7 @@ foodsRouter.post("/new", async (req, res) => {
   }
 });
 
-foodsRouter.get("/", async (req, res) => {
+foodsRouter.get("/read", async (req, res) => {
   try {
     await connectToDB();
     const allFoods = await Food.find();
