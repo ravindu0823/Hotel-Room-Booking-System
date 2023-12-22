@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography } from "@material-tailwind/react";
 import { StatisticsCard } from "@/widgets/cards";
 import { StatisticsChart } from "@/widgets/charts";
 import { statisticsCardsData, statisticsChartsData } from "@/data";
 import { ClockIcon } from "@heroicons/react/24/solid";
+import axios from "@/api/axios";
+import { COUNTS_URL } from "@/api/axios";
 
 export function Home() {
+  const [card, setCard] = React.useState([statisticsCardsData]);
+
+  useEffect(() => {
+    const counts = async () => {
+      const res = await axios.get(COUNTS_URL);
+      console.log(res.data);
+
+      setCard(statisticsCardsData[0].value = res.data.reservations);
+      setCard(statisticsCardsData[1].value = res.data.users);
+      
+    }
+
+    counts();
+  }, []);
+
   return (
     <div className="mt-12">
       <div className="mb-12 grid gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
