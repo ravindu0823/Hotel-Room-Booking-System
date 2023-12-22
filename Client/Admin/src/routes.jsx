@@ -21,7 +21,8 @@ import AddOffer from "./pages/dashboard/AddOffer";
 import UpdateOffer from "./pages/dashboard/UpdateOffer";
 import Addroom from "./pages/dashboard/Addroom";
 import UpdateRoom from "./pages/dashboard/UpdateRoom";
-
+import AddFood from "./pages/dashboard/AddFood";
+import UpdateFood from "./pages/dashboard/UpdateFood";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -147,6 +148,18 @@ export const routes = [
         path: "/rooms/update/:id",
         element: <UpdateRoom />,
       },
+      // add food
+      {
+        name: "Add Food",
+        path: "/foods/add-new",
+        element: <AddFood/>,
+      },
+      // Add Food Routings
+      {
+        name: "Add Food",
+        path: "foods/update/:id",
+        element: <UpdateFood />,
+      }
     ],
   },
 ];
