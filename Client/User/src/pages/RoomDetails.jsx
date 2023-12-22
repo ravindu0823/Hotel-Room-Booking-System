@@ -1,27 +1,5 @@
-// // RoomDetails.js
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-
-// const RoomDetails = () => {
-//  let { id } = useParams();
-//   let [room, setRoom] = useState(null);
-
-//   return (
-//     <>
-//     <div>
-//      <div>{id}</div>
-//      <h1>Room {id}</h1>
-
-//     </div>
-//     </>
-//   );
-// };
-
-// export default RoomDetails;
-// RoomDetails.js
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom"; // Added 'Link' import
-import Roomshow from "./Roomshow";
 const RoomDetails = () => {
   const { id } = useParams();
   const [room, setRoom] = useState(null);
