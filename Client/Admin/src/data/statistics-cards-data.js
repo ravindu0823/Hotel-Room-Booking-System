@@ -9,7 +9,7 @@ export const statisticsCardsData = [
   {
     color: "gray",
     icon: BanknotesIcon,
-    title: "Today's Money",
+    title: "Total No of Reservations",
     value: "$53k",
     footer: {
       color: "text-green-500",
@@ -20,7 +20,7 @@ export const statisticsCardsData = [
   {
     color: "gray",
     icon: UsersIcon,
-    title: "Today's Users",
+    title: "Total Users",
     value: "2,300",
     footer: {
       color: "text-green-500",
@@ -31,7 +31,7 @@ export const statisticsCardsData = [
   {
     color: "gray",
     icon: UserPlusIcon,
-    title: "New Clients",
+    title: "Total Employees",
     value: "3,462",
     footer: {
       color: "text-red-500",
@@ -42,7 +42,7 @@ export const statisticsCardsData = [
   {
     color: "gray",
     icon: ChartBarIcon,
-    title: "Sales",
+    title: "Sales of Reservations",
     value: "$103,430",
     footer: {
       color: "text-green-500",
