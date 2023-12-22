@@ -14,6 +14,7 @@ export const OFFER_BY_ID_URL = "/offer/";
 export const OFFER_UPDATE_URL = "/offer/update/";
 export const CREATE_OFFER_URL = "/offer/new";
 export const DELETE_OFFER_URL = "/offer/delete";
+export const COUNTS_URL = "/reservations/count";
 
 
 export default axios.create({

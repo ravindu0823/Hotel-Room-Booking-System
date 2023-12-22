@@ -2,7 +2,7 @@ name: Run Tests - CI
 
 on:
   push:
-    branches: ["ravindu"]
+    branches: ["temp"]
 
 jobs:
   Run-Tests-CI:

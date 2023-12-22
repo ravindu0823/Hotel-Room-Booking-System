@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
+import { Link } from "react-router-dom";
+import { SignInContext } from "../contexts/SignInContext";
+import Swal from "sweetalert2";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [nav, setNav] = useState(false);
+  const { loggedIn, setLoggedIn } = useContext(SignInContext);
+
   const handleNav = () => {
     setNav(!nav);
     if (!nav) {
@@ -10,6 +18,31 @@ const Navbar = () => {
     } else {
       document.body.style.overflow = "scroll";
     }
+  };
+
+  const handleLogout = async () => {
+    Swal.fire({
+      title: "Hotel Room Booking System",
+      text: "Are you sure want to Logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Cookies.remove("token");
+        setLoggedIn(false);
+
+        Swal.fire({
+          title: "Hotel Room Booking System",
+          text: "Logged Out!",
+          icon: "success",
+        }).then(() => {
+          navigate(0);
+        });
+      }
+    });
   };
 
   return (
@@ -49,19 +82,31 @@ const Navbar = () => {
           >
             <a href="#seek">Contact us</a>
           </li>
-          <li
-            onClick={() => setNav(false)}
-            className="font-bold text-3xl p-8 ease-in duration-300 delay-150"
-          >
-            <a href="#food">Sign Up</a>
-          </li>
-          <li
-            onClick={() => setNav(false)}
-            className="font-bold text-3xl p-8 ease-in duration-300 delay-150"
-          >
-            <a href="#sign in">Sign in</a>
-          </li>
-
+          {loggedIn ? (
+            <div>
+              <li
+                onClick={() => setNav(false)}
+                className="font-bold text-3xl p-8 ease-in duration-300 delay-150"
+              >
+                <Link onClick={handleLogout}>Sign Out</Link>
+              </li>
+            </div>
+          ) : (
+            <div>
+              <li
+                onClick={() => setNav(false)}
+                className="font-bold text-3xl p-8 ease-in duration-300 delay-150"
+              >
+                <a href="#food">Sign Up</a>
+              </li>
+              <li
+                onClick={() => setNav(false)}
+                className="font-bold text-3xl p-8 ease-in duration-300 delay-150"
+              >
+                <Link to="/sign-in">Sign In</Link>
+              </li>
+            </div>
+          )}
         </ul>
       </div>
     </div>
