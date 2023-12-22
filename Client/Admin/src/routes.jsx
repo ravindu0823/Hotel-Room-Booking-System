@@ -151,7 +151,7 @@ export const routes = [
       // add food
       {
         name: "Add Food",
-        path: "/food/add-new",
+        path: "/foods/add-new",
         element: <AddFood/>,
       },
       // Add Food Routings
