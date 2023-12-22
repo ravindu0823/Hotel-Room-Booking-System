@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link } from "react-router-dom";
 import RoomCard from "./roomcard";
 
@@ -16,7 +16,7 @@ const Midheading = () => {
         Reservation
       </p>
       <Link
-        to="/room"
+        to="/rooms"
         className="text-lg font-medium hover:underline underline-offset-4 decoration-2 decoration-[dimgray]"
         onClick={toggleRoom} // Click handler to toggle visibility
       >
