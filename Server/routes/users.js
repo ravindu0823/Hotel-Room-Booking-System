@@ -33,9 +33,13 @@ userRouter.post("/register", validateUserAdd, async (req, res) => {
     console.log(savedUser);
     if (!savedUser) res.send("Not found").status(404);
 
-    const token = jwt.sign({ userId: savedUser._id }, process.env.JWT_SECRET, {
-      expiresIn: "10m",
-    });
+    const token = jwt.sign(
+      { userId: savedUser._id, fullName: savedUser.fullName },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "10m",
+      }
+    );
 
     return res.status(201).json({ token });
   } catch (error) {
@@ -63,7 +67,7 @@ userRouter.post("/login", validateUserLogin, async (req, res) => {
       // password matched. proceed forward
       console.log("password matched");
       const token = jwt.sign(
-        { userId: loggedUser._id },
+        { userId: loggedUser._id, fullName: loggedUser.fullName },
         process.env.JWT_SECRET,
         {
           expiresIn: "10m",
