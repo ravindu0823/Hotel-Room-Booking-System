@@ -96,4 +96,21 @@ roomsRouter.put("/:roomId", async (req, res) => {
   }
 });
 // end code
+roomsRouter.get("/:roomId", async (req, res) => {
+  const { roomId } = req.params;
+
+  try {
+    await connectToDB();
+    const room = await Room.findById(roomId);
+
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+
+    res.json(room);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
+  }
+});
 export default roomsRouter;

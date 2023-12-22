@@ -19,6 +19,8 @@ import UpdateReservation from "@/pages/dashboard/UpdateReservation.jsx";
 import AddReservationExistingUser from "@/pages/dashboard/AddReservationExistingUser.jsx";
 import AddOffer from "./pages/dashboard/AddOffer";
 import UpdateOffer from "./pages/dashboard/UpdateOffer";
+import Addroom from "./pages/dashboard/Addroom";
+import UpdateRoom from "./pages/dashboard/UpdateRoom";
 
 
 const icon = {
@@ -133,8 +135,21 @@ export const routes = [
         path: "/offers/update/:id",
         element: <UpdateOffer />,
       },
+      // Add Room Routings
+      {
+        name: "Add Rooms",
+        path: "/rooms/add-new",
+        element: <Addroom />,
+      },
+       //update room
+       {
+        name: "Update Rooms",
+        path: "/rooms/update/:id",
+        element: <UpdateRoom />,
+      },
     ],
   },
 ];
+
 
 export default routes;
