@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { DELETE_FOOD_BY_ID_URL, GET_ALL_FOOD_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { Button } from "@material-tailwind/react";
@@ -10,7 +10,7 @@ const Foods = () => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/foods/read');
+        const response = await axios.get(GET_ALL_FOOD_URL);
         setFoods(response.data);
       } catch (error) {
         console.error('Error fetching food data:', error);
@@ -33,7 +33,7 @@ const Foods = () => {
       });
 
       if (result.isConfirmed) {
-        await axios.delete(`http://localhost:3000/foods/${foodId}`);
+        await axios.delete(`${DELETE_FOOD_BY_ID_URL}/${foodId}`);
         setFoods(foods.filter((food) => food._id !== foodId));
 
         Swal.fire({
