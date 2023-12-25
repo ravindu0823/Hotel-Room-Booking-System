@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { DELETE_ROOM_BY_ID_URL, GET_ALL_ROOMS_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import {
@@ -16,7 +16,7 @@ const Rooms = () => {
     // Fetch room data from the backend
     const fetchRooms = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/rooms/read');
+        const response = await axios.get(GET_ALL_ROOMS_URL);
         setRooms(response.data);
       } catch (error) {
         console.error('Error fetching room data:', error);
@@ -40,7 +40,7 @@ const Rooms = () => {
       if (result.isConfirmed) {
         try {
           // Make a delete request to your backend endpoint to remove the room
-          await axios.delete(`http://localhost:3000/rooms/${roomId}`);
+          await axios.delete(`${DELETE_ROOM_BY_ID_URL}/${roomId}`);
           // Filter out the deleted room from the current state
           setRooms(rooms.filter((room) => room._id !== roomId));
           
