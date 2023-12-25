@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios, { GET_FOOD_BY_ID_URL, UPDATE_FOOD_BY_ID_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 
 const UpdateFood = () => {
@@ -18,7 +18,7 @@ const UpdateFood = () => {
   useEffect(() => {
     const fetchFood = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/foods/${id}`);
+        const response = await axios.get(`${GET_FOOD_BY_ID_URL}/${id}`);
         setFood(response.data);
         setFoodName(response.data.foodName);
         setFoodCategory(response.data.foodCategory);
@@ -39,7 +39,7 @@ const UpdateFood = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3000/foods/${id}`, {
+      await axios.put(`${UPDATE_FOOD_BY_ID_URL}/${id}`, {
         foodName: foodName,
         foodCategory: foodCategory,
         foodType: foodType,
