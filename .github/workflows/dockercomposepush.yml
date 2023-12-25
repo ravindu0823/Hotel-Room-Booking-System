@@ -2,10 +2,10 @@ name: Docker Compose CI
 
 on:
   push:
-    branches: ["ravindu"]
+    branches: ["temp"]
 
 jobs:
-  Docker-Compose:
+  Build-Admin:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -19,9 +19,7 @@ jobs:
           git config user.email "<>"
 
       - name: Dependecies
-        run: |
-          npm install
-          npm ci
+        run: npm ci
 
       - name: Build
         run: npm run build
