@@ -4,7 +4,15 @@ dotenv.config();
 
 let isConnected = false;
 
-export const connectToDB = async (databaseUri = process.env.ATLAS_URI) => {
+export const connectToDB = async () => {
+  let databaseUri;
+
+  if (process.env.NODE_ENV === "test") {
+    databaseUri = process.env.DUMMY_ATLAS_URI;
+  } else {
+    databaseUri = process.env.ATLAS_URI;
+  }
+
   console.log(databaseUri);
   mongoose.set("strictQuery", true);
 
