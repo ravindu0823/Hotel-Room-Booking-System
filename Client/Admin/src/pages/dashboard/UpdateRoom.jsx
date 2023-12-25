@@ -24,7 +24,7 @@
 // export default UpdateRoom;
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios, { GET_ROOM_BY_ID_URL, UPDATE_ROOM_BY_ID_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 
 
@@ -42,7 +42,7 @@ const UpdateRoom= () => {
     useEffect(() => {
         const fetchRoom = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/rooms/${id}`);
+                const response = await axios.get(`${GET_ROOM_BY_ID_URL}/${id}`);
                 setRoom(response.data);
                 setRoomType(response.data.roomType);
                 setAvailability(response.data.availability);
@@ -62,7 +62,7 @@ const UpdateRoom= () => {
 
     const handleUpdate = async () => {
         try {
-            await axios.put(`http://localhost:3000/rooms/${id}`, {
+            await axios.put(`${UPDATE_ROOM_BY_ID_URL}/${id}`, {
                 roomType: roomType,
                 availability: availability,
                 facilities: facilities,
