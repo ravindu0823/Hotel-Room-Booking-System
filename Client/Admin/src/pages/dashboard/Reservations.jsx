@@ -76,7 +76,7 @@ const Reservations = () => {
     };
 
     getReservationData();
-  }, [0]);
+  }, [navigate]);
 
   reservationData.map(({ noOfChildren }) => {
     console.log(noOfChildren);
@@ -105,14 +105,13 @@ const Reservations = () => {
 
             if (!res.statusText) throw new Error("Not Authorized");
 
-            // console.log(res.data)
-            setResevationData(res.data);
+            console.log(res.data)
             Swal.fire({
               title: "Hotel Room Booking System",
               text: "Done!",
               icon: "success",
             }).then(() => {
-              navigate(0);
+              setResevationData(reservationData.filter((el) => el._id !== id));
             });
           } catch (error) {
             console.error(error);
