@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '@/api/axios';
 import Swal from 'sweetalert2'; // Import SweetAlert
 import { Input } from "@material-tailwind/react";
+import { CREATE_NEW_ROOM_URL } from '@/api/axios';
 
 class Addroom extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Addroom extends Component {
     const { roomType, facilities, persons, price } = this.state;
 
     try {
-      const response = await axios.post('http://localhost:3000/rooms/new', {
+      const response = await axios.post(CREATE_NEW_ROOM_URL, {
         roomType,
         availability: true,
         facilities,
