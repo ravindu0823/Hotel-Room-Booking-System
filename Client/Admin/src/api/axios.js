@@ -15,8 +15,18 @@ export const OFFER_UPDATE_URL = "/offer/update/";
 export const CREATE_OFFER_URL = "/offer/new";
 export const DELETE_OFFER_URL = "/offer/delete";
 export const COUNTS_URL = "/reservations/count";
+export const CREATE_NEW_FOOD_URL = "/foods/new";
+export const CREATE_NEW_ROOM_URL = "/rooms/new";
+export const GET_ALL_FOOD_URL = "/foods/read";
+export const DELETE_FOOD_BY_ID_URL = "/foods";
+export const GET_ALL_ROOMS_URL = "/rooms/read";
+export const DELETE_ROOM_BY_ID_URL = "/rooms";
+export const GET_FOOD_BY_ID_URL = "/foods";
+export const UPDATE_FOOD_BY_ID_URL = "/foods";
+export const GET_ROOM_BY_ID_URL = "/rooms";
+export const UPDATE_ROOM_BY_ID_URL = "/rooms";
 
 
 export default axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: import.meta.env.VITE_BASEURL,
 });
