@@ -146,7 +146,7 @@ const AddReservation = () => {
         text: `Reservation Created!`,
         icon: "success",
       }).then(() => {
-        navigate("/reservation");
+        navigate("/dashboard/reservation");
       });
 
       console.log(res.data);
