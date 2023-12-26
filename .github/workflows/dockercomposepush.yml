@@ -13,10 +13,8 @@ jobs:
         with:
           node-version: 18
 
-      - name: change directory - Admin
-        run: cd Client/Admin/
-
-      - name: setup git config
+      - working-directory: ./Client/Admin/
+        name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
@@ -33,10 +31,8 @@ jobs:
         id: version-admin
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
 
-      - name: Change directory - User
-        run: cd ../User/
-
-      - name: Dependecies
+      - working-directory: ./Client/User/
+        name: Dependecies
         run: |
           npm install
           npm ci
@@ -48,10 +44,8 @@ jobs:
         id: version-user
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
 
-      - name: change directory - Server
-        run: cd ../../Server/
-
-      - name: Dependecies
+      - working-directory: ./Server/
+        name: Dependecies
         run: |
           npm install
           npm ci
@@ -63,10 +57,8 @@ jobs:
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
-      - name: change directory - Root
-        run: cd ..
-
-      - name: Build and Push Docker Images
+      - working-directory: ./
+        name: Build and Push Docker Images
         run: |
           docker-compose build
 
