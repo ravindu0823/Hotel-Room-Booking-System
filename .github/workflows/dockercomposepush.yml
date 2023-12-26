@@ -32,20 +32,22 @@ jobs:
         id: version-admin
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
         working-directory: ./Client/Admin/
-      
+
       - name: Dependecies
-        run: yarn
+        run: |
+          npm install
+          npm ci
         working-directory: ./Client/User/
 
       - name: Build
-        run: yarn build
+        run: npm run build
         working-directory: ./Client/User/
 
       - name: Save version
         id: version-user
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
         working-directory: ./Client/User/
-      
+
       - name: Dependecies
         run: |
           npm install
@@ -65,13 +67,13 @@ jobs:
           docker-compose build
 
           # Tag and push frontend-admin service
-          docker tag frontend-admin:latest ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
+          docker tag hotel-room-booking-system-frontend-admin:latest ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
 
           # Tag and push frontend-user service
-          docker tag frontend-user:latest ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
+          docker tag hotel-room-booking-system-frontend-user:latest ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
 
           # Tag and push backend service
-          docker tag backend:latest ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
+          docker tag hotel-room-booking-system-backend:latest ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
