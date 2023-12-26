@@ -64,9 +64,9 @@ jobs:
         run: |
           docker-compose build
 
-          docker tag hotel-room-booking-system-frontend-admin:latest ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
-          docker tag hotel-room-booking-system-frontend-user:latest ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
-          docker tag hotel-room-booking-system-backend:latest ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
+          docker tag admin-image:local ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
+          docker tag user-image:local ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
+          docker tag server-image:local ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
           
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
