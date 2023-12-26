@@ -6,10 +6,6 @@ on:
 
 jobs:
   Build-and-Push:
-    defaults:
-      run:
-        working-directory: ./Client/Admin
-
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,6 +13,8 @@ jobs:
         with:
           node-version: 18
 
+      - name: change-dir-Admin
+      - run: cd Client/Admin/
       - name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
@@ -32,8 +30,8 @@ jobs:
         id: version-admin
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
 
-      - name: Change directory
-        run: cd ../User
+      - name: Change directory - User
+        run: cd ../User/
 
       - name: Dependecies
         run: npm ci
@@ -45,8 +43,8 @@ jobs:
         id: version-user
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
 
-      - name: change directory
-        run: cd ../../Server
+      - name: change directory - Server
+        run: cd ../../Server/
 
       - name: Dependecies
         run: npm ci
@@ -58,8 +56,8 @@ jobs:
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
-      - name: change directory
-        run: cd ../
+      - name: change directory - Root
+        run: cd ..
 
       - name: Build and Push Docker Images
         run: |
