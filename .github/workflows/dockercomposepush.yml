@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 18.18.0
 
       - name: setup git config
         run: |
@@ -77,4 +77,3 @@ jobs:
           # Tag and push backend service
           docker tag backend:latest ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
-        working-directory: ./
