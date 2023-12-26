@@ -2,10 +2,14 @@ name: Docker Compose CI
 
 on:
   push:
-    branches: ["temp"]
+    branches: ["ravindu"]
 
 jobs:
-  Build-Admin:
+  Build-and-Push:
+    defaults:
+      run:
+        working-directory: ./Client/Admin
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,30 +29,50 @@ jobs:
         run: npm run build
 
       - name: Save version
-        id: version
+        id: version-admin
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
 
-      - name: Increase version
-        run: npm version patch
+      - name: Change directory
+        run: cd ../User
 
-      - name: Push new version
-        run: git push --force
+      - name: Dependecies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Save version
+        id: version-user
+        run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
+
+      - name: change directory
+        run: cd ../../Server
+
+      - name: Dependecies
+        run: npm ci
+
+      - name: Save version
+        id: version-server
+        run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
 
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-      
+
+      - name: change directory
+        run: cd ../
+
       - name: Build and Push Docker Images
         run: |
           docker-compose build
 
           # Tag and push frontend-admin service
-          docker tag frontend-admin:latest ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version.outputs.tag }}
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version.outputs.tag }}
+          docker tag frontend-admin:latest ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
 
           # Tag and push frontend-user service
-          docker tag frontend-user:latest ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version.outputs.tag }}
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version.outputs.tag }}
+          docker tag frontend-user:latest ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
 
           # Tag and push backend service
-          docker tag backend:latest ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version.outputs.tag }}
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version.outputs.tag }}
+          docker tag backend:latest ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
