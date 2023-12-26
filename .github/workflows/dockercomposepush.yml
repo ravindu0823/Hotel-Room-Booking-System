@@ -34,13 +34,11 @@ jobs:
         working-directory: ./Client/Admin/
       
       - name: Dependecies
-        run: |
-          npm install
-          npm ci
+        run: yarn
         working-directory: ./Client/User/
 
       - name: Build
-        run: npm run build
+        run: yarn build
         working-directory: ./Client/User/
 
       - name: Save version
