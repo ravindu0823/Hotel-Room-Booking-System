@@ -13,8 +13,7 @@ jobs:
         with:
           node-version: 18
 
-      - working-directory: ./Client/Admin/
-        name: setup git config
+      - name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
@@ -23,42 +22,47 @@ jobs:
         run: |
           npm install
           npm ci
+        working-directory: ./Client/Admin/
 
       - name: Build
         run: npm run build
+        working-directory: ./Client/Admin/
 
       - name: Save version
         id: version-admin
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
-
-      - working-directory: ./Client/User/
-        name: Dependecies
+        working-directory: ./Client/Admin/
+      
+      - name: Dependecies
         run: |
           npm install
           npm ci
+        working-directory: ./Client/User/
 
       - name: Build
         run: npm run build
+        working-directory: ./Client/User/
 
       - name: Save version
         id: version-user
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
-
-      - working-directory: ./Server/
-        name: Dependecies
+        working-directory: ./Client/User/
+      
+      - name: Dependecies
         run: |
           npm install
           npm ci
+        working-directory: ./Server/
 
       - name: Save version
         id: version-server
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
+        working-directory: ./Server/
 
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
-      - working-directory: ./
-        name: Build and Push Docker Images
+      - name: Build and Push Docker Images
         run: |
           docker-compose build
 
@@ -73,3 +77,4 @@ jobs:
           # Tag and push backend service
           docker tag backend:latest ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
+        working-directory: ./
