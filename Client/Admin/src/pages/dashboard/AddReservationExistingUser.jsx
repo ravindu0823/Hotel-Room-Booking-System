@@ -147,10 +147,8 @@ const AddReservationExistingUser = () => {
         text: `Reservation Created!`,
         icon: "success",
       }).then(() => {
-        navigate("/reservation");
+        navigate("/dashboard/reservation");
       });
-
-      console.log(res.data);
     } catch (error) {
       console.error(error);
     }

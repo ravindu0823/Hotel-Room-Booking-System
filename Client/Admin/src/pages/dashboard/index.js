@@ -4,7 +4,13 @@ export * from "@/pages/dashboard/Tables";
 export * from "@/pages/dashboard/notifications";
 export * from "@/pages/dashboard/Reservations";
 export * from "@/pages/dashboard/AddReservation"
+export * from "@/pages/dashboard/AddReservationExistingUser"
 export * from "@/pages/dashboard/UpdateReservation"
 export * from "@/pages/dashboard/Offers";
 export * from "@/pages/dashboard/AddOffer"
 export * from "@/pages/dashboard/UpdateOffer"
+export * from "@/pages/dashboard/AddFood"
+export * from "@/pages/dashboard/Rooms"
+export * from "@/pages/dashboard/Staff"
+export * from "@/pages/dashboard/UpdateFood"
+export * from "@/pages/dashboard/UpdateRoom"

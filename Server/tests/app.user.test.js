@@ -29,7 +29,7 @@ const getToken = async () => {
 
 // connect to the test database before running any tests
 beforeAll(async () => {
-  await connectToDB(process.env.DUMMY_ATLAS_URI);
+  await connectToDB();
 });
 
 // clear the test database after each test

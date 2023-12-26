@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios, { CREATE_NEW_FOOD_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 
 class AddFood extends Component {
@@ -47,7 +47,7 @@ class AddFood extends Component {
 
     try {
       const { foodName, foodCategory, foodType, price, persons, spicinessLevel } = this.state;
-      const response = await axios.post('http://localhost:3000/foods/new', {
+      const response = await axios.post(CREATE_NEW_FOOD_URL, {
         foodName,
         foodCategory,
         foodType,

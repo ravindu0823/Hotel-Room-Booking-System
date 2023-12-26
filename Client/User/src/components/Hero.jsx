@@ -1,6 +1,10 @@
+import { Button } from "@material-tailwind/react";
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <div id="#" className="w-full h-screen">
       <img
@@ -10,20 +14,28 @@ const Hero = () => {
       />
       <div className="bg-black/30 absolute top-0 left-0 w-full h-screen"></div>
       <div className="absolute top-0 w-full h-full flex flex-col justify-center text-white">
-  <div className="md:left-[10%] max-w-[1100px] m-auto absolute p-4">
-    <p className="text-lg text-slate-200">Welcome to Your Next Getaway&nbsp;.</p>
-    <h1 className="font-bold text-5xl md:text-7xl drop-shadow-2xl hover:text-[gold] ease-in duration-200">
-      Discover Your Perfect Stay&nbsp;.
-    </h1>
-    <p className="max-w-[600px] drop-shadow-2xl py-2 text-xl font-inter">
-      Explore our exquisite selection of rooms and suites designed to make your stay unforgettable. Whether it's a luxurious suite or a cozy room with a view, find your ideal accommodation with us.
-    </p>
-    <button className="bg-white text-black hover:bg-transparent hover:text-white hover:scale-105 ease-in duration-300">
-      Book Your Stay&nbsp;.
-    </button>
-  </div>
-</div>
+        <div className="md:left-[10%] max-w-[1100px] m-auto absolute p-4">
+          <p className="text-lg text-slate-200">
+            Welcome to Your Next Getaway&nbsp;.
+          </p>
+          <h1 className="font-bold text-5xl md:text-7xl drop-shadow-2xl hover:text-[gold] ease-in duration-200">
+            Discover Your Perfect Stay&nbsp;.
+          </h1>
+          <p className="max-w-[600px] drop-shadow-2xl py-2 text-xl font-inter">
+            Explore our exquisite selection of rooms and suites designed to make
+            your stay unforgettable. Whether it's a luxurious suite or a cozy
+            room with a view, find your ideal accommodation with us.
+          </p>
 
+          <Button
+            className="bg-white text-black hover:bg-transparent hover:text-white hover:scale-105 ease-in duration-300"
+            disabled={false}
+            onClick={() => navigate("/reservation")}
+          >
+            Book Your Stay&nbsp;.
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
