@@ -6,11 +6,13 @@ const roomsRouter = express.Router();
 
 // add new room(start code)
 roomsRouter.post("/new", async (req, res) => {
-  const { roomType, facilities, persons, price } = await req.body;
+  const { roomType, facilities, persons, price, image } = await req.body;
   const availability = true;
 
   try {
     await connectToDB();
+
+
 
     const savedRoom = new Room({
       roomType,
@@ -18,6 +20,7 @@ roomsRouter.post("/new", async (req, res) => {
       facilities,
       persons,
       price,
+      image,
     });
 
     await savedRoom.save();
