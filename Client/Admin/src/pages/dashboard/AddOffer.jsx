@@ -1,173 +1,145 @@
-import React, { useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
+import React, { Component } from 'react';
+import axios from '@/api/axios';
+import Swal from 'sweetalert2'; // Import SweetAlert
+import { Input } from "@material-tailwind/react";
+import { CREATE_OFFER_URL } from '@/api/axios';
 
-  Button,
-  Typography,
-} from "@material-tailwind/react";
-import UserInput from "@/widgets/forms/UserInput.jsx";
-import DynamicDropdown from "@/widgets/forms/DynamicDropdown.jsx";
-import Swal from "sweetalert2";
-import axios, {
-  CREATE_OFFER_URL,
-  OFFER_UPDATE_URL,
-} from "@/api/axios.js";
-import { useNavigate } from "react-router-dom";
+class Addoffer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      OfferName: '',
+      Price: '',
+      Description: '',
+    };
+  }
 
-const AddOffer = () => {
-  const navigate = useNavigate();
-  const [OfferName, setOfferName] = useState("");
-  const [Price, setPrice] = useState("");
-  const [Description, setDescription] = useState("");
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  
-  const [OfferNameOptions, setOfferNameOptions] = useState([
-    { label: "Food Offer", value: "1" },
-    { label: "Member Offer", value: "2" },
-    { label: "Luxury Suite Room Offer", value: "3" },
-  ]);
-  
+  handleInputChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    });
+  };
 
-  const handleSubmit = async (e) => {
+  validateFields = () => {
+    const { OfferName, Price, Description } = this.state;
+
+    if (!OfferName || !Price || !Description ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill in all fields!',
+      });
+      return false;
+    }
+
+    return true;
+  };
+
+  onSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !OfferName ||
-      !Price ||
-      !Description
-      
-      
-    ) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Please fill in all fields!",
-      });
-      return;
+    if (!this.validateFields()) {
+      return; // Prevent submission if fields are not valid
     }
 
-    console.log("Form submitted:", {
-      OfferName,
-      Price,
-      Description,
-      
-    });
+    const { OfferName, Price, Description } = this.state;
 
     try {
-      const res = await axios.post(
-        CREATE_OFFER_URL,
-        {
-          offer: {
-            OfferName:selectedOptions,
-            Price,
-            Description,
-          },
-        },
-        {
-          headers: {
-            headers: { "Content-Type": "application/json" },
-          },
-        },
-      );
-
-      if (!res.statusText) throw new Error("Creation Failed");
-
-      Swal.fire({
-        title: "Hotel Room Booking System",
-        text: `Offer Added!`,
-        icon: "success",
-      }).then(() => {
-        navigate("/offer");
+      const response = await axios.post(CREATE_OFFER_URL, {
+        OfferName, 
+        Price: parseFloat(Price),
+        Description,
       });
 
-      console.log(res.data);
+      console.log(response.data);
+
+      // Clear the form after successful submission
+      this.setState({
+        OfferName: '',
+        Price: '',
+        Description: '',
+      });
+
+      // Show success message
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Offer created successfully!',
+      });
     } catch (error) {
-      console.error(error);
+      console.error('Error:', error);
+      // Display error message
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+      });
     }
   };
-
-  const handleRadioButton = (e) => {
-    const { value } = e.target;
-    setSelectedOptions(value);
-  };
-
-  const handleClearForm = () => {
-    setOfferName("");
-    setPrice("");
-    setDescription("");
-    setSelectedOptions([]);
-  };
-
-  return (
-    <div>
-      <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url('/img/background-image.png')] bg-cover bg-center">
-        <div className="absolute inset-0 h-full w-full bg-gray-900/75">
-          <div className="flex h-full items-center justify-center">
-            <p className="text-4xl font-bold text-white">Add Offer</p>
+  render() {
+    return (
+      <div>
+        
+        <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url('/img/background-image.png')] bg-cover bg-center">
+          <div className="absolute inset-0 h-full w-full bg-gray-900/75">
+            <div className="flex h-full items-center justify-center">
+              <p className="text-4xl font-bold text-white">Add Offer</p>
+            </div>
+          </div>
+        </div>
+        <div className="mb-8 mt-12 flex flex-col gap-12">
+          <div className="container mx-auto p-4">
+           
+            <form className="max-w-md mx-auto border border-gray-500 rounded-md p-4">
+              <div className="mb-4 ">
+                <label htmlFor="OfferNameInput" className="block text-sm font-medium text-gray-600">Offer Name</label>
+                <select
+                  className="mt-1 p-2 block w-full border rounded-md border-gray-500"
+                  id="OfferNameInput"
+                  name="OfferName"
+                  value={this.state.OfferName}
+                  onChange={this.handleInputChange}
+                >
+                  <option value="">Select Offer </option>
+                  <option value="Food Offer">Food Offer</option>
+                  <option value="Member Offer">Member Offer</option>
+                  <option value="Luxury Suite Room Offer">Luxury Suite Room Offer</option>
+                </select>
+              </div>
+              {/* Other form elements */}
+              <div className="mb-4">
+                <label htmlFor="PriceInput" className="block text-sm font-medium text-gray-600">Price</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  className="mt-1 p-2 block w-full border rounded-md border-gray-500"
+                  id="PriceInput"
+                  name="Price"
+                  value={this.state.Price}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="DescriptionInput" className="block text-sm font-medium text-gray-600">Description</label>
+                <input
+                  type="text"
+                  className="mt-1 p-2 block w-full border rounded-md border-gray-500"
+                  id="DescriptionInput"
+                  name="Description"
+                  value={this.state.Description}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+             
+              
+              <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-md w-full" onClick={this.onSubmit}>Submit</button>
+            </form>
           </div>
         </div>
       </div>
+    );
+  }
+}
 
-      <form onSubmit={handleSubmit} className="mb-20 ms-8 mt-5 max-w-xl">
-        <div className="flex justify-start">
-          
-        <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-gray-500 p-6">
-            <h2 className="mb-4 text-2xl font-bold">Offer Details</h2>
-            
-
-            <DynamicDropdown
-              label="Name of Offer"
-              value={OfferName}
-              onChange={(e) => setOfferName(e)}
-              options={OfferNameOptions}
-            />
-            
-            
-
-            <UserInput
-              inputType="number"
-              label="Price"
-              value={Price}
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder="Enter Price"
-              inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
-            />
-
-            <UserInput
-              inputType="text"
-              label="Description"
-              value={Description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Enter The Description"
-              inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
-            />
-
-           
-
-            <div className="mt-5 flex justify-between">
-              <Button
-                type="submit"
-                className="rounded border border-blue-500 bg-blue-500 px-4 py-2 text-white hover:border-blue-600 hover:bg-blue-600"
-              >
-                Submit
-              </Button>
-              <Button
-                type="button"
-                onClick={handleClearForm}
-                className="rounded border border-gray-300 bg-gray-300 px-4 py-2 text-gray-700 hover:border-gray-400 hover:bg-gray-400"
-              >
-                Clear Form
-              </Button>
-            </div>
-          </div>
-
-          
-        </div>
-      </form>
-    </div>
-  );
-};
-
-export default AddOffer;
+export default Addoffer;

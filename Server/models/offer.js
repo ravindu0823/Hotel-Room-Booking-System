@@ -21,6 +21,6 @@ const OfferSchema = new Schema({
 
 });
 
-const Offer = models.Offer || model("Offer", OfferSchema);
+const Offers = models.Offers || model("Offers", OfferSchema);
 
-export default Offer;
+export default Offers;
