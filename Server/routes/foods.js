@@ -5,7 +5,7 @@ import express from "express";
 const foodsRouter = express.Router();
 
 foodsRouter.post("/new", async (req, res) => {
-  const { foodName, foodCategory, foodType, price, persons, spicinessLevel } =
+  const { foodName, foodCategory, foodType, price, persons, spicinessLevel,image } =
     req.body;
 
   if (
@@ -29,6 +29,7 @@ foodsRouter.post("/new", async (req, res) => {
       price,
       persons,
       spicinessLevel,
+      image,
     });
 
     await savedFood.save();
