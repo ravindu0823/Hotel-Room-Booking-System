@@ -38,6 +38,10 @@ const FoodSchema = new Schema({
     type: String,
     required: [true, "Please add the spiciness level"],
   },
+  image: {
+    type: String,
+    required: [true, "Please add image"],
+  },
 });
 
 const Food = models.Food || model("Food", FoodSchema);
