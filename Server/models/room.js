@@ -28,6 +28,10 @@ const RoomSchema = new Schema({
     type: Number,
     required: [true, "Please add the price"],
   },
+  image: {
+    type: String,
+    required: [true, "Please add image"],
+  },
 });
 
 const Room = models.Room || model("Room", RoomSchema);
