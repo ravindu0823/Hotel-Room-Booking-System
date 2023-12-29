@@ -6,6 +6,12 @@ export const GET_USER_BY_ID_URL = "/users";
 export const CREATE_RESERVATION_URL = "/reservations/create-existing-user";
 export const loginRoute = "/users/login";
 
+export const logoutRoute = "/users/logout";
+export const allUsersRoute = "/users/all";
+export const sendMessageRoute = "/api/messages/sendmsg";
+export const recieveMessageRoute = "/api/messages/recievemsg";
+export const setAvatarRoute = "/users/setavatar";
+
 export default axios.create({
   baseURL: "http://localhost:3000",
 });
