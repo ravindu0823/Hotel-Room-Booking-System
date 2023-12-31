@@ -146,244 +146,247 @@ const Reservation = () => {
 
   return (
     <>
-      <div>Reservation</div>
-      <form
-        className="mb-20 ms-8 mt-5 max-w-xl"
-        method="POST"
-        onSubmit={handleSubmit}
-      >
-        <div className="flex justify-start">
-          <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-gray-500 p-6">
-            <h2 className="mb-4 text-2xl font-bold">User Details</h2>
+      <div className="bg-reservation-page bg-cover">
+      <h2 className="mb-4 text-2xl font-bold text-white">Create Reservations</h2>
+        <form
+          className="mb-20 ms-8 mt-5 max-w-xl"
+          method="POST"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex justify-start">
+            <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-yellow-400 p-6 bg-white/[.54]">
+              <h2 className="mb-4 text-2xl font-bold">User Details</h2>
 
-            <UserInput
-              inputType="text"
-              label="Full Name"
-              value={userData.fullName}
-              disabled={true}
-              inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
-            />
+              <UserInput
+                inputType="text"
+                label="Full Name"
+                value={userData.fullName}
+                disabled={true}
+                inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
+              />
 
-            <UserInput
-              inputType="text"
-              label="Username"
-              value={userData.userName}
-              disabled={true}
-              inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
-            />
+              <UserInput
+                inputType="text"
+                label="Username"
+                value={userData.userName}
+                disabled={true}
+                inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
+              />
 
-            <UserInput
-              inputType="text"
-              label="Address"
-              value={userData.address}
-              disabled={true}
-              inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
-            />
+              <UserInput
+                inputType="text"
+                label="Address"
+                value={userData.address}
+                disabled={true}
+                inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
+              />
 
-            <UserInput
-              inputType="text"
-              label="Contact Number"
-              value={userData.contactNumber}
-              disabled={true}
-              inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
-            />
+              <UserInput
+                inputType="text"
+                label="Contact Number"
+                value={userData.contactNumber}
+                disabled={true}
+                inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
+              />
 
-            <UserInput
-              inputType="text"
-              label="NIC"
-              value={userData.nic}
-              disabled={true}
-              inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
-            />
-          </div>
+              <UserInput
+                inputType="text"
+                label="NIC"
+                value={userData.nic}
+                disabled={true}
+                inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
+              />
+            </div>
 
-          <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-gray-500 p-6">
-            <h2 className="mb-4 text-2xl font-bold">Reservation Details</h2>
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <div className="mx-2 mb-4">
-                      <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
-                        Arrival Date
-                      </label>
-                      <Input
-                        type="date"
-                        value={reservationData.arrivalDate}
-                        onChange={(e) =>
-                          setReservationData({
-                            ...reservationData,
-                            arrivalDate: e.target.value,
-                          })
-                        }
-                        name="arrivalDate"
-                        id="arrivalDate"
-                        autoComplete="arrivalDate"
-                        className="mt-1 block w-full rounded-md border-blue-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-                  </td>
-                  <td>
-                    <div className="mx-20 mb-4">
-                      <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
-                        Departure Date
-                      </label>
-                      <Input
-                        type="date"
-                        value={reservationData.departureDate}
-                        onChange={(e) =>
-                          setReservationData({
-                            ...reservationData,
-                            departureDate: e.target.value,
-                          })
-                        }
-                        name="departureDate"
-                        id="departureDate"
-                        autoComplete="departureDate"
-                        className="mt-1 block w-full rounded-md border-blue-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="mx-2 mb-4">
-                      <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
-                        Arrival Time
-                      </label>
-                      <Input
-                        type="time"
-                        value={reservationData.arrivalTime}
-                        onChange={(e) =>
-                          setReservationData({
-                            ...reservationData,
-                            arrivalTime: e.target.value,
-                          })
-                        }
-                        name="arrivalTime"
-                        id="arrivalTime"
-                        autoComplete="arrivalTime"
-                        className="mt-1 block w-full rounded-md border-blue-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-                  </td>
-                  <td>
-                    <div className="mx-20 mb-4">
-                      <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
-                        Departure Time
-                      </label>
-                      <Input
-                        type="time"
-                        value={reservationData.departureTime}
-                        onChange={(e) =>
-                          setReservationData({
-                            ...reservationData,
-                            departureTime: e.target.value,
-                          })
-                        }
-                        name="departureTime"
-                        id="departureTime"
-                        autoComplete="departureTime"
-                        className="mt-1 block w-full rounded-md border-blue-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-yellow-400 p-6 bg-white/[.75]">
+              <h2 className="mb-4 text-2xl font-bold">Reservation Details</h2>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="mx-2 mb-4">
+                        <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
+                          Arrival Date
+                        </label>
+                        <Input
+                          type="date"
+                          value={reservationData.arrivalDate}
+                          onChange={(e) =>
+                            setReservationData({
+                              ...reservationData,
+                              arrivalDate: e.target.value,
+                            })
+                          }
+                          name="arrivalDate"
+                          id="arrivalDate"
+                          autoComplete="arrivalDate"
+                          className="mt-1 block w-full rounded-md border-blue-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-white"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div className="mx-20 mb-4">
+                        <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
+                          Departure Date
+                        </label>
+                        <Input
+                          type="date"
+                          value={reservationData.departureDate}
+                          onChange={(e) =>
+                            setReservationData({
+                              ...reservationData,
+                              departureDate: e.target.value,
+                            })
+                          }
+                          name="departureDate"
+                          id="departureDate"
+                          autoComplete="departureDate"
+                          className="mt-1 block w-full rounded-md border-blue-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-white"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="mx-2 mb-4">
+                        <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
+                          Arrival Time
+                        </label>
+                        <Input
+                          type="time"
+                          value={reservationData.arrivalTime}
+                          onChange={(e) =>
+                            setReservationData({
+                              ...reservationData,
+                              arrivalTime: e.target.value,
+                            })
+                          }
+                          name="arrivalTime"
+                          id="arrivalTime"
+                          autoComplete="arrivalTime"
+                          className="mt-1 block w-full rounded-md border-blue-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-white"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div className="mx-20 mb-4">
+                        <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
+                          Departure Time
+                        </label>
+                        <Input
+                          type="time"
+                          value={reservationData.departureTime}
+                          onChange={(e) =>
+                            setReservationData({
+                              ...reservationData,
+                              departureTime: e.target.value,
+                            })
+                          }
+                          name="departureTime"
+                          id="departureTime"
+                          autoComplete="departureTime"
+                          className="mt-1 block w-full rounded-md border-blue-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-white"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
-            <DynamicDropdown
-              label="Type of Room"
-              value={reservationData.roomType}
-              onChange={(e) =>
-                setReservationData({
-                  ...reservationData,
-                  roomType: e,
-                })
-              }
-              options={roomTypeOptions}
-            />
-            <DynamicDropdown
-              label="Number of Rooms"
-              value={reservationData.roomsNo}
-              onChange={(e) =>
-                setReservationData({ ...reservationData, roomsNo: e })
-              }
-              options={roomsNoOptions}
-            />
+              <DynamicDropdown
+                label="Type of Room"
+                value={reservationData.roomType}
+                onChange={(e) =>
+                  setReservationData({
+                    ...reservationData,
+                    roomType: e,
+                  })
+                }
+                options={roomTypeOptions}
+              />
+              <DynamicDropdown
+                label="Number of Rooms"
+                value={reservationData.roomsNo}
+                onChange={(e) =>
+                  setReservationData({ ...reservationData, roomsNo: e })
+                }
+                options={roomsNoOptions}
+              />
 
-            <DynamicRadioButton
-              label={"Food Type"}
-              selectedOption={reservationData.selectedOptions}
-              onChange={handleRadioButton}
-              options={[
-                { label: "Breakfast", value: "Breakfast" },
-                { label: "Lunch", value: "Lunch" },
-                { label: "Dinner", value: "Dinner" },
-              ]}
-            />
+              <DynamicRadioButton
+                label={"Food Type"}
+                selectedOption={reservationData.selectedOptions}
+                onChange={handleRadioButton}
+                options={[
+                  { label: "Breakfast", value: "Breakfast" },
+                  { label: "Lunch", value: "Lunch" },
+                  { label: "Dinner", value: "Dinner" },
+                ]}
+              />
 
-            <UserInput
-              inputType="number"
-              label="Number of Adults"
-              value={reservationData.NoofAdults}
-              onChange={(e) =>
-                setReservationData({
-                  ...reservationData,
-                  NoofAdults: e.target.value,
-                })
-              }
-              placeholder="Enter the Number of Adults"
-              inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
-            />
+              <UserInput
+                inputType="number"
+                label="Number of Adults"
+                value={reservationData.NoofAdults}
+                onChange={(e) =>
+                  setReservationData({
+                    ...reservationData,
+                    NoofAdults: e.target.value,
+                  })
+                }
+                placeholder="Enter the Number of Adults"
+              />
 
-            <UserInput
-              inputType="number"
-              label="Number of Children"
-              value={reservationData.NoofChildrens}
-              onChange={(e) =>
-                setReservationData({
-                  ...reservationData,
-                  NoofChildrens: e.target.value,
-                })
-              }
-              placeholder="Enter The Number of Children"
-              inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
-            />
+              <UserInput
+                inputType="number"
+                label="Number of Children"
+                value={reservationData.NoofChildrens}
+                onChange={(e) =>
+                  setReservationData({
+                    ...reservationData,
+                    NoofChildrens: e.target.value,
+                  })
+                }
+                placeholder="Enter The Number of Children"
+                inputClassName="border-2 border-gray-300 p-2 mb-4 w-full rounded focus:outline-none focus:border-blue-500"
+              />
+              <label className="mb-2 block text-sm font-bold text-gray-700">
+                Special Requirements
+              </label>
+              <Textarea
+                color="lightBlue"
+                size="regular"
+                value={reservationData.specialRequirements}
+                onChange={(e) =>
+                  setReservationData({
+                    ...reservationData,
+                    specialRequirements: e.target.value,
+                  })
+                }
+                outline={true}
+                placeholder="Special Requirements"
+                className="mb-4 w-full rounded border-2 border-gray-300 p-2 focus:border-blue-500 focus:outline-none bg-white"
+              />
 
-            <Textarea
-              color="lightBlue"
-              size="regular"
-              value={reservationData.specialRequirements}
-              onChange={(e) =>
-                setReservationData({
-                  ...reservationData,
-                  specialRequirements: e.target.value,
-                })
-              }
-              outline={true}
-              placeholder="Special Requirements"
-              className="mb-4 w-full rounded border-2 border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
-            />
-
-            <div className="mt-5 flex justify-between">
-              <Button
-                type="submit"
-                className="rounded border border-blue-500 bg-blue-500 px-4 py-2 text-white hover:border-blue-600 hover:bg-blue-600"
-              >
-                Submit
-              </Button>
-              <Button
-                type="button"
-                onClick={handleClearForm}
-                className="rounded border border-gray-300 bg-gray-300 px-4 py-2 text-gray-700 hover:border-gray-400 hover:bg-gray-400"
-              >
-                Clear Form
-              </Button>
+              <div className="mt-5 flex justify-between">
+                <Button
+                  type="submit"
+                  className="rounded border border-blue-500 bg-blue-500 px-4 py-2 text-white hover:border-blue-600 hover:bg-blue-600"
+                >
+                  Submit
+                </Button>
+                <Button
+                  type="button"
+                  onClick={handleClearForm}
+                  className="rounded border border-gray-300 bg-gray-300 px-4 py-2 text-gray-700 hover:border-gray-400 hover:bg-gray-400"
+                >
+                  Clear Form
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </>
   );
 };
