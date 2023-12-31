@@ -16,9 +16,6 @@ const OfferSchema = new Schema({
     type: String,
     required: [true, "Please add description"],
   },
- 
-  
-
 });
 
 const Offers = models.Offers || model("Offers", OfferSchema);
