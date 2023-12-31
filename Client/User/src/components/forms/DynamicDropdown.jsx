@@ -12,7 +12,7 @@ const DynamicDropdown = ({ label, value, onChange, options }) => {
           <Select
             value={value}
             onChange={onChange}
-            className="w-full rounded-md border-2 border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            className="w-full rounded-md border-2 border-gray-300 p-2 focus:border-blue-500 focus:outline-none bg-white"
           >
             {options.map((option) => (
               <Option key={option._id} value={option._id}>
@@ -24,7 +24,7 @@ const DynamicDropdown = ({ label, value, onChange, options }) => {
           <Select
             value={value}
             onChange={onChange}
-            className="w-full rounded-md border-2 border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+            className="w-full rounded-md border-2 border-gray-300 p-2 focus:border-blue-500 focus:outline-none bg-white"
           >
             {options.map((option) => (
               <Option key={option.value} value={option.value}>
