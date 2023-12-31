@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams ,useNavigate} from 'react-router-dom';
 import axios, { OFFER_BY_ID_URL, OFFER_UPDATE_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 
 
 const UpdateOffer= () => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [offers, setOffers] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -42,7 +43,9 @@ const UpdateOffer= () => {
                 Description: Description,
             });
             // Display success message
-            Swal.fire('Success', 'Offer updated successfully!', 'success');
+            Swal.fire('Success', 'Offer updated successfully!', 'success').then(() => {
+              navigate("/offer");
+            });
         } catch (error) {
             setError('Failed to update the offer.');
             console.error(error);
