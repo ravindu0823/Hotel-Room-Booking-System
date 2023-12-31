@@ -13,7 +13,7 @@ const StaffSchema = new Schema({
   },
 
   contactNumber: {
-    type: Number,
+    type: String,
     required: [true, "Please add the contact number."],
   },
 
@@ -24,7 +24,11 @@ const StaffSchema = new Schema({
 
   NIC: {
     type: String,
-    required: [true, "Please add the NIC Number."],
+    required: [true, "Please add the NIC (National identification number)Number."],
+  },
+  image: {
+    type: String,
+    required: [true, "Please add image"],
   },
 });
 
