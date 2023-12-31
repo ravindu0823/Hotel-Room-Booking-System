@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import styled from "styled-components";
 import Picker from "emoji-picker-react";
 
-const ChatInput=({ handleSendMsg }) =>{
+export default function ChatInput({ handleSendMsg }) {
   const [msg, setMsg] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const handleEmojiPickerhideShow = () => {
@@ -142,5 +142,3 @@ const Container = styled.div`
     }
   }
 `;
-
-export default ChatInput;
