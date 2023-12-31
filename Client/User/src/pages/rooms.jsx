@@ -1,7 +1,5 @@
 // MainComponent.js
-import React from 'react';
 import RoomCard from '../components/roomcard';
-import Navbar from '../components/Navbar'; // Import your Navbar component
 
 const room = [
   {
