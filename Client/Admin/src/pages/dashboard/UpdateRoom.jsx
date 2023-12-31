@@ -23,12 +23,13 @@
 
 // export default UpdateRoom;
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams ,useNavigate} from 'react-router-dom';
 import axios, { GET_ROOM_BY_ID_URL, UPDATE_ROOM_BY_ID_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 
 
 const UpdateRoom= () => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [room, setRoom] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -70,7 +71,10 @@ const UpdateRoom= () => {
                 price: price,
             });
             // Display success message
-            Swal.fire('Success', 'Room updated successfully!', 'success');
+            Swal.fire('Success', 'Room updated successfully!', 'success').then((result) => {
+              navigate("/room");
+              }
+          );
         } catch (error) {
             setError('Failed to update the room.');
             console.error(error);
