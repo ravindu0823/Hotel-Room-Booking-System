@@ -8,6 +8,8 @@ import foodsRouter from "./routes/foods.js";
 import offersRouter from "./routes/offers.js";
 import adminRouter from "./routes/admins.js";
 import reservationRouter from "./routes/reservations.js";
+import messageRouter from "./routes/messages.js";
+import chatUserRouter from "./routes/chatUsers.js";
 
 dotenv.config();
 
@@ -16,6 +18,7 @@ const corsOptions = {
   origin: [
     "http://localhost:5173",
     "http://localhost:5000",
+    "http://localhost:8000",
     "http://159.223.74.216:5173",
     "http://159.223.74.216:5000",
   ],
@@ -49,5 +52,7 @@ app.use("/foods", foodsRouter);
 app.use("/offers", offersRouter);
 app.use("/admins", adminRouter);
 app.use("/reservations", reservationRouter);
+app.use("/messages", messageRouter);
+app.use("/chat", chatUserRouter);
 
 export default app;
