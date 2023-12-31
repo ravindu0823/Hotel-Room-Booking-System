@@ -20,7 +20,7 @@ const UserInput = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded-md border border-gray-300 p-2"
+        className="w-full rounded-md border border-gray-300 p-2 bg-white"
       />
     </div>
   );
