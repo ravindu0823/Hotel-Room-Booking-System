@@ -13,5 +13,5 @@ export const recieveMessageRoute = "/api/messages/recievemsg";
 export const setAvatarRoute = "/users/setavatar";
 
 export default axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: import.meta.env.VITE_BASEURL,
 });
