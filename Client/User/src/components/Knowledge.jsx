@@ -1,5 +1,3 @@
-import React from "react";
-
 const Knowledge = () => {
   return (
     <div
@@ -39,16 +37,19 @@ const Knowledge = () => {
           Experience the Magic of Ceylon Sea&nbsp;.
         </h4>
         <p className="text-2xl py-6">
-          Discover the allure of a beachside paradise at Celon Sea Hotel. Nestled amidst the serene waves and golden sands, we offer an unforgettable retreat.
+          Discover the allure of a beachside paradise at Celon Sea Hotel.
+          Nestled amidst the serene waves and golden sands, we offer an
+          unforgettable retreat.
         </p>
         <p className="pb-6">
-          Indulge in breathtaking views, impeccable hospitality, and luxurious accommodations. Your escape to tranquility awaits amidst the coastal charm..
+          Indulge in breathtaking views, impeccable hospitality, and luxurious
+          accommodations. Your escape to tranquility awaits amidst the coastal
+          charm..
         </p>
         <div className="space-y-2 sm:space-y-0">
-          
           <button className="bg-black text-white hover:scale-105 ease-in duration-300 transition-transform border-black hover:shadow-xl">
             <a href="/" title="meet">
-            Plan Your &nbsp;Stay!
+              Plan Your &nbsp;Stay!
             </a>
           </button>
         </div>
