@@ -2,7 +2,7 @@ name: Run Tests - CI
 
 on:
   push:
-    branches: ["temp"]
+    branches: ["dev"]
 
 jobs:
   Run-Tests-CI:

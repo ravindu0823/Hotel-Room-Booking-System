@@ -3,10 +3,6 @@ import axios, { DELETE_OFFER_URL, OFFER_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import {
-  CardBody,
-  Typography,
-  Avatar,
-  Chip,
   Button,
 } from "@material-tailwind/react";
 const Offers = () => {
@@ -72,8 +68,8 @@ const Offers = () => {
         </div>
       </div>
     </div>
-    <div className="mb-8 mt-12 flex flex-col gap-12">
-    <div className="container mx-auto px-4 py-8 mt-2">
+    <div className="mb-8 flex flex-col gap-12">
+    <div className="container mx-auto px-4 py-8">
         <Link to={`/dashboard/offers/add-new`} className="block md:inline-block mt-4 md:mt-6">
           <Button className="mb-3 md:mb-0 md:mr-3" color='green' >
             Add Offers

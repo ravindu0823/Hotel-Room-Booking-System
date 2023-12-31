@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Buffer } from "buffer";
@@ -6,9 +6,9 @@ import loader from "../assets/loader.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { setAvatarRoute } from "../utils/APIRoutes";
+import { setAvatarRoute } from "../api/chatRoutes";
 
-const SetAvatar =()=> {
+const SetAvatar = () => {
   const api = `https://api.multiavatar.com/4645646`;
   const navigate = useNavigate();
   const [avatars, setAvatars] = useState([]);
@@ -23,8 +23,8 @@ const SetAvatar =()=> {
   };
 
   useEffect(async () => {
-    if (!localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY))
-      navigate("/login");
+    if (!localStorage.getItem(import.meta.env.VITE_REACT_APP_LOCALHOST_KEY))
+      navigate("/chat/login");
   }, []);
 
   const setProfilePicture = async () => {
@@ -32,7 +32,7 @@ const SetAvatar =()=> {
       toast.error("Please select an avatar", toastOptions);
     } else {
       const user = await JSON.parse(
-        localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+        localStorage.getItem(import.meta.env.VITE_REACT_APP_LOCALHOST_KEY)
       );
 
       const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
@@ -43,10 +43,10 @@ const SetAvatar =()=> {
         user.isAvatarImageSet = true;
         user.avatarImage = data.image;
         localStorage.setItem(
-          process.env.REACT_APP_LOCALHOST_KEY,
+          import.meta.env.VITE_REACT_APP_LOCALHOST_KEY,
           JSON.stringify(user)
         );
-        navigate("/");
+        navigate("/chat");
       } else {
         toast.error("Error setting avatar. Please try again.", toastOptions);
       }
@@ -65,6 +65,7 @@ const SetAvatar =()=> {
     setAvatars(data);
     setIsLoading(false);
   }, []);
+
   return (
     <>
       {isLoading ? (
@@ -80,6 +81,7 @@ const SetAvatar =()=> {
             {avatars.map((avatar, index) => {
               return (
                 <div
+                  key={index}
                   className={`avatar ${
                     selectedAvatar === index ? "selected" : ""
                   }`}
@@ -102,7 +104,7 @@ const SetAvatar =()=> {
       )}
     </>
   );
-}
+};
 
 const Container = styled.div`
   display: flex;

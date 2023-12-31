@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import Robot from "../assets/robot.gif";
+import Robot from "../../assets/robot.gif";
 
-const Welcome=()=> {
+export default function Welcome() {
   const [userName, setUserName] = useState("");
   useEffect(async () => {
     setUserName(
       await JSON.parse(
-        localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+        localStorage.getItem(import.meta.env.VITE_REACT_APP_LOCALHOST_KEY)
       ).username
     );
   }, []);
-
   return (
     <Container>
       <img src={Robot} alt="" />
@@ -36,5 +35,3 @@ const Container = styled.div`
     color: #4e0eff;
   }
 `;
-
-export default Welcome;
