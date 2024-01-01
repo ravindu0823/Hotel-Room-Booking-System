@@ -15,6 +15,19 @@ import {
 import React, { useState, useEffect } from "react";
 const RoomCard = ({ room }) => {
   const [rooms, setRooms] = useState([]); // State to store fetched rooms
+  useEffect(() => {
+    // Fetch room data from the backend
+    const fetchRooms = async () => {
+      try {
+        const response = await axios.get(GET_ALL_ROOMS_URL);
+        setRooms(response.data);
+      } catch (error) {
+        console.error("Error fetching room data:", error);
+      }
+    };
+    fetchRooms(); // Call the function to fetch rooms when component mounts
+  }, []); // Empty dependency array to execute the effect only once
+  const [image2, setImage2] = useState("");
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4">
       <Link to={`/room/${room.id}`}>
