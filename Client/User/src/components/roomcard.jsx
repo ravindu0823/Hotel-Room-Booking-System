@@ -1,6 +1,6 @@
 // import React from 'react';
 import RoomDetails from '../pages/RoomDetails';
-
+import axios, {GET_ALL_ROOMS_URL } from '../api/axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
