@@ -32,7 +32,7 @@ const RoomCard = ({ room }) => {
     <>
     <div className="flex flex-wrap gap-6">
     <Card className="w-full max-w-[26rem] shadow-lg mb-6 m-4 ">
-      
+    <CardHeader floated={false} color="blue-gray"></CardHeader>
       </Card>
     </div>
     </>
