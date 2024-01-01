@@ -1,14 +1,9 @@
-// MainComponent.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import RoomCard from '../components/roomcard';
-import Navbar from '../components/Navbar'; // Import your Navbar component
-
-
-
- 
- 
+import axios from 'axios'; // Import axios for making HTTP requests
 
 const Rooms = () => {
+  const [rooms, setRooms] = useState([]);
   return (
     <div>     
       <div className="flex flex-wrap justify-center">
