@@ -129,6 +129,27 @@ const RoomDetails = () => {
                   </Tooltip>
               </div>
               </CardBody>
+              <div className="">
+                {room && (
+                  <>
+                    <p className="dark:text-dark text-gray-800 mb-4 text-xl font-bebas-neue font-bold">
+                      {room.description}
+                    </p>
+                    <p className="dark:text-dark text-gray-800 mb-2 text-xl font-bebas-neue font-bold">
+                      Facilities: {room.facilities}
+                    </p>
+                    <p className="dark:text-dark text-gray-800 text-xl mb-2 font-bebas-neue font-bold">
+                      Persons: {room.persons}
+                    </p>
+                    <p className="dark:text-dark text-gray-800 text-xl mb-2 font-bebas-neue font-bold">
+                      Price: {room.price} $ Per One Night
+                    </p>
+                    <p className="dark:text-dark text-gray-800 text-xl mb-2 font-bebas-neue font-bold">
+                      Availability of Room: {room.availability} Avalible
+                    </p>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
