@@ -52,7 +52,12 @@ const RoomDetails = () => {
    }}
  > 
  <div className="flex relative z-20 items-center overflow-hidden">
-  
+ <div className="container mx-auto px-6 py-10 flex relative mt-10 mb-20 bg-white bg-opacity-60 rounded-lg border border-gray-900 hover:scale-105">
+            <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20 ">
+              
+            </div>
+            
+            </div> 
  </div>
  </div> 
  </>
