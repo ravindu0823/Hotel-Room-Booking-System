@@ -3,6 +3,16 @@ import RoomDetails from '../pages/RoomDetails';
 import axios, {GET_ALL_ROOMS_URL } from '../api/axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Button,
+  Tooltip,
+  IconButton,
+} from "@material-tailwind/react";
 
 const RoomCard = ({ room }) => {
   return (
