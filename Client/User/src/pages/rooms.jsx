@@ -4,6 +4,17 @@ import axios from 'axios'; // Import axios for making HTTP requests
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
+  useEffect(() => {
+    // Fetch room data from the backend
+    const fetchRooms = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/rooms/read'); // Replace with your actual API endpoint
+        setRooms(response.data);
+      } catch (error) {
+        console.error('Error fetching room data:', error);
+      }
+    };fetchRooms();
+  }, []);
   return (
     <div>     
       <div className="flex flex-wrap justify-center">
