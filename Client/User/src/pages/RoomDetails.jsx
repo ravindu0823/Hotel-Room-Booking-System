@@ -6,21 +6,7 @@ const RoomDetails = () => {
   const [room, setRoom] = useState(null);
 
   // Your room data in Database
-  const rooms = [
-    {
-      id: 1,
-      name: "Luxury Double Room",
-      description:
-        "Cozy double bed accommodation with a private bathroom, equipped with TV and A/C for your comfort",
-      price: "$52.99",
-      facilities: "Double Bed, One Bathroom, TV, A/C",
-      persons: "4",
-      imageSrc:
-        "https://img.freepik.com/free-photo/hotel-bedroom-with-double-bed-table-tv-set_1262-3034.jpg?w=1060&t=st=1702706008~exp=1702706608~hmac=539917e56f38969d633d60c86b00e33e8bd1605cb791216c61a68836b4033a3a",
-    },
-    
-    // Add other rooms here...
-  ];
+  
 
   useEffect(() => {
     // Find the room that matches the ID from the URL params
