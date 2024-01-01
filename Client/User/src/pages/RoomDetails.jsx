@@ -8,11 +8,6 @@ const RoomDetails = () => {
   // Your room data in Database
   
 
-  useEffect(() => {
-    // Find the room that matches the ID from the URL params
-    const selectedRoom = rooms.find((item) => item.id === parseInt(id));
-    setRoom(selectedRoom);
-  }, [id, rooms]);
 
   return (
     <>
