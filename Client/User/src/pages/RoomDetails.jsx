@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom"; // Added 'Link' import
 import axios from "axios";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Button,
+  Tooltip,
+  IconButton,
+} from "@material-tailwind/react";
 const RoomDetails = () => {
   const { id } = useParams();
   const [room, setRoom] = useState(null);
