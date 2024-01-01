@@ -103,12 +103,3 @@ const RoomDetails = () => {
 
 export default RoomDetails;
 
-// import React from 'react'
-
-// function RoomDetails() {
-//   return (
-//     <div><h1>Hello World</h1>RoomDetails</div>
-//   )
-// }
-
-// export default RoomDetails
