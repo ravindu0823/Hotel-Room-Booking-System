@@ -1,7 +1,6 @@
-// import React from 'react';
+
 import RoomDetails from '../pages/RoomDetails';
 import axios, {GET_ALL_ROOMS_URL } from '../api/axios';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Card,
@@ -13,7 +12,7 @@ import {
   Tooltip,
   IconButton,
 } from "@material-tailwind/react";
-
+import React, { useState, useEffect } from "react";
 const RoomCard = ({ room }) => {
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4">
