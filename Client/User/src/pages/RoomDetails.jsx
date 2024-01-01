@@ -50,16 +50,16 @@ const RoomDetails = () => {
         }}
       >
         <div className="flex relative z-20 items-center overflow-hidden">
-          <div className="container mx-auto px-6 py-10 flex relative mt-10 mb-20 bg-white bg-opacity-60 rounded-lg border border-gray-900 hover:scale-105">
+          <div className="container mx-auto px-6 py-10 flex relative mt-10 mb-20 bg-white bg-opacity-60  border border-white hover:scale-105 shadow-xl rounded-2xl" >
             <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20 ">
-            <h1 className="font-bebas-neue uppercase text-4xl sm:text-7xl font-black flex flex-col leading-none dark:text-dark text-gray-800 ">
-                Be on
+            <h1 className="font-bebas-neue uppercase text-4xl sm:text-7xl font-black flex flex-col leading-none dark:text-dark text-gray-900 mx-5">
+               Be on
                 <span className="text-4xl sm:text-6xl">Time Book Room</span>
               </h1>
               <CardBody>
               <div className="mb-3 flex items-left mt-10 justify-between">
-              <Tooltip content="And +20 more">
-                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+              <Tooltip content="1000$ upwords">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -77,7 +77,23 @@ const RoomDetails = () => {
                     </span>
                   </Tooltip>
                   <Tooltip content="Free wifi">
-                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="h-5 w-5"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M1.371 8.143c5.858-5.857 15.356-5.857 21.213 0a.75.75 0 010 1.061l-.53.53a.75.75 0 01-1.06 0c-4.98-4.979-13.053-4.979-18.032 0a.75.75 0 01-1.06 0l-.53-.53a.75.75 0 010-1.06zm3.182 3.182c4.1-4.1 10.749-4.1 14.85 0a.75.75 0 010 1.061l-.53.53a.75.75 0 01-1.062 0 8.25 8.25 0 00-11.667 0 .75.75 0 01-1.06 0l-.53-.53a.75.75 0 010-1.06zm3.204 3.182a6 6 0 018.486 0 .75.75 0 010 1.061l-.53.53a.75.75 0 01-1.061 0 3.75 3.75 0 00-5.304 0 .75.75 0 01-1.06 0l-.53-.53a.75.75 0 010-1.06zm3.182 3.182a1.5 1.5 0 012.122 0 .75.75 0 010 1.061l-.53.53a.75.75 0 01-1.061 0l-.53-.53a.75.75 0 010-1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </Tooltip>
+                  <Tooltip content="persons">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -90,7 +106,7 @@ const RoomDetails = () => {
                     </span>
                   </Tooltip>
                   <Tooltip content="HDTV">
-                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -107,7 +123,7 @@ const RoomDetails = () => {
                     </span>
                   </Tooltip>
                   <Tooltip content="Fire alert">
-                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -123,34 +139,34 @@ const RoomDetails = () => {
                     </span>
                   </Tooltip>
                   <Tooltip content="And +20 more">
-                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                       +20
                     </span>
                   </Tooltip>
               </div>
               </CardBody>
-              <div className="">
+              <div className="mx-5">
                 {room && (
                   <>
-                    <p className="dark:text-dark text-gray-800 mb-4 text-xl font-bebas-neue font-bold">
+                    <p className="dark:text-dark text-gray-900 mb-4 text-xl font-bebas-neue font-bold">
                       {room.description}
                     </p>
-                    <p className="dark:text-dark text-gray-800 mb-2 text-xl font-bebas-neue font-bold">
+                    <p className="dark:text-dark text-gray-900 mb-2 text-xl font-bebas-neue font-bold">
                       Facilities: {room.facilities}
                     </p>
-                    <p className="dark:text-dark text-gray-800 text-xl mb-2 font-bebas-neue font-bold">
+                    <p className="dark:text-dark text-gray-900 text-xl mb-2 font-bebas-neue font-bold">
                       Persons: {room.persons}
                     </p>
-                    <p className="dark:text-dark text-gray-800 text-xl mb-2 font-bebas-neue font-bold">
+                    <p className="dark:text-dark text-gray-900 text-xl mb-2 font-bebas-neue font-bold">
                       Price: {room.price} $ Per One Night
                     </p>
-                    <p className="dark:text-dark text-gray-800 text-xl mb-2 font-bebas-neue font-bold">
+                    <p className="dark:text-dark text-gray-900 text-xl mb-2 font-bebas-neue font-bold">
                       Availability of Room: {room.availability} Avalible
                     </p>
                   </>
                 )}
               </div>
-              <div className="flex mt-8">
+              <div className="flex mt-8 mx-5" >
                 <a
                   href="#"
                   className="uppercase py-2 px-4 rounded-lg bg-transparent border-4 border-black text-black dark:text-dark text-bold hover:bg-black hover:text-white text-md"
