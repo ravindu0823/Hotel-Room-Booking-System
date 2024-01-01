@@ -56,6 +56,9 @@ const RoomDetails = () => {
                 Be on
                 <span className="text-4xl sm:text-6xl">Time Book Room</span>
               </h1>
+              <CardBody>
+                
+              </CardBody>
             </div>
           </div>
         </div>
