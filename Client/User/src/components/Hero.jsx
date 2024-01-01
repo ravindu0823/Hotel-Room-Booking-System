@@ -37,7 +37,7 @@ const Hero = () => {
           </Button>
           
           <Button
-            className="bg-white text-black hover:bg-transparent hover:text-white hover:scale-105 ease-in duration-300"
+            className="bg-white text-black hover:bg-transparent hover:text-white hover:scale-105 ease-in duration-300 mx-5"
             disabled={false}
             onClick={() => navigate("/reservation")}
           >
