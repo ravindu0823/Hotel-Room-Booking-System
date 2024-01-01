@@ -1,7 +1,5 @@
-
-import RoomDetails from '../pages/RoomDetails';
+import RoomDetails from "../pages/RoomDetails";
 import axios, {GET_ALL_ROOMS_URL } from '../api/axios';
-import { Link } from 'react-router-dom';
 import {
   Card,
   CardHeader,
@@ -13,8 +11,12 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+// import axios from "axios"; // Import axios for API requests
+
 const RoomCard = ({ room }) => {
   const [rooms, setRooms] = useState([]); // State to store fetched rooms
+
   useEffect(() => {
     // Fetch room data from the backend
     const fetchRooms = async () => {
@@ -25,6 +27,7 @@ const RoomCard = ({ room }) => {
         console.error("Error fetching room data:", error);
       }
     };
+
     fetchRooms(); // Call the function to fetch rooms when component mounts
   }, []); // Empty dependency array to execute the effect only once
   const [image2, setImage2] = useState("");
