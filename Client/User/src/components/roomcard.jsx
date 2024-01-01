@@ -29,7 +29,11 @@ const RoomCard = ({ room }) => {
   }, []); // Empty dependency array to execute the effect only once
   const [image2, setImage2] = useState("");
   return (
-    <></>
+    <>
+    <div className="flex flex-wrap gap-6">
+      
+    </div>
+    </>
   );
 };
 
