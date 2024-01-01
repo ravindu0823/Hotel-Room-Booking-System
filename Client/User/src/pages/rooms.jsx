@@ -16,10 +16,10 @@ const Rooms = () => {
     };fetchRooms();
   }, []);
   return (
-    <div>     
+    <div>
       <div className="flex flex-wrap justify-center">
-        {room.map((room) => (
-          <RoomCard key={room.id} room={room} />
+        {rooms.map((room) => (
+          <RoomCard key={room._id} room={room} />
         ))}
       </div>
     </div>
