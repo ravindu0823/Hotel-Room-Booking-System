@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom"; // Added 'Link' import
+import axios from "axios";
 const RoomDetails = () => {
   const { id } = useParams();
   const [room, setRoom] = useState(null);
