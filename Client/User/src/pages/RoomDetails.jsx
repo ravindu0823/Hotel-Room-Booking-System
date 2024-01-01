@@ -150,10 +150,30 @@ const RoomDetails = () => {
                   </>
                 )}
               </div>
+              <div className="flex mt-8">
+                <a
+                  href="#"
+                  className="uppercase py-2 px-4 rounded-lg bg-transparent border-4 border-black text-black dark:text-dark text-bold hover:bg-black hover:text-white text-md"
+                >
+                  Book My Room
+                </a>
+              </div>
+            </div>
+
+            <div className="hidden sm:block sm:w-1/3 lg:w-3/5 relative mx-10">
+              {room && room.image && (
+                <img
+                  src={room.image}
+                  style={{ width: "100%", height: "auto" }}
+                  className="m-auto rounded-lg shadow-lg mt-10 hover:scale-15"
+                  alt="Room visual representation"
+                />
+              )}
+            </div>
             </div>
           </div>
         </div>
-      </div>
+     
     </>
   );
 };
