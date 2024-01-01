@@ -51,7 +51,12 @@ const RoomDetails = () => {
       >
         <div className="flex relative z-20 items-center overflow-hidden">
           <div className="container mx-auto px-6 py-10 flex relative mt-10 mb-20 bg-white bg-opacity-60 rounded-lg border border-gray-900 hover:scale-105">
-            <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20 "></div>
+            <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20 ">
+            <h1 className="font-bebas-neue uppercase text-4xl sm:text-7xl font-black flex flex-col leading-none dark:text-dark text-gray-800 ">
+                Be on
+                <span className="text-4xl sm:text-6xl">Time Book Room</span>
+              </h1>
+            </div>
           </div>
         </div>
       </div>
