@@ -39,30 +39,24 @@ const RoomDetails = () => {
   };
 
   // Your room data in Database
-  
-
 
   return (
-   <>
-   <div
-   className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover"
-   style={{
-     backgroundImage:
-       'url("https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
-   }}
- > 
- <div className="flex relative z-20 items-center overflow-hidden">
- <div className="container mx-auto px-6 py-10 flex relative mt-10 mb-20 bg-white bg-opacity-60 rounded-lg border border-gray-900 hover:scale-105">
-            <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20 ">
-              
-            </div>
-            
-            </div> 
- </div>
- </div> 
- </>
+    <>
+      <div
+        className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover"
+        style={{
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+        }}
+      >
+        <div className="flex relative z-20 items-center overflow-hidden">
+          <div className="container mx-auto px-6 py-10 flex relative mt-10 mb-20 bg-white bg-opacity-60 rounded-lg border border-gray-900 hover:scale-105">
+            <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20 "></div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
 export default RoomDetails;
-
