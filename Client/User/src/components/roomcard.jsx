@@ -14,6 +14,7 @@ import {
 } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
 const RoomCard = ({ room }) => {
+  const [rooms, setRooms] = useState([]); // State to store fetched rooms
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4">
       <Link to={`/room/${room.id}`}>
