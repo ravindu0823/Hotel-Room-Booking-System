@@ -1902,6 +1902,28 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@paypal/paypal-js@^7.0.0":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-7.1.1.tgz#3547cbb96f1692209c4b33cf0f8e69225c2e84a3"
+  integrity sha512-fVpExBrHINGHsyODYKBXSMinxrgPKzmVW7ZCaCqUaMl7kTSR1ZsVi2IhgLvsPpXF4LWSAMkPTP/J6aetQ6ZlNA==
+  dependencies:
+    promise-polyfill "^8.3.0"
+
+"@paypal/react-paypal-js@^8.1.3":
+  version "8.1.3"
+  resolved "https://registry.yarnpkg.com/@paypal/react-paypal-js/-/react-paypal-js-8.1.3.tgz#2a46bd864eee02efada370ca50fab5a5bf38f4ff"
+  integrity sha512-hEm27iYP/UHS3XPBhDdiK2U4PH1FxrOD5O3f9tstAVLJd82l/laCjq751HiESSm63PVOoFeKE41Fe1mYGab+oA==
+  dependencies:
+    "@paypal/paypal-js" "^7.0.0"
+    "@paypal/sdk-constants" "^1.0.122"
+
+"@paypal/sdk-constants@^1.0.122":
+  version "1.0.135"
+  resolved "https://registry.yarnpkg.com/@paypal/sdk-constants/-/sdk-constants-1.0.135.tgz#13cf6655197e92f5c1f3dbe71b6c8609aba7a6d0"
+  integrity sha512-ZIQgsmeLZVl2QZaX8nhf+6BJ7CDT54Fj1QaqKpHXVKJnN1qY5ht9kJq08hse3/bF/s4Ho0zlsFND12KUJYFaqQ==
+  dependencies:
+    hi-base32 "^0.5.0"
+
 "@pmmmwh/react-refresh-webpack-plugin@^0.5.3":
   version "0.5.11"
   resolved "https://registry.npmjs.org/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.11.tgz"
@@ -5579,6 +5601,11 @@ hey-listen@^1.0.8:
   resolved "https://registry.yarnpkg.com/hey-listen/-/hey-listen-1.0.8.tgz#8e59561ff724908de1aa924ed6ecc84a56a9aa68"
   integrity sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==
 
+hi-base32@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/hi-base32/-/hi-base32-0.5.1.tgz#1279f2ddae2673219ea5870c2121d2a33132857e"
+  integrity sha512-EmBBpvdYh/4XxsnUybsPag6VikPYnN30td+vQk+GI3qpahVEG9+gTkG0aXVxTjBqQ5T6ijbWIu77O+C5WFWsnA==
+
 hoist-non-react-statics@^3.0.0:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
@@ -8252,6 +8279,11 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
+promise-polyfill@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.3.0.tgz#9284810268138d103807b11f4e23d5e945a4db63"
+  integrity sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg==
+
 promise@^8.1.0:
   version "8.3.0"
   resolved "https://registry.npmjs.org/promise/-/promise-8.3.0.tgz"
@@ -8267,7 +8299,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@15.8.1, prop-types@^15.8.1:
+prop-types@15.8.1, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8424,6 +8456,14 @@ react-is@^18.0.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-paypal-button-v2@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/react-paypal-button-v2/-/react-paypal-button-v2-2.6.3.tgz#9f037317d9f836b34b9cdbf1830d46d85392a47a"
+  integrity sha512-Kt0QxWjZn+RnIbbFPHDfH8iHwMqe/jG5+SkKElEJ0Fg+CM9yeK37y8zQW97l5C9P9D1yPacW5YNAnuxmI9uS9w==
+  dependencies:
+    prop-types "^15.7.2"
+    rimraf "^3.0.0"
 
 react-refresh@^0.11.0:
   version "0.11.0"

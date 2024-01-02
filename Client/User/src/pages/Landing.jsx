@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Comrades from "../components/Comrades.jsx";
 import Contact from "../components/Contact.jsx";
 import Footer from "../components/Footer.jsx";
@@ -9,16 +9,17 @@ import Navbar from "../components/Navbar.jsx";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios, { USER_PROTECTED_URL } from "../api/axios.js";
+import { SignInContext } from "../contexts/SignInContext.js";
 
 const Landing = () => {
-  /* const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { setLoggedIn } = useContext(SignInContext);
 
   useEffect(() => {
     const token = Cookies.get("token");
 
     if (!token) {
-      navigate("/sign-in");
-      return;
+      setLoggedIn(false);
     }
 
     const validateToken = async () => {
@@ -29,16 +30,21 @@ const Landing = () => {
           },
         });
 
-        if (!res.statusText) throw new Error("Not Authorized");
+        if (!res.statusText) {
+          setLoggedIn(false);
+          // throw new Error("Not Authorized");
+        }
+
+        setLoggedIn(true);
       } catch (error) {
         console.error(error);
-        navigate("/sign-in");
+        setLoggedIn(false);
       }
     };
 
     validateToken();
-  }, [navigate]); */
-  
+  }, [navigate, setLoggedIn]);
+
   return (
     <div>
       <Navbar />

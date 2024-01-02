@@ -48,7 +48,7 @@ const Knowledge = () => {
         </p>
         <div className="space-y-2 sm:space-y-0">
           <button className="bg-black text-white hover:scale-105 ease-in duration-300 transition-transform border-black hover:shadow-xl">
-            <a href="/" title="meet">
+            <a href="/reservation" title="meet">
               Plan Your &nbsp;Stay!
             </a>
           </button>
