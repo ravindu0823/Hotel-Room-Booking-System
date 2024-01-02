@@ -42,7 +42,13 @@ function Userprofile() {
           </div>
         </div>
       </div>
-      
+      <div class="bg-gray-300 lg:flex-1 bg-white ">
+        <div class="mx-10 mt-10 ">
+          <div>
+            
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
