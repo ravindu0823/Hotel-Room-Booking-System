@@ -45,7 +45,7 @@ function Userprofile() {
       <div class="bg-gray-300 lg:flex-1 bg-white ">
         <div class="mx-10 mt-10 ">
           <div>
-            
+          <h1 class="text-4xl font-bold mt-20 ml-3">My Reservation Details</h1>
           </div>
         </div>
       </div>
