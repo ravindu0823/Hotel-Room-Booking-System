@@ -15,6 +15,7 @@ const DynamicRadioButton = ({ label, onChange, options }) => {
               <Radio
                 key={option.value}
                 name="type"
+                className="bg-white"
                 value={option.value}
                 label={option.label}
                 onChange={onChange}

@@ -1,204 +1,116 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
+import axios, { DELETE_OFFER_URL, OFFER_URL } from '@/api/axios';
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import {
-  CardBody,
-  Typography,
-  Avatar,
-  Chip,
   Button,
 } from "@material-tailwind/react";
-import { authorsTableData } from "@/data";
-import { DELETE_OFFER_URL, OFFER_URL } from "@/api/axios";
-import axios from "@/api/axios";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import Cookies from "js-cookie";
-
 const Offers = () => {
-  
-  const offer ={
-    _id: String,
-    OfferName: String,
-    Price: Number,
-    Description: String,
-
-  
-
-  };
- 
-  const cookieValue = Cookies.get('cookieName');
-
-
-  const navigate = useNavigate();
-  const [offerData, setOfferData] = useState([offer]);
-
-  const tableHeaders = [
-    "Offer Name",
-    "Price",
-    "Description",
-    "Action",
-  ];
-
- 
+  const [Offers, setOffers] = useState([]);
 
   useEffect(() => {
-    const getOfferData = async () => {
+    // Fetch room data from the backend
+    const fetchOffers = async () => {
       try {
-        const res = await axios.get(OFFER_URL, {
-          headers: {
-            headers: { "Content-Type": "application/json" },
-          },
-        });
-
-        if (!res.statusText) throw new Error("Not Authorized");
-
-        // console.log(res.data)
-        setOfferData(res.data);
+        const response = await axios.get(OFFER_URL);
+        setOffers(response.data);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching room data:', error);
       }
     };
 
-    getOfferData();
-  }, [0]);
+    fetchOffers();
+  }, []);
 
-  
-
-  const handleDelete = (e) => {
+  const handleDelete = async (offerId) => {
+    // Show confirmation dialog with SweetAlert before deleting
     Swal.fire({
-      title: "Hotel Room Booking System",
-      text: "Are you want to Delete this Record?",
-      icon: "warning",
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes",
-    }).then((result) => {
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        const id = e.target.value;
-
-        const deleteOffer = async () => {
-          try {
-            const res = await axios.delete(`${DELETE_OFFER_URL}/${id}`, {
-              headers: {
-                headers: { "Content-Type": "application/json" },
-              },
-            });
-
-            if (!res.statusText) throw new Error("Not Authorized");
-
-            // console.log(res.data)
-            setOfferData(res.data);
-            Swal.fire({
-              title: "Hotel Room Booking System",
-              text: "Done!",
-              icon: "success",
-            }).then(() => {
-              navigate(0);
-            });
-          } catch (error) {
-            console.error(error);
-          }
-        };
-
-        deleteOffer();
+        try {
+          // Make a delete request to your backend endpoint to remove the room
+          await axios.delete(`${DELETE_OFFER_URL}/${offerId}`);
+          // Filter out the deleted room from the current state
+          setOffers(Offers.filter((Offer) => Offer._id !== offerId));
+          
+          // Show success message with SweetAlert upon successful deletion
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Your offer has been deleted.',
+            icon: 'success'
+          });
+        } catch (error) {
+          console.error('Error deleting offer:', error);
+          // Show error message with SweetAlert if deletion fails
+          Swal.fire({
+            title: 'Error!',
+            text: 'Failed to delete the room.',
+            icon: 'error'
+          });
+        }
       }
     });
   };
 
   return (
-    <div>
-      <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url('/img/background-image.png')] bg-cover bg-center">
-        <div className="absolute inset-0 h-full w-full bg-gray-900/75">
-          <div className="flex h-full items-center justify-center">
-            <p className="text-4xl font-bold text-white">
-              Manage Special Offers
-            </p>
-          </div>
+    <>
+    <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url('/img/background-image.png')] bg-cover bg-center">
+      <div className="absolute inset-0 h-full w-full bg-gray-900/75">
+        <div className="flex h-full items-center justify-center">
+          <p className="text-4xl font-bold text-white">Manage Special Offer</p>
         </div>
       </div>
-
-      <CardBody className="mx-10 mt-5 overflow-x-scroll px-0 pb-2 pt-0">
-        <Link to="/dashboard/offers/add-new">
-          <Button color="green" className="justify-end">
-            Add Offer
+    </div>
+    <div className="mb-8 flex flex-col gap-12">
+    <div className="container mx-auto px-4 py-8">
+        <Link to={`/dashboard/offers/add-new`} className="block md:inline-block mt-4 md:mt-6">
+          <Button className="mb-3 md:mb-0 md:mr-3" color='green' >
+            Add Offers
           </Button>
         </Link>
-        
-        <table className="mt-5 w-full min-w-[640px] table-auto">
-          <thead>
-            <tr>
-              {tableHeaders.map((el) => (
-                <th
-                  key={el}
-                  className="border-b border-blue-gray-50 px-5 py-3 text-left"
-                >
-                  <Typography
-                    variant="small"
-                    className="text-[11px] font-bold uppercase text-blue-gray-400"
-                  >
-                    {el}
-                  </Typography>
-                </th>
+        <div className="-mx-4 overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Offer Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Price</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Description</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {Offers.map((Offer) => (
+                <tr key={Offer._id}>
+                  <td className="px-6 py-4 whitespace-nowrap">{Offer.OfferName}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{Offer.Price}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{Offer.Description}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <Button onClick={() => handleDelete(Offer._id)} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded md:mr-2" color='red'>
+                      
+                      Delete
+                    </Button>
+                    <Link to={`/dashboard/offers/update/${Offer._id}`}>
+                      <Button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2 md:mt-0" color='blue'>
+                        Edit
+                      </Button>
+                    </Link>
+                  </td>
+                </tr>
               ))}
-            </tr>
-          </thead>
-          <tbody>
-            {offerData.map(
-              (
-                {
-                  _id,
-                  OfferName,
-                  Price,
-                  Description,
-
-              
-                },
-                key,
-              ) => {
-                const className = `py-3 px-5 ${
-                  key === offerData.length - 1
-                    ? ""
-                    : "border-b border-blue-gray-50"
-                }`;
-
-                return (
-                  <tr key={_id}>
-              
-                    <td className={className}>
-                      <Typography className="text-xs font-semibold text-blue-gray-600">
-                        {OfferName}
-                      </Typography>
-                    </td>
-                    <td className={className}>
-                      <Typography className="text-xs font-semibold text-blue-gray-600">
-                        {Price}
-                      </Typography>
-                    </td>
-                    <td className={className}>
-                      <Typography className="text-xs font-semibold text-blue-gray-600">
-                        {Description}
-                      </Typography>
-                    </td>
-                   
-                    <td className={className}>
-                      <div className={"flex gap-3"}>
-                        <Link to={`/dashboard/offers/update/${_id}`}>
-                          <Button color="blue">Edit</Button>
-                        </Link>
-
-                        <Button color="red" onClick={handleDelete} value={_id}>
-                          Delete
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              },
-            )}
-          </tbody>
-        </table>
-      </CardBody>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+
+  </>
   );
 };
 

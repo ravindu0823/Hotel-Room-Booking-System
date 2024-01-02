@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import RoomCard from "./roomcard";
 
@@ -30,8 +30,10 @@ const Midheading = () => {
       </p>
       {/* <p className="text-lg font-medium hover:underline underline-offset-4 decoration-2 decoration-[dimgray]">
         Staff
+
       </p> */}
       {showRoom && <RoomCard />} {/* Conditionally render RoomCard based on state */}
+
     </div>
   );
 };

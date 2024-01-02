@@ -24,6 +24,11 @@ function App() {
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/reservation" element={<Reservation />} />
+            {/* <Route path="/set-avatar" element={<SetAvatar />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat/login" element={<ChatLogin />} />
+            <Route path="/chat/register" element={<ChatRegister />} />
+            <Route path="/chat/set-avatar" element={<SetAvatar />} /> */}
           </Routes>
         </SignInContext.Provider>
         <ToastContainer />

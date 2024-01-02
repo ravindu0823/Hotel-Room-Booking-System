@@ -16,11 +16,8 @@ const OfferSchema = new Schema({
     type: String,
     required: [true, "Please add description"],
   },
- 
-  
-
 });
 
-const Offer = models.Offer || model("Offer", OfferSchema);
+const Offers = models.Offers || model("Offers", OfferSchema);
 
-export default Offer;
+export default Offers;

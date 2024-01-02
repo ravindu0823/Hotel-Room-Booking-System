@@ -1,4 +1,3 @@
-import React from "react";
 import Rooms from "./rooms";
 
 import Contact from "../components/Contact.jsx";

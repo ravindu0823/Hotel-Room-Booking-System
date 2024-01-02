@@ -11,6 +11,7 @@ import {
 dotenv.config();
 const userRouter = express.Router();
 
+// Register new users
 userRouter.post("/register", validateUserAdd, async (req, res) => {
   const { fullName, userName, password, contactNumber, address, nic } =
     await req.body;
@@ -48,6 +49,7 @@ userRouter.post("/register", validateUserAdd, async (req, res) => {
   }
 });
 
+// Login Existing Users
 userRouter.post("/login", validateUserLogin, async (req, res) => {
   const { userName, password } = await req.body;
 
@@ -80,6 +82,7 @@ userRouter.post("/login", validateUserLogin, async (req, res) => {
   }
 });
 
+// Get all users
 userRouter.get("/", async (req, res) => {
   try {
     await connectToDB();
@@ -96,6 +99,7 @@ userRouter.get("/", async (req, res) => {
   }
 });
 
+// Authenticate user
 userRouter.get("/protected", async (req, res) => {
   try {
     const authHeader = await req.headers.authorization;
@@ -119,6 +123,7 @@ userRouter.get("/protected", async (req, res) => {
   }
 });
 
+// Get user by id
 userRouter.get("/:userId", async (req, res) => {
   const { userId } = req.params;
 

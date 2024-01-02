@@ -66,9 +66,9 @@ const Foods = () => {
           </div>
         </div>
       </div>
-      <div className="mb-8 mt-12 flex flex-col gap-12">
-      <div className="container mx-auto px-4 py-8 mt-2">
-      <Link to={`/dashboard/foods/add-new`} className="block md:inline-block mt-4 md:mt-6">
+      <div className="mb-8 flex flex-col gap-12">
+      <div className="container mx-auto px-4 py-8">
+      <Link to={`/dashboard/foods/add-new`} className="block md:inline-block mb-4">
           <Button className="mb-3 md:mb-0 md:mr-3" color='green' >
             Add New Food Item
           </Button>
