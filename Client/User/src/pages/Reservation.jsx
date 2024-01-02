@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import UserInput from "../components/forms/UserInput";
 import { Button, Input, Textarea } from "@material-tailwind/react";
 import DynamicRadioButton from "../components/forms/DynamicRadioButton";
+import SecondNavbar from "../components/SecondNavbar";
+import Footer from "../components/Footer";
 import axios, {
   CREATE_RESERVATION_URL,
   GET_USER_BY_ID_URL,
@@ -170,18 +172,24 @@ const Reservation = () => {
 
   return (
     <>
+      <div className="mb-8">
+        <SecondNavbar />
+      </div>
       <div className="bg-reservation-page bg-cover">
-        <h2 className="mb-4 text-2xl font-bold text-white">
-          Create Reservations
-        </h2>
+        <div className="text-center mt-2">
+          <h2 className="ont-bebas-neue uppercase text-1xl sm:text-5xl font-black flex flex-col leading-none dark:text-dark text-white ml-10">
+            Create&nbsp;&nbsp;&nbsp;&nbsp;Reservations
+          </h2>
+        </div>
+
         <form
-          className="mb-20 ms-8 mt-5 max-w-xl"
+          className="mb-20 ms-8 mt-5 max-w-xl ml-40 "
           method="POST"
           onSubmit={handleSubmit}
         >
           <div className="flex justify-start">
-            <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-yellow-400 p-6 bg-white/[.54]">
-              <h2 className="mb-4 text-2xl font-bold">User Details</h2>
+            <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-white p-6 bg-white/[.54] ">
+              <h2 className="mb-4 text-2xl font-bold ont-bebas-neue uppercase text-left">User Details</h2>
 
               <UserInput
                 inputType="text"
@@ -224,8 +232,8 @@ const Reservation = () => {
               />
             </div>
 
-            <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-yellow-400 p-6 bg-white/[.75]">
-              <h2 className="mb-4 text-2xl font-bold">Reservation Details</h2>
+            <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-white p-6 bg-white/[.75]">
+              <h2 className="mb-4 text-2xl font-bold nt-bebas-neue uppercase text-left">Reservation Details</h2>
               <table>
                 <tbody>
                   <tr>
@@ -412,7 +420,9 @@ const Reservation = () => {
             </div>
           </div>
         </form>
+        <Footer />
       </div>
+      
     </>
   );
 };
