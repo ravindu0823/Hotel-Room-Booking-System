@@ -5,12 +5,13 @@ function Userprofile() {
     <div class="flex flex-col lg:flex-row bg-white">
       <div class=" lg:w-1/4">
         <div class="p-4 border-t mx-8">
-          {/* <button class="w-3/4 block mx-auto rounded-full bg-transparent hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg font-semibold text-gray-900 px-6 py-2 border border-gray-900">
+          <button class="w-3/4 block mx-auto rounded-full bg-transparent hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg font-semibold text-gray-900 px-6 py-2 border border-gray-900">
             Back to Home
-          </button> */}
+          </button>
         </div>
+
         <div class="sm:flex justify-center sm:h-screen bg-gray-900 rounded-md">
-          <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm mt-5 ml-4">
+          <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm mt-16 ml-4">
             <div className="bg-gradient-to-br from-gray-900 to-gray-100 rounded-t-lg h-32 overflow-hidden">
               <img
                 className="object-cover object-top w-full"
@@ -34,6 +35,7 @@ function Userprofile() {
               <button className="w-1/2 block mx-auto  rounded-md bg-white hover:shadow-lg font-semibold text-black px-7 py-2">
                 Logout
               </button>
+
             </div>
             <div className="p-4 border-t mx-8 mt-2">
               hello
@@ -45,8 +47,8 @@ function Userprofile() {
       <div class="bg-gray-300 lg:flex-1 bg-white ">
         <div class="mx-10 mt-10 ">
           <div>
-          <h1 class="text-4xl font-bold mt-20 ml-3">My Reservation Details</h1>
-          <table className="responsive-table mt-10">
+            <h1 class="text-4xl font-bold mt-20 ml-3">My Reservation Details</h1>
+            <table className="responsive-table mt-10">
               <tbody>
                 <tr>
                   <td>
@@ -78,9 +80,8 @@ function Userprofile() {
                 </tr>
               </tbody>
             </table>
-
-          </div>
-          <div class="flex flex-wrap mt-8">
+            <div>
+              <div class="flex flex-wrap mt-8">
                 <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/2 px-4 mb-8">
                   <a
                     href="#"
@@ -332,6 +333,8 @@ function Userprofile() {
                 </div>
                 
               </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
