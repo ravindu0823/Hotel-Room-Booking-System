@@ -76,7 +76,7 @@ const SecondNavbar = () => {
               </a>
             </li>
             <li>
-            <a href="/" onClick={() => setNav(false)} className="text-xl text-bold block py-2 pl-3 pr-4 text-black  rounded lg:bg-transparent lg:text-black lg:p-0  dark:text-black" aria-current="page">
+            <a href="/profile" onClick={() => setNav(false)} className="text-xl text-bold block py-2 pl-3 pr-4 text-black  rounded lg:bg-transparent lg:text-black lg:p-0  dark:text-black" aria-current="page">
                 Profile
               </a>
             </li>
