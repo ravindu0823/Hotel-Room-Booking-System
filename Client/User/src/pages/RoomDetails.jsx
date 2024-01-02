@@ -1,114 +1,222 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom"; // Added 'Link' import
+import axios from "axios";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Button,
+  Tooltip,
+  IconButton,
+} from "@material-tailwind/react";
 const RoomDetails = () => {
   const { id } = useParams();
   const [room, setRoom] = useState(null);
 
-  // Your room data in Database
-  const rooms = [
-    {
-      id: 1,
-      name: "Luxury Double Room",
-      description:
-        "Cozy double bed accommodation with a private bathroom, equipped with TV and A/C for your comfort",
-      price: "$52.99",
-      facilities: "Double Bed, One Bathroom, TV, A/C",
-      persons: "4",
-      imageSrc:
-        "https://img.freepik.com/free-photo/hotel-bedroom-with-double-bed-table-tv-set_1262-3034.jpg?w=1060&t=st=1702706008~exp=1702706608~hmac=539917e56f38969d633d60c86b00e33e8bd1605cb791216c61a68836b4033a3a",
-    },
-    {
-      id: 2,
-      name: "Luxury Double Room",
-      description:
-        "Cozy double bed accommodation with a private bathroom, equipped with TV and A/C for your comfort",
-      price: "$52.99",
-      facilities: "Double Bed, One Bathroom, TV, A/C",
-      persons: "4",
-      imageSrc:
-        "https://w0.peakpx.com/wallpaper/261/106/HD-wallpaper-gorgeous-hotel-room-in-bora-bora-beach-hotel-room-trees.jpg",
-    },
-    // Add other rooms here...
-  ];
-
   useEffect(() => {
-    // Find the room that matches the ID from the URL params
-    const selectedRoom = rooms.find((item) => item.id === parseInt(id));
-    setRoom(selectedRoom);
-  }, [id, rooms]);
+    const fetchRoomData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/rooms/${id}`);
+        setRoom(response.data);
+
+        // Print room data to the console
+        console.log("Room Data:", response.data);
+      } catch (error) {
+        console.error("Error fetching room data:", error);
+      }
+    };
+
+    fetchRoomData();
+  }, [id]);
+  // Simulating four smaller images
+
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
+  // Your room data in Database
 
   return (
     <>
-      <div>
-        {room ? (
-          <div className=" mx-8 mt-16 border border-gray-300 rounded-lg overflow-hidden bg-blue-100">
-            <section className="text-gray-700 body-font overflow-hidden bg-white">
-              <div className="container px-5 py-24 mx-auto">
-                <div className="lg:w-4/4 mx-auto ml-auto flex flex-wrap">
-                  <img
-                    className="w-180 h-80 object-cover rounded-xl border border-gray-200"
-                    src={room.imageSrc}
-                    alt={room.name}
-                  />
-                  <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                    <h2 className="text-sm title-font text-gray-500 tracking-widest">
-                      Select Your Room Today
-                    </h2>
-                    <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                      {room.name}
-                    </h1>
-                    <div className="flex mb-4">{/* SVG Icons */}</div>
-                    <p className="text-sm title-font text-gray-500 tracking-widest">
-                      {room.description}
-                    </p>{" "}
-                    {/*Room Discription Bind Here */}
-                    <p className="leading-relaxed">
-                      facilities: {room.facilities}
-                    </p>{" "}
-                    {/*Room Facilities Bind Here */}
-                    <p className="leading-relaxed">
-                      persons: {room.persons}
-                    </p>{" "}
-                    {/*Room persons Bind Here */}
-                    <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>
-                    <div className="flex flex-col items-center">
-                      <span className="title-font font-medium text-2xl text-gray-900 mb-4 text-left">
-                        Price Per Night: {room.price}
-                      </span>
-                      <div className="flex justify-center">
-                        <Link to="/" className="mx-2">
-                          <button className="text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
-                            Back to Home
-                          </button>
-                        </Link>
-                        <Link to="/room" className="mx-2">
-                          <button className="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">
-                            Book Reservation Now!
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      <div
+        className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover"
+        style={{
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+        }}
+      >
+        <div className="flex relative z-20 items-center overflow-hidden">
+          <div className="container mx-auto px-6 py-10 flex relative mt-10 mb-20 bg-white bg-opacity-60  border border-white hover:scale-105 shadow-xl rounded-2xl" >
+            <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20 ">
+            <h1 className="font-bebas-neue uppercase text-4xl sm:text-7xl font-black flex flex-col leading-none dark:text-dark text-gray-900 mx-5">
+               Be on
+                <span className="text-4xl sm:text-6xl">Time Book Room</span>
+              </h1>
+              <CardBody>
+              <div className="mb-3 flex items-left mt-10 justify-between">
+              <Tooltip content="1000$ upwords">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="h-5 w-5"
+                      >
+                        <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
+                        <path
+                          fillRule="evenodd"
+                          d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 14.625v-9.75zM8.25 9.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM18.75 9a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V9.75a.75.75 0 00-.75-.75h-.008zM4.5 9.75A.75.75 0 015.25 9h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z"
+                          clipRule="evenodd"
+                        />
+                        <path d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z" />
+                      </svg>
+                    </span>
+                  </Tooltip>
+                  <Tooltip content="Free wifi">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="h-5 w-5"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M1.371 8.143c5.858-5.857 15.356-5.857 21.213 0a.75.75 0 010 1.061l-.53.53a.75.75 0 01-1.06 0c-4.98-4.979-13.053-4.979-18.032 0a.75.75 0 01-1.06 0l-.53-.53a.75.75 0 010-1.06zm3.182 3.182c4.1-4.1 10.749-4.1 14.85 0a.75.75 0 010 1.061l-.53.53a.75.75 0 01-1.062 0 8.25 8.25 0 00-11.667 0 .75.75 0 01-1.06 0l-.53-.53a.75.75 0 010-1.06zm3.204 3.182a6 6 0 018.486 0 .75.75 0 010 1.061l-.53.53a.75.75 0 01-1.061 0 3.75 3.75 0 00-5.304 0 .75.75 0 01-1.06 0l-.53-.53a.75.75 0 010-1.06zm3.182 3.182a1.5 1.5 0 012.122 0 .75.75 0 010 1.061l-.53.53a.75.75 0 01-1.061 0l-.53-.53a.75.75 0 010-1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </Tooltip>
+                  <Tooltip content="persons">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="h-5 w-5"
+                      >
+                        <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
+                        <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
+                      </svg>
+                    </span>
+                  </Tooltip>
+                  <Tooltip content="HDTV">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="h-5 w-5"
+                      >
+                        <path d="M19.5 6h-15v9h15V6z" />
+                        <path
+                          fillRule="evenodd"
+                          d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v11.25C1.5 17.16 2.34 18 3.375 18H9.75v1.5H6A.75.75 0 006 21h12a.75.75 0 000-1.5h-3.75V18h6.375c1.035 0 1.875-.84 1.875-1.875V4.875C22.5 3.839 21.66 3 20.625 3H3.375zm0 13.5h17.25a.375.375 0 00.375-.375V4.875a.375.375 0 00-.375-.375H3.375A.375.375 0 003 4.875v11.25c0 .207.168.375.375.375z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </Tooltip>
+                  <Tooltip content="Fire alert">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="h-5 w-5"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.177A7.547 7.547 0 016.648 6.61a.75.75 0 00-1.152-.082A9 9 0 1015.68 4.534a7.46 7.46 0 01-2.717-2.248zM15.75 14.25a3.75 3.75 0 11-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 011.925-3.545 3.75 3.75 0 013.255 3.717z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </Tooltip>
+                  <Tooltip content="And +20 more">
+                    <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                      +20
+                    </span>
+                  </Tooltip>
               </div>
-            </section>
+              </CardBody>
+              <div className="mx-5">
+                {room && (
+                  <>
+                    <p className="dark:text-dark text-gray-900 mb-4 text-xl font-bebas-neue font-bold">
+                      {room.description}
+                    </p>
+                    <p className="dark:text-dark text-gray-900 mb-2 text-xl font-bebas-neue font-bold">
+                      Facilities: {room.facilities}
+                    </p>
+                    <p className="dark:text-dark text-gray-900 text-xl mb-2 font-bebas-neue font-bold">
+                      Persons: {room.persons}
+                    </p>
+                    <p className="dark:text-dark text-gray-900 text-xl mb-2 font-bebas-neue font-bold">
+                      Price: {room.price} $ Per One Night
+                    </p>
+                    <p className="dark:text-dark text-gray-900 text-xl mb-2 font-bebas-neue font-bold">
+                      Availability of Room: {room.availability} Avalible
+                    </p>
+                  </>
+                )}
+              </div>
+              <div className="flex mt-8 mx-5" >
+                <a
+                  href="#"
+                  className="uppercase py-2 px-4 rounded-lg bg-transparent border-4 border-black text-black dark:text-dark text-bold hover:bg-black hover:text-white text-md"
+                >
+                  Book My Room
+                </a>
+              </div>
+            </div>
+
+            <div className="hidden sm:block sm:w-1/3 lg:w-3/5 relative mx-10">
+              {room && room.image && (
+                <img
+                  src={room.image}
+                  style={{ width: "100%", height: "auto" }}
+                  className="m-auto rounded-lg shadow-lg mt-10 hover:scale-15"
+                  alt="Room visual representation"
+                />
+              )}
+            </div>
+            <div>
+              <Typography
+                variant="h5"
+                color="blue-gray"
+                className="font-medium"
+              ></Typography>
+              <Typography
+                color="blue-gray"
+                className="flex items-center gap-1.5 font-normal"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="-mt-0.5 h-5 w-5 text-yellow-700"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                5.0
+              </Typography>
+            </div>
+            </div>
           </div>
-        ) : (
-          <div>Room not found</div>
-        )}
-      </div>
+        </div>
+     
     </>
   );
 };
 
 export default RoomDetails;
-
-// import React from 'react'
-
-// function RoomDetails() {
-//   return (
-//     <div><h1>Hello World</h1>RoomDetails</div>
-//   )
-// }
-
-// export default RoomDetails

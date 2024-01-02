@@ -1,39 +1,25 @@
-// MainComponent.js
+import React, { useEffect, useState } from 'react';
 import RoomCard from '../components/roomcard';
-
-const room = [
-  {
-    id: 1,
-    name: 'Luxury Double Room',
-    description: 'Double Bed, One Barth Room, TV, A/C',
-    price: '$52.99',
-    imageSrc: 'https://img.freepik.com/free-photo/hotel-bedroom-with-double-bed-table-tv-set_1262-3034.jpg?w=1060&t=st=1702706008~exp=1702706608~hmac=539917e56f38969d633d60c86b00e33e8bd1605cb791216c61a68836b4033a3a', // Unsplash image URL
-  },
-
-  {
-    id: 2,
-    name: 'Luxury Beach View Single Room',
-    description: 'Double Bed, One Barth Room, TV, A/C',
-    price: '$139.99',
-    imageSrc: 'https://w0.peakpx.com/wallpaper/261/106/HD-wallpaper-gorgeous-hotel-room-in-bora-bora-beach-hotel-room-trees.jpg', // Unsplash image URL
-  },
-  {
-    id: 3,
-    name: 'Luxury Single Room',
-    description: 'Double Bed, One Barth Room, TV, A/C',
-    price: '$99.99',
-    imageSrc: 'https://cdn.pixabay.com/photo/2016/09/18/03/28/travel-1677347_1280.jpg', // Unsplash image URL
-  },
-
-  // Add more Rooms...
-];
+import axios from 'axios'; // Import axios for making HTTP requests
 
 const Rooms = () => {
+  const [rooms, setRooms] = useState([]);
+  useEffect(() => {
+    // Fetch room data from the backend
+    const fetchRooms = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/rooms/read'); // Replace with your actual API endpoint
+        setRooms(response.data);
+      } catch (error) {
+        console.error('Error fetching room data:', error);
+      }
+    };fetchRooms();
+  }, []);
   return (
-    <div>     
+    <div>
       <div className="flex flex-wrap justify-center">
-        {room.map((room) => (
-          <RoomCard key={room.id} room={room} />
+        {rooms.map((room) => (
+          <RoomCard key={room._id} room={room} />
         ))}
       </div>
     </div>

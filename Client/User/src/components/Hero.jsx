@@ -27,6 +27,7 @@ const Hero = () => {
             room with a view, find your ideal accommodation with us.
           </p>
 
+
           <div className="flex">
             <Button
               className="bg-white text-black hover:bg-transparent hover:text-white hover:scale-105 ease-in duration-300 gap-3"
@@ -35,6 +36,7 @@ const Hero = () => {
             >
               Book Your Stay&nbsp;
             </Button>
+
 
             <Button
               className="bg-white text-black hover:bg-transparent hover:text-white hover:scale-105 ease-in duration-300 ms-5"
