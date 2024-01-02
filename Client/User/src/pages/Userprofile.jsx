@@ -7,7 +7,7 @@ function Userprofile() {
        
 
         <div class="sm:flex justify-center sm:h-screen bg-gray-900 rounded-md">
-          <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm mt-16 ml-4">
+          <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm mt-14 ml-4">
             <div className="bg-gradient-to-br from-gray-900 to-gray-100 rounded-t-lg h-32 overflow-hidden">
               <img
                 className="object-cover object-top w-full"
@@ -42,37 +42,37 @@ function Userprofile() {
       <div class="bg-gray-300 lg:flex-1 bg-black">
         <div class="mx-10 mt-10 ">
           <div>
-            <h1 class="text-4xl font-bold mt-20 ml-3">
+            <h1 class="text-4xl font-bold mt-14 ml-3">
               My Reservation Details
             </h1>
             <table className="responsive-table mt-10">
               <tbody>
                 <tr>
                   <td>
-                    <p className="text-gray-500 text-left ml-4">
+                    <p className="text-gray-900 text-left ml-4">
                       Contact Number:
                     </p>
                   </td>
                   <td className="mx-2 mb-2">
-                    <p className="text-gray-500 text-left ml-5 ">071-9454887</p>
+                    <p className="text-gray-900 text-left ml-5 ">071-9454887</p>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <p className="text-gray-500 text-left ml-4">Email:</p>
+                    <p className="text-gray-900 text-left ml-4">Email:</p>
                   </td>
                   <td className="mx-2 mb-2">
-                    <p className="text-gray-500 text-left mx-5">
+                    <p className="text-gray-900 text-left mx-5">
                       user@example.com
                     </p>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <p className="text-gray-500 text-left ml-4">Address:</p>
+                    <p className="text-gray-900 text-left ml-4">Address:</p>
                   </td>
                   <td className="mx-2 mb-2">
-                    <p className="text-gray-500 text-left mx-5">
+                    <p className="text-gray-900 text-left mx-5">
                       123 Street, City
                     </p>
                   </td>
@@ -189,13 +189,13 @@ function Userprofile() {
                     <div class="flex justify-between mt-4">
                       <a
                         href="#"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-center"
                       >
                         Edit Reservation
                       </a>
                       <a
                         href="#"
-                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md ml-2 text-center"
                       >
                         Cancel
                       </a>
@@ -310,13 +310,13 @@ function Userprofile() {
                     <div class="flex justify-between mt-4">
                       <a
                         href="#"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-center"
                       >
                         Edit Reservation
                       </a>
                       <a
                         href="#"
-                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md ml-2 text-center"
                       >
                         Cancel
                       </a>
