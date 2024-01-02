@@ -46,6 +46,39 @@ function Userprofile() {
         <div class="mx-10 mt-10 ">
           <div>
           <h1 class="text-4xl font-bold mt-20 ml-3">My Reservation Details</h1>
+          <table className="responsive-table mt-10">
+              <tbody>
+                <tr>
+                  <td>
+                    <p className="text-gray-500 text-left ml-4">Contact Number:</p>
+                  </td>
+                  <td className="mx-2 mb-2">
+                    <p className="text-gray-500 text-left ml-5 ">071-9454887</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p className="text-gray-500 text-left ml-4">Email:</p>
+                  </td>
+                  <td className="mx-2 mb-2">
+                    <p className="text-gray-500 text-left mx-5">
+                      user@example.com
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p className="text-gray-500 text-left ml-4">Address:</p>
+                  </td>
+                  <td className="mx-2 mb-2">
+                    <p className="text-gray-500 text-left mx-5">
+                      123 Street, City
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
           </div>
         </div>
       </div>
