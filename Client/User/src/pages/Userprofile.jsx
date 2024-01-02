@@ -78,8 +78,260 @@ function Userprofile() {
                 </tr>
               </tbody>
             </table>
-            
+
           </div>
+          <div class="flex flex-wrap mt-8">
+                <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/2 px-4 mb-8">
+                  <a
+                    href="#"
+                    class="block max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-700"
+                  >
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      RESERVATION DETAILS
+                    </h5>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                ARRIVAL DATE
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left">
+                                12/25/2023
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                DEPARTURE DATE
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left">
+                                12/26/2023
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                TYPE OF ROOM
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left ">
+                                Normal Double Bed room
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                NUMBER OF ROOMS
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left mx-2">2</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                NUMBER OF CHILDERN
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left mx-2">1</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                NUMBER OF ADULTS
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left mx-2">2</p>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              <h1 className="text-gray-900 dark:text-white text-left text-2xl font-bold">
+                                FOOD DETAILS
+                              </h1>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                MEALS OF DAY
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left ">LUNCH</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                MEALS TYPE
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left ">VEGI</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="flex justify-between mt-4">
+                      <a
+                        href="#"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+                      >
+                        Edit Reservation
+                      </a>
+                      <a
+                        href="#"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+                      >
+                        Cancel
+                      </a>
+                    </div>
+                  </a>
+                </div>
+                <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/2 px-4 mb-8">
+                  <a
+                    href="#"
+                    class="block max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-700"
+                  >
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      RESERVATION DETAILS
+                    </h5>
+
+                    <div class="table-responsive">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                ARRIVAL DATE
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left">
+                                12/25/2023
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                DEPARTURE DATE
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left">
+                                12/26/2023
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                TYPE OF ROOM
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left ">
+                                Normal Double Bed room
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                NUMBER OF ROOMS
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left mx-2">2</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                NUMBER OF CHILDERN
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left mx-2">1</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                NUMBER OF ADULTS
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left mx-2">2</p>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              <h1 className="text-gray-900 dark:text-white text-left text-2xl font-bold">
+                                FOOD DETAILS
+                              </h1>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                MEALS OF DAY
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left ">LUNCH</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className="text-gray-500 text-left">
+                                MEALS TYPE
+                              </p>
+                            </td>
+                            <td className="mx-2 mb-2">
+                              <p className="text-gray-500 text-left ">VEGI</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="flex justify-between mt-4">
+                      <a
+                        href="#"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+                      >
+                        Edit Reservation
+                      </a>
+                      <a
+                        href="#"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+                      >
+                        Cancel
+                      </a>
+                    </div>
+                  </a>
+                </div>
+                
+              </div>
         </div>
       </div>
     </div>
