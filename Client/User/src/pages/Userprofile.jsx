@@ -2,7 +2,8 @@ import React from 'react'
 
 function Userprofile() {
   return (
-    <div>Userprofile</div>
+    <div class="flex flex-col lg:flex-row bg-white">
+    </div>
   )
 }
 
