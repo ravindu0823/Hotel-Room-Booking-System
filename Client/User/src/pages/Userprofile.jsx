@@ -9,6 +9,9 @@ function Userprofile() {
             Back to Home
           </button> */}
         </div>
+        <div class="sm:flex justify-center sm:h-screen bg-gray-900 rounded-md">
+            
+        </div>
         </div>
     </div>
   )
