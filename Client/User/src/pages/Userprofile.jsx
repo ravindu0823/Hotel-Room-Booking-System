@@ -36,7 +36,7 @@ function Userprofile() {
               </div>
               <div className="p-4 border-t mx-8 mt-2">
                 <div class="flex justify-between mx-8 mt-2">
-                  <div class="p-4 border-t flex items-center rounded-full bg-white">
+                  {/* <div class="p-4 border-t flex items-center rounded-full bg-white opacity-30">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -68,7 +68,7 @@ function Userprofile() {
                         d="M12 6v12"
                       ></path>
                     </svg>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
