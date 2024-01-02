@@ -4,11 +4,7 @@ function Userprofile() {
   return (
     <div class="flex flex-col lg:flex-row bg-white">
       <div class=" lg:w-1/4">
-        <div class="p-4 border-t mx-8">
-          <button class="w-3/4 block mx-auto rounded-full bg-transparent hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg font-semibold text-gray-900 px-6 py-2 border border-gray-900">
-            Back to Home
-          </button>
-        </div>
+       
 
         <div class="sm:flex justify-center sm:h-screen bg-gray-900 rounded-md">
           <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm mt-16 ml-4">
@@ -35,7 +31,6 @@ function Userprofile() {
               <button className="w-1/2 block mx-auto  rounded-md bg-white hover:shadow-lg font-semibold text-black px-7 py-2">
                 Logout
               </button>
-
             </div>
             <div className="p-4 border-t mx-8 mt-2">
               hello
@@ -44,15 +39,19 @@ function Userprofile() {
           </div>
         </div>
       </div>
-      <div class="bg-gray-300 lg:flex-1 bg-white ">
+      <div class="bg-gray-300 lg:flex-1 bg-black">
         <div class="mx-10 mt-10 ">
           <div>
-            <h1 class="text-4xl font-bold mt-20 ml-3">My Reservation Details</h1>
+            <h1 class="text-4xl font-bold mt-20 ml-3">
+              My Reservation Details
+            </h1>
             <table className="responsive-table mt-10">
               <tbody>
                 <tr>
                   <td>
-                    <p className="text-gray-500 text-left ml-4">Contact Number:</p>
+                    <p className="text-gray-500 text-left ml-4">
+                      Contact Number:
+                    </p>
                   </td>
                   <td className="mx-2 mb-2">
                     <p className="text-gray-500 text-left ml-5 ">071-9454887</p>
@@ -81,13 +80,10 @@ function Userprofile() {
               </tbody>
             </table>
             <div>
-              <div class="flex flex-wrap mt-8">
-                <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/2 px-4 mb-8">
-                  <a
-                    href="#"
-                    class="block max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-700"
-                  >
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <div class="flex flex-wrap mt-8 ">
+                <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/2 px-4 mb-8 ">
+                  <div className="block max-w-xl p-6 bg-gray-900 lg:flex-1 border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">
                       RESERVATION DETAILS
                     </h5>
                     <div class="table-responsive">
@@ -162,7 +158,7 @@ function Userprofile() {
 
                           <tr>
                             <td>
-                              <h1 className="text-gray-900 dark:text-white text-left text-2xl font-bold">
+                              <h1 className="text-white mt-3 dark:text-white text-left text-2xl font-bold">
                                 FOOD DETAILS
                               </h1>
                             </td>
@@ -204,17 +200,13 @@ function Userprofile() {
                         Cancel
                       </a>
                     </div>
-                  </a>
+                  </div>
                 </div>
-                <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/2 px-4 mb-8">
-                  <a
-                    href="#"
-                    class="block max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-700"
-                  >
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/2 px-4 mb-8 ">
+                  <div className="block max-w-xl p-6 bg-gray-900 lg:flex-1 border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">
                       RESERVATION DETAILS
                     </h5>
-
                     <div class="table-responsive">
                       <table class="table">
                         <tbody>
@@ -287,7 +279,7 @@ function Userprofile() {
 
                           <tr>
                             <td>
-                              <h1 className="text-gray-900 dark:text-white text-left text-2xl font-bold">
+                              <h1 className="text-white mt-3 dark:text-white text-left text-2xl font-bold">
                                 FOOD DETAILS
                               </h1>
                             </td>
@@ -329,10 +321,13 @@ function Userprofile() {
                         Cancel
                       </a>
                     </div>
-                  </a>
+                  </div>
                 </div>
-                
+                <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/2 px-4 mb-8">
+                  {/* hello */}
+                </div>
               </div>
+              
             </div>
           </div>
         </div>
