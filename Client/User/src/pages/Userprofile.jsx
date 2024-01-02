@@ -10,7 +10,15 @@ function Userprofile() {
           </button> */}
         </div>
         <div class="sm:flex justify-center sm:h-screen bg-gray-900 rounded-md">
-          <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm mt-16 ml-4"></div>
+          <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm mt-16 ml-4">
+          <div className="bg-gradient-to-br from-gray-900 to-gray-100 rounded-t-lg h-32 overflow-hidden">
+              <img
+                className="object-cover object-top w-full"
+                src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+                alt="Mountain"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
