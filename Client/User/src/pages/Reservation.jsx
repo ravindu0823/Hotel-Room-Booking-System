@@ -7,6 +7,7 @@ import DynamicRadioButton from "../components/forms/DynamicRadioButton";
 import axios, {
   CREATE_RESERVATION_URL,
   GET_USER_BY_ID_URL,
+  USER_PROTECTED_URL,
 } from "../api/axios";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
@@ -53,7 +54,30 @@ const Reservation = () => {
       const token = Cookies.get("token");
 
       if (!token) {
-        return navigate("/sign-in");
+        return Swal.fire({
+          title: "Hotel Room Booking System",
+          text: `Not Authorized`,
+          icon: "error",
+        }).then(() => {
+          navigate("/sign-in");
+        });
+      }
+
+      const res = await axios.get(USER_PROTECTED_URL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.statusText) {
+        return Swal.fire({
+          title: "Hotel Room Booking System",
+          text: `Not Authorized, Please Sign In`,
+          icon: "error",
+        }).then(() => {
+          navigate("/sign-in");
+        });
+        // throw new Error("Not Authorized");
       }
 
       const decodedToken = jwtDecode(token);
@@ -147,7 +171,9 @@ const Reservation = () => {
   return (
     <>
       <div className="bg-reservation-page bg-cover">
-      <h2 className="mb-4 text-2xl font-bold text-white">Create Reservations</h2>
+        <h2 className="mb-4 text-2xl font-bold text-white">
+          Create Reservations
+        </h2>
         <form
           className="mb-20 ms-8 mt-5 max-w-xl"
           method="POST"
