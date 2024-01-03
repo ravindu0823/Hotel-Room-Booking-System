@@ -3,6 +3,7 @@ import axios from '@/api/axios';
 import Swal from 'sweetalert2'; // Import SweetAlert
 import { Input } from "@material-tailwind/react";
 import { CREATE_OFFER_URL } from '@/api/axios';
+import { useNavigate } from 'react-router-dom';
 
 class Addoffer extends Component {
   constructor(props) {
@@ -66,7 +67,10 @@ class Addoffer extends Component {
         icon: 'success',
         title: 'Success',
         text: 'Offer created successfully!',
-      });
+      }).then((result) => {
+        navigate("/offer");
+        }
+    );
     } catch (error) {
       console.error('Error:', error);
       // Display error message

@@ -14,7 +14,7 @@ import { authorsTableData, projectsTableData } from "@/data";
 export function Tables() {
   return (
     <div className="mb-8 mt-12 flex flex-col gap-12">
-      {/* Staf management Card */}
+      {/* Staff management Card */}
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
           <Typography variant="h6" color="white">

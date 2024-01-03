@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import axios from '@/api/axios';
 import Swal from 'sweetalert2';
 import { CREATE_NEW_FOOD_URL } from '@/api/axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddFood = () => {
+  const navigate = useNavigate();
   const [state, setState] = useState({
     foodName: '',
     foodCategory: 'Vegi',
@@ -87,7 +89,10 @@ const AddFood = () => {
         icon: 'success',
         title: 'Success',
         text: 'Food item added successfully!',
-      });
+      }).then((result) => {
+        navigate("/food");
+        }
+    );
     } catch (error) {
       console.error('Error:', error);
       // Display error message

@@ -29,6 +29,7 @@ export const CREATE_NEW_STAFF_URL = "/staff/new";
 export const GET_ALL_STAFF_URL = "/staff/read";
 export const DELETE_STAFF_BY_ID_URL = "/staff";
 export const UPDATE_STAFF_BY_ID_URL = "/staff";
+export const GET_STAFF_BY_ID_URL = "/staff";
 
 export default axios.create({
   baseURL: import.meta.env.VITE_BASEURL,

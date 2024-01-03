@@ -17,6 +17,7 @@ const Staff = () => {
     const fetchStaff = async () => {
       try {
         const response = await axios.get(GET_ALL_STAFF_URL);
+        console.log(response.data);
         setStaff(response.data);
       } catch (error) {
         console.error('Error fetching staff data:', error);
