@@ -66,7 +66,8 @@ const FoodCard = ({ food }) => {
             </Typography>
           </div>
           <Typography color="gray">Facilities: {food.facilities}</Typography>
-          <Tooltip content={`${food.price} $ per Night`}>
+          <div className="group mt-8 inline-flex flex-wrap items-center gap-3">
+            <Tooltip content={`${food.price} $ per Night`}>
               <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -152,7 +153,7 @@ const FoodCard = ({ food }) => {
               </span>
             </Tooltip>
             <div className="text-left">
-            <Link
+              <Link
                 to={`/foods/${food._id}`}
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-dark dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
@@ -174,8 +175,8 @@ const FoodCard = ({ food }) => {
                 </svg>
               </Link>
             </div>
+          </div>
         </CardBody>
-        Hello foods
       </Card>
     </div>
   );
