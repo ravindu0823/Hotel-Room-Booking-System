@@ -2,12 +2,10 @@ import Offers from "../models/offer.js";
 import { connectToDB } from "../db/conn.js";
 import express from "express";
 
-
 const offersRouter = express.Router();
 //create
 offersRouter.post("/new", async (req, res) => {
   const { OfferName, Price, Description } = await req.body;
-
 
   try {
     await connectToDB();
@@ -16,7 +14,6 @@ offersRouter.post("/new", async (req, res) => {
       OfferName,
       Price,
       Description,
-
     });
 
     await savedOffer.save();
@@ -28,9 +25,8 @@ offersRouter.post("/new", async (req, res) => {
   }
 });
 
-
 //delete offer
-offersRouter.delete("/delete/:offerId", async (req, res)=> {
+offersRouter.delete("/delete/:offerId", async (req, res) => {
   const offerId = req.params.offerId;
 
   try {
@@ -39,37 +35,31 @@ offersRouter.delete("/delete/:offerId", async (req, res)=> {
     const deletedOffer = await Offers.findByIdAndDelete(offerId);
 
     if (!deletedOffer) {
-      return res.status(404).json({ error: "Offer not found"});
+      return res.status(404).json({ error: "Offer not found" });
     }
 
     res.status(200).json(deletedOffer);
-}
-  catch (error) {
+  } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error"});
+    res.status(500).json({ error: "Server Error" });
   }
 });
 
-
 // View offer
 offersRouter.get("/", async (req, res) => {
-
   try {
     await connectToDB();
 
     const allOffers = await Offers.find();
     res.status(200).json(allOffers);
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error"});
-
+    res.status(500).json({ error: "Server Error" });
   }
 });
 
-
 //update offers
-offersRouter.put("/update/:offerId", async (req, res)=> {
+offersRouter.put("/update/:offerId", async (req, res) => {
   const offerId = req.params.offerId;
   const { OfferName, Price, Description } = req.body;
 
@@ -82,23 +72,20 @@ offersRouter.put("/update/:offerId", async (req, res)=> {
         OfferName,
         Price,
         Description,
-    
       },
-      { new: true}
+      { new: true }
     );
 
     if (!updatedOffer) {
-      return res.status(404).json({ error: "Offer not found"});
+      return res.status(404).json({ error: "Offer not found" });
     }
 
     res.status(200).json(updatedOffer);
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error"});
+    res.status(500).json({ error: "Server Error" });
   }
 });
-
 
 //get one offer
 offersRouter.get("/:offerId", async (req, res) => {
