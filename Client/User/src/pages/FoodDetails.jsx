@@ -179,6 +179,27 @@ function FoodDetails() {
                 </Tooltip>
               </div>
             </CardBody>
+            <div className="">
+              {food && (
+                <>
+                  <h1 className="dark:text-dark text-gray-800 mb-4 text-4xl font-bebas-neue font-bold">
+                    {food.foodName}
+                  </h1>
+                  <p className="dark:text-dark text-gray-800 mb-2 text-xl font-bebas-neue font-bold">
+                    Category: {food.foodCategory}
+                  </p>
+                  <p className="dark:text-dark text-gray-800 text-xl mb-2 font-bebas-neue font-bold">
+                    Persons: {food.persons}
+                  </p>
+                  <p className="dark:text-dark text-gray-800 text-xl mb-2 font-bebas-neue font-bold">
+                    Type: {food.foodType}
+                  </p>
+                  <p className="dark:text-dark text-gray-800 text-xl mb-2 font-bebas-neue font-bold">
+                    Price: {food.price} $
+                  </p>
+                </>
+              )}
+            </div>
           </div>
         </div>
         FoodDetails
