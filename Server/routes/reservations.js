@@ -98,13 +98,13 @@ reservationRouter.get("/count", async (req, res) => {
     const reservations = await Reservation.countDocuments();
     const users = await User.countDocuments();
 
-    if (!users) {
+    /* if (!users) {
       return res.status(404).json({ error: "No Users" });
     }
 
     if (!reservations) {
       return res.status(404).json({ error: "No Reservations" });
-    }
+    } */
 
     console.log(users);
     return res.status(200).json({ users, reservations });
