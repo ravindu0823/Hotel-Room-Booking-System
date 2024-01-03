@@ -1,18 +1,17 @@
 import Room from "../models/room.js";
 import { connectToDB } from "../db/conn.js";
 import express from "express";
+import { validateRoomAdd } from "../validations/roomValidation.js";
 
 const roomsRouter = express.Router();
 
 // add new room(start code)
-roomsRouter.post("/new", async (req, res) => {
+roomsRouter.post("/new", validateRoomAdd, async (req, res) => {
   const { roomType, facilities, persons, price, image } = await req.body;
   const availability = true;
 
   try {
     await connectToDB();
-
-
 
     const savedRoom = new Room({
       roomType,
@@ -26,9 +25,23 @@ roomsRouter.post("/new", async (req, res) => {
     await savedRoom.save();
 
     console.log(savedRoom);
-    res.send(savedRoom).status(201);
+    res.status(201).json(savedRoom);
   } catch (error) {
     console.log(error);
+  }
+});
+// end code
+
+// View room(start code)
+roomsRouter.get("/read", async (req, res) => {
+  try {
+    await connectToDB();
+
+    const allRooms = await Room.find();
+    res.status(200).json(allRooms);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
   }
 });
 // end code
@@ -47,20 +60,6 @@ roomsRouter.delete("/:roomId", async (req, res) => {
     }
 
     res.status(200).json(deletedRoom);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
-  }
-});
-// end code
-
-// View room(start code)
-roomsRouter.get("/read", async (req, res) => {
-  try {
-    await connectToDB();
-
-    const allRooms = await Room.find();
-    res.status(200).json(allRooms);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server Error" });

@@ -93,7 +93,7 @@ import { CREATE_NEW_STAFF_URL } from '@/api/axios';
           title: 'Success',
           text: 'Staff Member Added successfully!',
         }).then((result) => {
-          navigate("/staff");
+          navigate("/dashboard/staff");
           }
       );
         console.log(response.data);

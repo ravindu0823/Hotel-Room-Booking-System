@@ -68,7 +68,7 @@ class Addoffer extends Component {
         title: 'Success',
         text: 'Offer created successfully!',
       }).then((result) => {
-        navigate("/offer");
+        navigate("/dashboard/offers");
         }
     );
     } catch (error) {

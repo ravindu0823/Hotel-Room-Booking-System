@@ -77,7 +77,7 @@ const Foods = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Food Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Food Name / Image</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Category</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Type</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Price</th>
@@ -89,7 +89,12 @@ const Foods = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {foods.map((food) => (
                 <tr key={food._id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{food.foodName}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <img className="rounded-full w-20 h-20" src={food.image} alt="image description" />
+                        <div className="ml-4">{food.foodName}</div>
+                      </div>
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap">{food.foodCategory}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{food.foodType}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{food.price}</td>

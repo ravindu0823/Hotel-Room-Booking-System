@@ -64,13 +64,13 @@ const Offers = () => {
     <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url('/img/background-image.png')] bg-cover bg-center">
       <div className="absolute inset-0 h-full w-full bg-gray-900/75">
         <div className="flex h-full items-center justify-center">
-          <p className="text-4xl font-bold text-white">Manage Special Offer</p>
+          <p className="text-4xl font-bold text-white">Manage Special Offers</p>
         </div>
       </div>
     </div>
     <div className="mb-8 flex flex-col gap-12">
-    <div className="container mx-auto px-4 py-8">
-        <Link to={`/dashboard/offers/add-new`} className="block md:inline-block mt-4 md:mt-6">
+    <div className="container mx-auto px-4 mt-2">
+        <Link to={`/dashboard/offers/add-new`} className="block md:inline-block mt-4 md:mt-6 mb-3">
           <Button className="mb-3 md:mb-0 md:mr-3" color='green' >
             Add Offers
           </Button>
