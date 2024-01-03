@@ -45,8 +45,9 @@ function FoodDetails() {
       clearInterval(interval); // Clear interval on component unmount
     };
   }, [backgroundImages]);
-  return( <div className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover">
-    {backgroundImages.map((imageUrl, index) => (
+  return (
+    <div className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover">
+      {backgroundImages.map((imageUrl, index) => (
         <div
           key={index}
           className={`absolute inset-0 z-${index} transition-opacity duration-1000 ${
@@ -59,9 +60,21 @@ function FoodDetails() {
           }}
         ></div>
       ))}
-    FoodDetails
+      <div className="flex relative z-20 items-center overflow-hidden">
+        <div className="container mx-auto px-6 py-10 flex relative mt-10 mb-20 bg-white bg-opacity-60 rounded-lg border border-gray-900 hover:scale-105">
+          <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">
+            <h1 className="ont-bebas-neue uppercase text-4xl sm:text-7xl font-black flex flex-col leading-none dark:text-dark text-gray-800">
+              Order My
+              <span className="text-4xl sm:text-6xl"> </span>
+            </h1>
+            <CardBody>
+            </CardBody>
+          </div>
+        </div>
+        FoodDetails
+      </div>
     </div>
-    );
+  );
 }
 
 export default FoodDetails;
