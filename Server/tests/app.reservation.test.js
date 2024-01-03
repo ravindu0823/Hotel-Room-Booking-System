@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import User from "../models/user";
 dotenv.config();
 
+// connect to the test database before running any tests
 beforeAll(async () => {
   await connectToDB();
 });
@@ -13,8 +14,10 @@ beforeAll(async () => {
 // clear the test database after each test
 afterEach(async () => {
   await Reservation.deleteMany();
+  // await User.deleteMany();
 });
 
+// close the database connection after all tests are done
 afterAll(async () => {
   await disconnectFromDB();
 });
@@ -124,7 +127,7 @@ describe("Reservation Routes", () => {
     });
   });
 
-  /* describe("PUT /update/:reservationId", () => {
+  describe("PUT /update/:reservationId", () => {
     it("should update a reservation", async () => {
       const savedUser = new User(user);
       await savedUser.save();
@@ -146,10 +149,13 @@ describe("Reservation Routes", () => {
         .send(updatedReservation);
 
       expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty("_id", reservationData._id.toString());
+      expect(response.body).toHaveProperty(
+        "_id",
+        reservationData._id.toString()
+      );
       // add more assertions as needed
     });
-  }); */
+  });
 
   describe("GET /:reservationId", () => {
     it("should get a reservation by ID", async () => {
@@ -162,10 +168,15 @@ describe("Reservation Routes", () => {
       });
       await reservationData.save();
 
-      const response = await request(app).get(`/reservations/${reservationData._id}`);
+      const response = await request(app).get(
+        `/reservations/${reservationData._id}`
+      );
 
       expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty("_id", reservationData._id.toString());
+      expect(response.body).toHaveProperty(
+        "_id",
+        reservationData._id.toString()
+      );
       // add more assertions as needed
     });
   });
