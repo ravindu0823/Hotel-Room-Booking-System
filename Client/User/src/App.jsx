@@ -10,6 +10,7 @@ import { SignInContext } from "./contexts/SignInContext";
 import { useState } from "react";
 import Reservation from "./pages/Reservation";
 import Payment from "./pages/Payment";
+import Userprofile from "./pages/Userprofile";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -26,6 +27,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/reservation" element={<Reservation />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/profile" element={<Userprofile />} />
             {/* <Route path="/set-avatar" element={<SetAvatar />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/chat/login" element={<ChatLogin />} />
