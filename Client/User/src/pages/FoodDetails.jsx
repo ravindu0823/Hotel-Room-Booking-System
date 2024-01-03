@@ -201,6 +201,11 @@ function FoodDetails() {
               )}
             </div>
           </div>
+          <Typography
+              variant="h5"
+              color="blue-gray"
+              className="font-medium"
+            ></Typography>
         </div>
         FoodDetails
       </div>
