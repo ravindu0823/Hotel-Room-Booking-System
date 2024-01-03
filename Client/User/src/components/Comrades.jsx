@@ -33,16 +33,16 @@ const Comrades = () => {
   return (
     <div
       id="comrades"
-      className="max-w-[1400px] h-[500px] bg-blue-300 mx-auto my-20 pt-8 lg:mb-[25%] md:mb-[40%] px-4 grid lg:grid-cols-3 gap-4"
+      className="max-w-[1400px] h-[500px] bg-gray-900 mx-auto my-20 pt-8 lg:mb-[25%] md:mb-[40%] px-4 grid lg:grid-cols-3 gap-4 rounded-2xl"
     >
       <div
-        className="lg:top-12 relative lg:col-span-1 col-span-2"
+        className="lg:top-8 relative lg:col-span-1 col-span-2"
         style={{ fontFamily: "Times New Roman" }}
       >
-        <h3 className="text-2xl font-bold mb-2" style={{ fontSize: "1.5rem" }}>
+        <h3 className="text-4xl font-bold text-white ont-bebas-neue " style={{ fontSize: "1.5rem" }}>
           Special Offers
         </h3>
-        <p className="pt-2 mb-5" style={{ fontSize: "1rem" }}>
+        <p className="pt-2 mb-5 text-white text-2xl" style={{ fontSize: "1rem" }}>
           Indulge in our exclusive offers tailored just for you. Whether it{"'"}
           s a weekend getaway or an extended stay, we have something special in
           store.
@@ -60,7 +60,7 @@ const Comrades = () => {
           {offers.map((offer) => (
             <li
               key={offer.id}
-              style={{ marginBottom: "1rem", fontFamily: "Arial, sans-serif" }}
+              style={{ marginBottom: "1rem", fontFamily: "Arial, sans-serif", color: "white", fontSize: "1rem" }}
             >
               {offer.OfferName} - {offer.Description} - Price: {offer.Price}
             </li>
