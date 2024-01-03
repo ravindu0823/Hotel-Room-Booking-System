@@ -45,7 +45,23 @@ function FoodDetails() {
       clearInterval(interval); // Clear interval on component unmount
     };
   }, [backgroundImages]);
-  return <div>FoodDetails</div>;
+  return( <div className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover">
+    {backgroundImages.map((imageUrl, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 z-${index} transition-opacity duration-1000 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+          style={{
+            backgroundImage: `url("${imageUrl}")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></div>
+      ))}
+    FoodDetails
+    </div>
+    );
 }
 
 export default FoodDetails;
