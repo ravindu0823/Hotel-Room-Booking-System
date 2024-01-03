@@ -9,7 +9,8 @@ import {
   Tooltip,
   Button,
 } from "@material-tailwind/react";
-function FoodCard() {
+const FoodCard = ({ food }) => {
+  const [image2, setFoods] = useState([]);
   return (
     <div>FoodCard</div>
   )
