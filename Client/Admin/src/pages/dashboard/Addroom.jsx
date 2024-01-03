@@ -90,7 +90,7 @@ import { useNavigate } from 'react-router-dom';
           title: 'Success',
           text: 'Room created successfully!',
         }).then((result) => {
-          navigate("/room");
+          navigate("/dashboard/rooms");
           }
       );
       } catch (error) {
