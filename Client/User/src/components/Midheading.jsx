@@ -23,8 +23,9 @@ const Midheading = () => {
         Rooms
       </Link>
       <p className="text-lg font-medium hover:underline underline-offset-4 decoration-2 decoration-[dimgray]">
-        Food Menu
+      <Link to="/foodshow">Our Food Items</Link>
       </p>
+     
       <p className="text-lg font-medium hover:underline underline-offset-4 decoration-2 decoration-[dimgray]">
         <a href="#comrades">Special Offers</a>
       </p>
