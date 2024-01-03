@@ -1,12 +1,14 @@
 import Staff from "../models/staff.js";
 import { connectToDB } from "../db/conn.js";
 import express from "express";
+import { validateStaff } from "../validations/staffValidation.js";
 
 const staffRouter = express.Router();
 
 // add new member (start code)
-staffRouter.post("/new", async (req, res) => {
-  const { staffName,Address,contactNumber,emailAddress,NIC ,image} = await req.body;
+staffRouter.post("/new", validateStaff, async (req, res) => {
+  const { staffName, Address, contactNumber, emailAddress, NIC, image } =
+    await req.body;
 
   try {
     await connectToDB();
@@ -22,7 +24,7 @@ staffRouter.post("/new", async (req, res) => {
     await savedStaff.save();
 
     console.log(savedStaff);
-    res.send(savedStaff).status(201);
+    res.status(201).json(savedStaff);
   } catch (error) {
     console.log(error);
   }
@@ -67,7 +69,7 @@ staffRouter.get("/read", async (req, res) => {
 // update staff(start code)
 staffRouter.put("/:staffId", async (req, res) => {
   const staffId = req.params.staffId;
-  const {  staffName, Address, contactNumber,  emailAddress, NIC,  } = req.body;
+  const { staffName, Address, contactNumber, emailAddress, NIC } = req.body;
 
   try {
     await connectToDB();
