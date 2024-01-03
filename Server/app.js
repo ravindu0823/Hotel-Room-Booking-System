@@ -10,6 +10,7 @@ import adminRouter from "./routes/admins.js";
 import reservationRouter from "./routes/reservations.js";
 import messageRouter from "./routes/messages.js";
 import chatUserRouter from "./routes/chatUsers.js";
+import staffRouter from "./routes/staff.js";
 
 dotenv.config();
 
@@ -54,5 +55,6 @@ app.use("/admins", adminRouter);
 app.use("/reservations", reservationRouter);
 app.use("/messages", messageRouter);
 app.use("/chat", chatUserRouter);
+app.use("/staff", staffRouter);
 
 export default app;

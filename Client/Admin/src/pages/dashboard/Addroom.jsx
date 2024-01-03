@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import axios from '@/api/axios';
 import Swal from 'sweetalert2';
 import { CREATE_NEW_ROOM_URL } from '@/api/axios';
+import { useNavigate } from 'react-router-dom';
 
   const AddRoom = () => {
+    const navigate = useNavigate();
     const [state, setState] = useState({
       roomType: '',
       facilities: '',
@@ -87,7 +89,10 @@ import { CREATE_NEW_ROOM_URL } from '@/api/axios';
           icon: 'success',
           title: 'Success',
           text: 'Room created successfully!',
-        });
+        }).then((result) => {
+          navigate("/room");
+          }
+      );
       } catch (error) {
         console.error('Error:', error);
         // Display error message

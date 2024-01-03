@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams , useNavigate} from 'react-router-dom';
 import axios, { GET_FOOD_BY_ID_URL, UPDATE_FOOD_BY_ID_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 
 const UpdateFood = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [food, setFood] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -47,9 +48,20 @@ const UpdateFood = () => {
         persons: persons,
         spicinessLevel: spicinessLevel,
       });
+
+     
+
       // Display success message
-      Swal.fire('Success', 'Food item updated successfully!', 'success');
-    } catch (error) {
+      Swal.fire('Success', 'Food item updated successfully!', 'success').then((result) => {
+        navigate("/food");
+        }
+    );
+
+     
+
+      // Redirect to dashboard
+
+    }catch (error) {
       setError('Failed to update the food item.');
       console.error(error);
       // Display error message

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate} from 'react-router-dom';
 import axios, { GET_STAFF_BY_ID_URL, UPDATE_STAFF_BY_ID_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 
 
 const UpdateStaff= () => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [staff, setStaff] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [staffName, setStaffName] = useState('');
-    const [address, setAddress] = useState(0);
+    const [Address, setAddress] = useState(0);
     const [contactNumber, setContactNumber] = useState([]);
     const [emailAddress, setEmailAddress] = useState(0);
     const [NIC, setNIC] = useState(0);
@@ -21,7 +22,7 @@ const UpdateStaff= () => {
                 const response = await axios.get(`${GET_STAFF_BY_ID_URL}/${id}`);
                 setStaff(response.data);
                 setStaffName(response.data.staffName);
-                setAddress(response.data.address);
+                setAddress(response.data.Address);
                 setContactNumber(response.data.contactNumber);
                 setEmailAddress(response.data.emailAddress);
                 setNIC(response.data.NIC);
@@ -41,14 +42,17 @@ const UpdateStaff= () => {
         try {
             await axios.put(`${UPDATE_STAFF_BY_ID_URL}/${id}`, {
                 staffName: staffName,
-                address : address,
+                address : Address,
                 contactNumber : contactNumber,
                 emailAddress : emailAddress,
                 NIC : NIC,
 
             });
             // Display success message
-            Swal.fire('Success', 'Staff Member updated successfully!', 'success');
+            Swal.fire('Success', 'Staff Member updated successfully!', 'success').then((result) => {
+              navigate("/staff");
+              }
+          );
         } catch (error) {
             setError('Failed to update the staff member.');
             console.error(error);
@@ -105,7 +109,7 @@ const UpdateStaff= () => {
           <input
             type="text"
             id="address"
-            value={address}
+            value={Address}
             onChange={(e) => setAddress(e.target.value)}
             className="mt-1 p-2 block w-full border border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
@@ -115,7 +119,7 @@ const UpdateStaff= () => {
             Contact Number:
           </label>
           <input
-            type="numbers"
+            type="text"
             id="contactNumber"
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
