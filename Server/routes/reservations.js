@@ -8,6 +8,7 @@ import {
   validateReservationForNewUsers,
   validateReservationId,
 } from "../validations/reservationValidation.js";
+import Staff from "../models/staff.js";
 
 dotenv.config();
 const reservationRouter = express.Router();
@@ -97,6 +98,7 @@ reservationRouter.get("/count", async (req, res) => {
 
     const reservations = await Reservation.countDocuments();
     const users = await User.countDocuments();
+    const staff = await Staff.countDocuments();
 
     /* if (!users) {
       return res.status(404).json({ error: "No Users" });
@@ -107,7 +109,7 @@ reservationRouter.get("/count", async (req, res) => {
     } */
 
     console.log(users);
-    return res.status(200).json({ users, reservations });
+    return res.status(200).json({ users, reservations, staff });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
@@ -123,8 +125,9 @@ reservationRouter.delete(
     try {
       await connectToDB();
 
-      const deletedReservation =
-        await Reservation.findByIdAndDelete(reservationId);
+      const deletedReservation = await Reservation.findByIdAndDelete(
+        reservationId
+      );
 
       if (!deletedReservation) {
         return res.status(404).json({ error: "Delete Failed" });
@@ -179,8 +182,9 @@ reservationRouter.put(
 
       await updateReservation.save();
 
-      const updatedReservation =
-        await Reservation.findById(reservationId).populate("userId");
+      const updatedReservation = await Reservation.findById(
+        reservationId
+      ).populate("userId");
 
       if (!updatedReservation) {
         return res.status(404).json({ error: "Update Failed" });
@@ -204,8 +208,9 @@ reservationRouter.get(
     try {
       await connectToDB();
 
-      const reservation =
-        await Reservation.findById(reservationId).populate("userId");
+      const reservation = await Reservation.findById(reservationId).populate(
+        "userId"
+      );
 
       if (!reservation) {
         return res.status(404).json({ error: "Reservation not found" });
