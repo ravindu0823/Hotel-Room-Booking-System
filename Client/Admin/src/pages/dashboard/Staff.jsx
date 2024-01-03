@@ -73,8 +73,8 @@ const Staff = () => {
         </div>
       </div>
     </div>
-    <div className="mb-8 mt-12 flex flex-col gap-12">
-    <div className="container mx-auto px-4 py-8 mt-2">
+    <div className="mb-8 flex flex-col gap-12">
+    <div className="container mx-auto px-4 mt-2">
         <Link to={`/dashboard/staff/add-new`} className="block md:inline-block mt-4 md:mt-6">
           <Button className="mb-3 md:mb-0 md:mr-3" color='green' >
             Add New Staff Member
@@ -84,7 +84,7 @@ const Staff = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Staff Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Staff Name / Profile</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Address</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Contact Number</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Email Address</th>
@@ -95,8 +95,13 @@ const Staff = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {staff.map((staff) => (
                 <tr key={staff._id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{staff.staffName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{staff.address}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <img className="rounded-full w-20 h-20" src={staff.image} alt="image description" />
+                        <div className="ml-4">{staff.staffName}</div>
+                      </div>
+                    </td>
+                  <td className="px-6 py-4 whitespace-nowrap">{staff.Address}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{staff.contactNumber}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{staff.emailAddress}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{staff.NIC}</td>
