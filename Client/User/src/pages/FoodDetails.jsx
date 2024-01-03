@@ -70,7 +70,7 @@ function FoodDetails() {
             <CardBody>
               <div className="mb-3 flex items-left mt-10 justify-between">
                 <Tooltip content="And +20 more">
-                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -88,7 +88,7 @@ function FoodDetails() {
                   </span>
                 </Tooltip>
                 <Tooltip content="Take Away">
-                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -105,7 +105,7 @@ function FoodDetails() {
                   </span>
                 </Tooltip>
                 <Tooltip content="Free wifi">
-                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -140,7 +140,7 @@ function FoodDetails() {
                   </span>
                 </Tooltip>
                 <Tooltip content={`65" HDTV`}>
-                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -157,7 +157,7 @@ function FoodDetails() {
                   </span>
                 </Tooltip>
                 <Tooltip content="Fire alert">
-                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -173,7 +173,7 @@ function FoodDetails() {
                   </span>
                 </Tooltip>
                 <Tooltip content="And +20 more">
-                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
+                  <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     +20
                   </span>
                 </Tooltip>
