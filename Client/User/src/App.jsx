@@ -11,6 +11,7 @@ import { useState } from "react";
 import Reservation from "./pages/Reservation";
 import Payment from "./pages/Payment";
 import Userprofile from "./pages/Userprofile";
+import Foodshow from "./pages/Foodshow";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
