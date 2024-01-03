@@ -2,9 +2,9 @@ import React from 'react'
 
 const Foodshow = () => {
   return (
-    <>
-    Hello world
-    </>
+    <div>
+      
+    </div>
   )
 }
 
