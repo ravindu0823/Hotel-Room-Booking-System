@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Foodshow() {
+const Foodshow = () => {
   return (
-    <div>Foodshow</div>
+    <>
+    Hello world
+    </>
   )
 }
 
