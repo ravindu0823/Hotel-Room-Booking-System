@@ -28,6 +28,7 @@ function App() {
             <Route path="/reservation" element={<Reservation />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/profile" element={<Userprofile />} />
+            <Route path="/foodshow" element={<Foodshow/>}/>
             {/* <Route path="/set-avatar" element={<SetAvatar />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/chat/login" element={<ChatLogin />} />
