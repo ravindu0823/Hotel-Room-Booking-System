@@ -1,9 +1,19 @@
 import React from 'react'
+import FoodCard from '../components/FoodCard';
+import axios from 'axios';
 
-function Foods() {
-  return (
-    <div>Foods</div>
-  )
+
+const Foods = () => {
+    const [foods, setFoods] = useState([]);
+
+    
+
 }
+
+// function Foods() {
+//   return (
+//     <div>Foods</div>
+//   )
+// }
 
 export default Foods
