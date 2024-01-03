@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import axios, { GET_ALL_FOOD_URL } from "../api/axios";
 import { Link } from "react-router-dom";
 import {
@@ -9,8 +9,10 @@ import {
   Tooltip,
   Button,
 } from "@material-tailwind/react";
+
 const FoodCard = ({ food }) => {
   const [image2, setFoods] = useState([]);
+
   useEffect(() => {
     const fetchFoodImage = async () => {
       try {
@@ -24,9 +26,12 @@ const FoodCard = ({ food }) => {
 
     fetchFoodImage();
   }, [food._id]);
-  return (
-    <div>FoodCard</div>
-  )
-}
 
-export default FoodCard
+  return (
+  <div>
+    Hello foods
+  </div>
+  );
+};
+
+export default FoodCard;
