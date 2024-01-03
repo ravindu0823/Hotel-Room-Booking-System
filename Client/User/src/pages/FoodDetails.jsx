@@ -200,8 +200,27 @@ function FoodDetails() {
                 </>
               )}
             </div>
+            <div className="flex mt-8">
+              <a
+                href="#"
+                className="uppercase py-2 px-4 rounded-lg bg-transparent border-4 border-black text-black dark:text-dark text-bold hover:bg-black hover:text-white text-md"
+              >
+                Order Now
+              </a>
+            </div>
           </div>
-          <Typography
+          <div className="hidden sm:block sm:w-1/3 lg:w-3/5 relative mx-10">
+            {food && food.image && (
+              <img
+                src={food.image}
+                style={{ width: "100%", height: "auto" }}
+                className="m-auto rounded-lg shadow-lg mt-10 hover:scale-15"
+                alt="Food visual representation"
+              />
+            )}
+          </div>
+          <div>
+            <Typography
               variant="h5"
               color="blue-gray"
               className="font-medium"
@@ -224,8 +243,8 @@ function FoodDetails() {
               </svg>
               5.0
             </Typography>
+          </div>
         </div>
-       
       </div>
     </div>
   );
