@@ -18,7 +18,9 @@ const Foods = () => {
   }, []);
   return (
     <div>
-
+        <div className="flex flex-wrap justify-center">
+            
+        </div>
     </div>
   );
 };
