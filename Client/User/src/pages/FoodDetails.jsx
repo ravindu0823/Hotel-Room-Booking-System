@@ -21,9 +21,31 @@ function FoodDetails() {
     "https://wallpaperaccess.com/full/6169319.jpg",
   ]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  return (
-    <div>FoodDetails</div>
-  )
+  useEffect(() => {
+    const fetchFood = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/foods/${id}`);
+        setFoods(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching food:", error);
+      }
+    };
+
+    fetchFood();
+  }, [id]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000); // Change image every 3 seconds
+
+    return () => {
+      clearInterval(interval); // Clear interval on component unmount
+    };
+  }, [backgroundImages]);
+  return <div>FoodDetails</div>;
 }
 
-export default FoodDetails
+export default FoodDetails;
