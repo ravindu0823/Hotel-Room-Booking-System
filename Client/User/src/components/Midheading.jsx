@@ -15,13 +15,9 @@ const Midheading = () => {
       {/* <p className="text-lg font-medium hover:underline underline-offset-4 decoration-2 decoration-[dimgray]">
         Reservation
       </p> */}
-      <Link
-        to="/rooms"
-        className="text-lg font-medium hover:underline underline-offset-4 decoration-2 decoration-[dimgray]"
-        onClick={toggleRoom} // Click handler to toggle visibility
-      >
-        Rooms
-      </Link>
+      <p className="text-lg font-medium hover:underline underline-offset-4 decoration-2 decoration-[dimgray]">
+      <Link to="/rooms">Our Room Facilty</Link>
+      </p>
       <p className="text-lg font-medium hover:underline underline-offset-4 decoration-2 decoration-[dimgray]">
       <Link to="/foodshow">Our Food Items</Link>
       </p>
