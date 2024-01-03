@@ -1,19 +1,30 @@
-import React from 'react'
-import FoodCard from '../components/FoodCard';
-import axios from 'axios';
-
+import React, { useEffect } from "react";
+import FoodCard from "../components/FoodCard";
+import axios from "axios";
 
 const Foods = () => {
-    const [foods, setFoods] = useState([]);
+  const [foods, setFoods] = useState([]);
 
-    
+  useEffect(() => {
+    const fetchFoods = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/foods/read"); // Replace with your actual API endpoint for food
+        setFoods(response.data);
+      } catch (error) {
+        console.error("Error fetching food data:", error);
+      }
+    };
+    fetchFoods();
+  }, []);
+  return (
+    <div>
+      <div className="flex flex-wrap justify-center">
+        {foods.map((food) => (
+          <FoodCard key={food._id} food={food} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
-}
-
-// function Foods() {
-//   return (
-//     <div>Foods</div>
-//   )
-// }
-
-export default Foods
+export default Foods;
