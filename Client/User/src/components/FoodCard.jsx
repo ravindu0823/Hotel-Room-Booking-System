@@ -28,14 +28,25 @@ const FoodCard = ({ food }) => {
   }, [food._id]);
 
   return (
-  <div className="flex flex-wrap gap-6">
-     <Card className="w-full max-w-full max-w-[26rem] shadow-lg mb-6 m-4">
-      <CardHeader floated={false} color="blue-gray">
-        
-      </CardHeader>
-     Hello foods
-     </Card>   
-  </div>
+    <div className="flex flex-wrap gap-6">
+      <Card className="w-full max-w-full max-w-[26rem] shadow-lg mb-6 m-4">
+        <CardHeader floated={false} color="blue-gray">
+          <Link to={`/foods/${food._id}`}>
+            <img
+              className="rounded-t-lg"
+              src={food.image}
+              alt={food.foodName}
+              style={{ width: "100%", height: "200px", objectFit: "cover" }}
+            />
+          </Link>
+          <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+        </CardHeader>
+        <CardBody>
+          
+        </CardBody>
+        Hello foods
+      </Card>
+    </div>
   );
 };
 
