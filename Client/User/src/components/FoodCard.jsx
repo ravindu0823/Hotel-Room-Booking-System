@@ -28,8 +28,13 @@ const FoodCard = ({ food }) => {
   }, [food._id]);
 
   return (
-  <div>
-    Hello foods
+  <div className="flex flex-wrap gap-6">
+     <Card className="w-full max-w-full max-w-[26rem] shadow-lg mb-6 m-4">
+      <CardHeader floated={false} color="blue-gray">
+        
+      </CardHeader>
+     Hello foods
+     </Card>   
   </div>
   );
 };
