@@ -19,7 +19,9 @@ const Foods = () => {
   return (
     <div>
         <div className="flex flex-wrap justify-center">
-            
+        {foods.map((food) => (
+          <FoodCard key={food._id} food={food} />
+        ))} 
         </div>
     </div>
   );
