@@ -11,6 +11,19 @@ import {
 } from "@material-tailwind/react";
 const FoodCard = ({ food }) => {
   const [image2, setFoods] = useState([]);
+  useEffect(() => {
+    const fetchFoodImage = async () => {
+      try {
+        // Assuming you have an endpoint for fetching food images
+        const response = await axios.get(GET_ALL_FOOD_URL);
+        setFoods(response.data.imageURL);
+      } catch (error) {
+        console.error("Error fetching food image:", error);
+      }
+    };
+
+    fetchFoodImage();
+  }, [food._id]);
   return (
     <div>FoodCard</div>
   )
