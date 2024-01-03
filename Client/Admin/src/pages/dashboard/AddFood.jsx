@@ -90,7 +90,7 @@ const AddFood = () => {
         title: 'Success',
         text: 'Food item added successfully!',
       }).then((result) => {
-        navigate("/food");
+        navigate("/dashboard/food");
         }
     );
     } catch (error) {
