@@ -65,22 +65,21 @@ const Reservation = () => {
         });
       }
 
-      const res = await axios.get(USER_PROTECTED_URL, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!res.statusText) {
-        return Swal.fire({
-          title: "Hotel Room Booking System",
-          text: `Not Authorized, Please Sign In`,
-          icon: "error",
-        }).then(() => {
-          navigate("/sign-in");
+      await axios
+        .get(USER_PROTECTED_URL, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Hotel Room Booking System",
+            text: `Not Authorized, Please Sign In`,
+            icon: "error",
+          }).then(() => {
+            navigate("/sign-in");
+          });
         });
-        // throw new Error("Not Authorized");
-      }
 
       const decodedToken = jwtDecode(token);
 
@@ -94,12 +93,27 @@ const Reservation = () => {
           }
         );
 
-        if (!res.statusText) throw new Error("Not Authorized");
+        if (!res.statusText) {
+          return Swal.fire({
+            title: "Hotel Room Booking System",
+            text: `Not Authorized, Please Sign In`,
+            icon: "error",
+          }).then(() => {
+            navigate("/sign-in");
+          });
+        }
 
         // console.log(res.data)
         setUserData(res.data.user);
       } catch (error) {
         console.error(error);
+        return Swal.fire({
+          title: "Hotel Room Booking System",
+          text: `Not Authorized, Please Sign In`,
+          icon: "error",
+        }).then(() => {
+          navigate("/sign-in");
+        });
       }
     };
 
@@ -189,7 +203,9 @@ const Reservation = () => {
         >
           <div className="flex justify-start">
             <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-white p-6 bg-white/[.54] ">
-              <h2 className="mb-4 text-2xl font-bold ont-bebas-neue uppercase text-left">User Details</h2>
+              <h2 className="mb-4 text-2xl font-bold ont-bebas-neue uppercase text-left">
+                User Details
+              </h2>
 
               <UserInput
                 inputType="text"
@@ -233,7 +249,9 @@ const Reservation = () => {
             </div>
 
             <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-white p-6 bg-white/[.75]">
-              <h2 className="mb-4 text-2xl font-bold nt-bebas-neue uppercase text-left">Reservation Details</h2>
+              <h2 className="mb-4 text-2xl font-bold nt-bebas-neue uppercase text-left">
+                Reservation Details
+              </h2>
               <table>
                 <tbody>
                   <tr>
@@ -422,7 +440,6 @@ const Reservation = () => {
         </form>
         <Footer />
       </div>
-      
     </>
   );
 };
