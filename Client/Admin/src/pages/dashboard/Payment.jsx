@@ -93,7 +93,7 @@ const Payment = () => {
         </div>
       </div>
 
-      <CardBody className="mx-10 mt-5 overflow-x-scroll px-0 pb-2 pt-0">
+      <CardBody className="mx-24 mt-10 overflow-x-scroll px-0 pb-2 pt-0">
       <thead>
             <tr>
               {tableHeaders.map((el) => (
