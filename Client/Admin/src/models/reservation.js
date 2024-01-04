@@ -23,3 +23,23 @@ export const ReservationModel = {
         price: Number,
     },
 };
+
+export const UpdateRservationsModel = {
+        _id: String,
+        arrivalDate: Date,
+        arrivalTime: String,
+        departureDate: Date,
+        departureTime: String,
+        roomType: String,
+        noOfRooms: Number,
+        foodType: String,
+        noOfAdults: Number,
+        noOfChildren: Number,
+        specialRequirements: String,
+        userId: {
+            _id: String,
+        fullName: String,
+        contactNumber: String,
+        userName: String,
+        },
+}
