@@ -2,41 +2,17 @@ import React, { useEffect, useState } from "react";
 import {
   CardBody,
   Typography,
-  Avatar,
-  Chip,
   Button,
 } from "@material-tailwind/react";
-import { authorsTableData } from "@/data";
 import { DELETE_RESERVATION_URL, RESERVAION_URL } from "@/api/axios";
 import axios from "@/api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Cookies from "js-cookie";
+import { ReservationModel } from "@/models/reservation";
 
 const Reservations = () => {
-  const userId = {
-    _id: String,
-    fullName: String,
-    contactNumber: String,
-    userName: String,
-  };
-  const reservation = {
-    _id: String,
-    arrivalDate: Date,
-    arrivalTime: String,
-    departureDate: Date,
-    departureTime: String,
-    roomType: String,
-    noOfRooms: Number,
-    foodType: String,
-    noOfAdults: Number,
-    noOfChildren: Number,
-    specialRequirements: String,
-    userId,
-  };
-
   const navigate = useNavigate();
-  const [reservationData, setResevationData] = useState([reservation]);
+  const [reservationData, setResevationData] = useState([ReservationModel]);
 
   const tableHeaders = [
     "Name / Contact Number",
@@ -78,9 +54,7 @@ const Reservations = () => {
     getReservationData();
   }, [navigate]);
 
-  reservationData.map(({ noOfChildren }) => {
-    console.log(noOfChildren);
-  });
+  console.log(reservationData[0]._id.length)
 
   const handleDelete = (e) => {
     Swal.fire({
@@ -165,6 +139,15 @@ const Reservations = () => {
             </tr>
           </thead>
           <tbody>
+            {reservationData[0]._id.length === 1 ? (
+              <tr>
+                <td colSpan={tableHeaders.length} className="text-center py-8">
+                  <Typography color="blue-gray" variant="h5">
+                    Loading ... No Reservations Found
+                  </Typography>
+                </td>
+              </tr>
+            ): ( <>
             {reservationData.map(
               (
                 {
@@ -174,7 +157,7 @@ const Reservations = () => {
                   arrivalTime,
                   departureDate,
                   departureTime,
-                  roomType,
+                  roomId,
                   noOfRooms,
                   foodType,
                   noOfAdults,
@@ -229,7 +212,7 @@ const Reservations = () => {
                     </td>
                     <td className={className}>
                       <Typography className="text-xs font-semibold text-blue-gray-600">
-                        {roomType}
+                        {roomId.roomType}
                       </Typography>
                     </td>
                     <td className={className}>
@@ -272,6 +255,9 @@ const Reservations = () => {
                 );
               },
             )}
+            
+            </>)}
+            
           </tbody>
         </table>
       </CardBody>

@@ -1,0 +1,25 @@
+export const ReservationModel = {
+    _id: String,
+    arrivalDate: Date,
+    arrivalTime: String,
+    departureDate: Date,
+    departureTime: String,
+    noOfRooms: Number,
+    foodType: String,
+    noOfAdults: Number,
+    noOfChildren: Number,
+    specialRequirements: String,
+    userId: {
+        _id: String,
+        fullName: String,
+        contactNumber: String,
+        userName: String,
+    },
+    roomId: {
+        _id: String,
+        roomType: String,
+        availability: String,
+        facilities: String,
+        price: Number,
+    },
+};

@@ -8,6 +8,7 @@ import SecondNavbar from "../components/SecondNavbar";
 import Footer from "../components/Footer";
 import axios, {
   CREATE_RESERVATION_URL,
+  GET_ALL_ROOMS_URL,
   GET_USER_BY_ID_URL,
   USER_PROTECTED_URL,
 } from "../api/axios";
@@ -37,13 +38,11 @@ const Reservation = () => {
     selectedOptions: "",
     roomsNo: "",
     specialRequirements: "",
+    roomNames: "",
+    roomTypeOptions: [],
   });
 
-  const roomTypeOptions = [
-    { label: "Single", value: "1" },
-    { label: "Double", value: "2" },
-    { label: "Suite", value: "3" },
-  ];
+  // const [roomTypeOptions, setRoomTypeOptions] = useState([]);
 
   const roomsNoOptions = [
     { label: "One", value: "1" },
@@ -120,6 +119,27 @@ const Reservation = () => {
     getUserData();
   }, [navigate]);
 
+  useEffect(() => {
+    const fetchRoomTypes = async () => {
+      try {
+        const res = await axios.get(GET_ALL_ROOMS_URL);
+
+        setReservationData({
+          ...reservationData,
+          roomTypeOptions: res.data.map((room) => ({
+            label: room.roomType,
+            value: room._id,
+          })),
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchRoomTypes();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleRadioButton = (e) => {
     const { value } = e.target;
     setReservationData({ ...reservationData, selectedOptions: value });
@@ -140,6 +160,19 @@ const Reservation = () => {
     });
   };
 
+  const handleChange = (e) => {
+    reservationData.roomTypeOptions.find((room) => {
+      if (room.value === e) {
+        setReservationData({
+          ...reservationData,
+          roomType: room.value,
+        });
+      }
+    });
+  };
+
+  console.log(reservationData.roomType);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -153,7 +186,7 @@ const Reservation = () => {
             arrivalTime: reservationData.arrivalTime,
             departureDate: reservationData.departureDate,
             departureTime: reservationData.departureTime,
-            roomType: reservationData.roomType,
+            roomId: reservationData.roomType,
             noOfRooms: reservationData.roomsNo,
             foodType: reservationData.selectedOptions,
             noOfAdults: reservationData.NoofAdults,
@@ -172,10 +205,10 @@ const Reservation = () => {
 
       Swal.fire({
         title: "Hotel Room Booking System",
-        text: `Reservation Created. Thank You!`,
+        text: `Reservation Created. Please Confirm you Payment!`,
         icon: "success",
       }).then(() => {
-        navigate("/");
+        navigate(`/payment/${res.data._id}`);
       });
 
       console.log(res.data);
@@ -347,14 +380,9 @@ const Reservation = () => {
 
               <DynamicDropdown
                 label="Type of Room"
-                value={reservationData.roomType}
-                onChange={(e) =>
-                  setReservationData({
-                    ...reservationData,
-                    roomType: e,
-                  })
-                }
-                options={roomTypeOptions}
+                value={reservationData.roomNames}
+                onChange={handleChange}
+                options={reservationData.roomTypeOptions}
               />
               <DynamicDropdown
                 label="Number of Rooms"

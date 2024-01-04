@@ -1,12 +1,28 @@
 import { CLIENT_ID } from "../utils/PaypalConfig";
 import { useEffect, useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { useNavigate, useParams } from "react-router-dom";
+import axios, {
+  CREATE_PAYMENT_URL,
+  GET_RESERVATION_BY_ID_URL,
+} from "../api/axios";
+import Swal from "sweetalert2";
 
 const Payment = () => {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [success, setSuccess] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
   const [orderID, setOrderID] = useState(false);
+  const [reservation, setReservation] = useState([]);
+  const [subTotal, setSubTotal] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [payment, setPayment] = useState({
+    transactionId: "",
+    reservationId: "",
+    userId: "",
+  });
+  const { id } = useParams();
 
   // creates a paypal order
   const createOrder = (data, actions) => {
@@ -14,16 +30,22 @@ const Payment = () => {
       .create({
         purchase_units: [
           {
-            description: "Sunflower",
+            description: reservation.roomId.roomType,
             amount: {
               currency_code: "USD",
-              value: 20,
+              value: 2000,
             },
           },
         ],
       })
       .then((orderID) => {
         setOrderID(orderID);
+        setPayment({
+          ...payment,
+          transactionId: orderID,
+          reservationId: reservation._id,
+          userId: reservation.userId._id,
+        });
         return orderID;
       });
   };
@@ -43,10 +65,65 @@ const Payment = () => {
 
   useEffect(() => {
     if (success) {
-      alert("Payment successful!!");
+      // alert("Payment successful!!");
       console.log("Order successful . Your order id is--", orderID);
+
+      let amount = (subTotal * 118) / 100;
+
+      // console.log(payment, amount);
+      console.log(amount);
+      console.log(payment);
+
+      const addPayment = async () => {
+        try {
+          const response = await axios.post(CREATE_PAYMENT_URL, {
+            payment: {
+              transactionId: payment.transactionId,
+              reservationId: payment.reservationId,
+              userId: payment.userId,
+              amount: amount,
+            },
+          });
+          console.log(response.data);
+
+          if (!response.statusText) {
+            alert("Payment failed!!");
+          }
+
+          Swal.fire({
+            icon: "success",
+            title: "Hotel Room Booking System",
+            text: "Your payment was successful",
+          }).then(() => {
+            navigate("/");
+          });
+        } catch (error) {
+          console.error("Error adding payment data:", error);
+        }
+      };
+
+      addPayment();
     }
   }, [success]);
+
+  useEffect(() => {
+    const getReservationDetails = async () => {
+      try {
+        const response = await axios.get(`${GET_RESERVATION_BY_ID_URL}/${id}`);
+        setReservation(response.data);
+
+        let roomPrice = response.data.roomId.price;
+        let noOfRooms = response.data.noOfRooms;
+        setSubTotal(roomPrice * noOfRooms);
+
+        setTotal((subTotal * 118) / 100);
+      } catch (error) {
+        console.error("Error fetching reservation data:", error);
+      }
+    };
+
+    getReservationDetails();
+  }, []);
 
   return (
     <div className="bg-gray-100 h-screen py-8">
@@ -67,29 +144,32 @@ const Payment = () => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="py-4">
-                        <div className="flex items-center">
-                          <img
-                            className="h-16 w-16 mr-4"
-                            src="https://via.placeholder.com/150"
-                            alt="Product image"
-                          />
-                          <span className="font-semibold">Product name</span>
-                        </div>
-                      </td>
-                      <td className="py-4">$19.99</td>
-                      <td className="py-4">
-                        <div className="flex items-center">
-                          <button className="border rounded-md py-2 px-4 mr-2">
-                            -
-                          </button>
-                          <span className="text-center w-8">1</span>
-                          <button className="border rounded-md py-2 px-4 ml-2">
-                            +
-                          </button>
-                        </div>
-                      </td>
-                      <td className="py-4">$19.99</td>
+                      {reservation.roomId && (
+                        <>
+                          <td className="py-4">
+                            <div className="flex items-center">
+                              <img
+                                className="h-16 w-16 mr-4"
+                                src={reservation.roomId.image}
+                                alt="Product image"
+                              />
+
+                              <span className="font-semibold">
+                                {reservation.roomId.roomType}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="py-4">${reservation.roomId.price}</td>
+                          <td className="py-4">
+                            <div className="flex items-center">
+                              <span className="text-center w-8">
+                                {reservation.noOfRooms}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="py-4">${subTotal}</td>
+                        </>
+                      )}
                     </tr>
                   </tbody>
                 </table>
@@ -100,20 +180,19 @@ const Payment = () => {
                 <h2 className="text-lg font-semibold mb-4">Summary</h2>
                 <div className="flex justify-between mb-2">
                   <span>Subtotal</span>
-                  <span>$19.99</span>
+                  <span>${subTotal}</span>
                 </div>
                 <div className="flex justify-between mb-2">
                   <span>Taxes</span>
-                  <span>$1.99</span>
+                  <span>${(subTotal * 18) / 100}</span>
                 </div>
-                <div className="flex justify-between mb-2">
-                  <span>Shipping</span>
-                  <span>$0.00</span>
-                </div>
+
                 <hr className="my-2" />
                 <div className="flex justify-between mb-2">
                   <span className="font-semibold">Total</span>
-                  <span className="font-semibold">$21.98</span>
+                  <span className="font-semibold">
+                    ${(subTotal * 118) / 100}
+                  </span>
                 </div>
                 {show ? (
                   <PayPalButtons

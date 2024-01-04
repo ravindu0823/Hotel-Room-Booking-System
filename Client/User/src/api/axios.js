@@ -8,6 +8,10 @@ export const loginRoute = "/users/login";
 export const GET_ALL_ROOMS_URL = "/rooms/read";
 export const GET_ALL_OFFERS_URL = "/offers";
 export const GET_ALL_FOOD_URL = "/foods/read";
+export const GET_RESERVATION_BY_ID_URL = "/reservations";
+export const GET_RESERVATION_BY_USER_ID_URL = "/reservations/user";
+export const DELETE_RESERVATION_URL = "/reservations/delete";
+export const CREATE_PAYMENT_URL = "/payment/create";
 
 export const logoutRoute = "/users/logout";
 export const allUsersRoute = "/users/all";

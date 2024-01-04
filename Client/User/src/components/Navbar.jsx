@@ -90,6 +90,12 @@ const Navbar = () => {
               >
                 <Link onClick={handleLogout}>Sign Out</Link>
               </li>
+              <li
+                onClick={() => setNav(false)}
+                className="font-bold text-3xl p-8 ease-in duration-300 delay-150"
+              >
+                <Link to="/profile">Profile</Link>
+              </li>
             </div>
           ) : (
             <div>
@@ -97,7 +103,7 @@ const Navbar = () => {
                 onClick={() => setNav(false)}
                 className="font-bold text-3xl p-8 ease-in duration-300 delay-150"
               >
-                <a href="#food">Sign Up</a>
+                <Link to="/sign-up">Sign Up</Link>
               </li>
               <li
                 onClick={() => setNav(false)}

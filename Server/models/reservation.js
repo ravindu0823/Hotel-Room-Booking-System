@@ -31,9 +31,10 @@ const ReservationSchema = new Schema({
     required: [true, "Please enter departureTime"],
   },
 
-  roomType: {
-    type: String,
-    required: [true, "Please enter roomType"],
+  roomId: {
+    type: Types.ObjectId,
+    ref: "Room",
+    required: [true, "Please enter roomId"],
   },
 
   noOfRooms: {

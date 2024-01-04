@@ -4,7 +4,7 @@ export const validateReservationForNewUsers = (req, res, next) => {
     arrivalTime,
     departureDate,
     departureTime,
-    roomType,
+    roomId,
     noOfRooms,
     foodType,
     noOfAdults,
@@ -26,7 +26,7 @@ export const validateReservationForNewUsers = (req, res, next) => {
     !arrivalTime &&
     !departureDate &&
     !departureTime &&
-    !roomType &&
+    !roomId &&
     !noOfRooms &&
     !foodType &&
     !noOfAdults &&
@@ -76,8 +76,8 @@ export const validateReservationForNewUsers = (req, res, next) => {
     return res.status(400).json({ error: "Please enter your departureTime" });
   }
 
-  if (!roomType) {
-    return res.status(400).json({ error: "Please enter your roomType" });
+  if (!roomId) {
+    return res.status(400).json({ error: "Please enter your roomId" });
   }
 
   if (!noOfRooms) {
@@ -112,7 +112,7 @@ export const validateReservationForExistingUsers = (req, res, next) => {
     arrivalTime,
     departureDate,
     departureTime,
-    roomType,
+    roomId,
     noOfRooms,
     foodType,
     noOfAdults,
@@ -126,7 +126,7 @@ export const validateReservationForExistingUsers = (req, res, next) => {
     !arrivalTime &&
     !departureDate &&
     !departureTime &&
-    !roomType &&
+    !roomId &&
     !noOfRooms &&
     !foodType &&
     !noOfAdults &&
@@ -152,8 +152,8 @@ export const validateReservationForExistingUsers = (req, res, next) => {
     return res.status(400).json({ error: "Please enter your departureTime" });
   }
 
-  if (!roomType) {
-    return res.status(400).json({ error: "Please enter your roomType" });
+  if (!roomId) {
+    return res.status(400).json({ error: "Please enter your roomId" });
   }
 
   if (!noOfRooms) {
