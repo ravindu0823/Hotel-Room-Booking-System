@@ -1,23 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Card,
-  CardHeader,
-  CardBody,
   Input,
-  Select,
-  Option,
   Textarea,
   Button,
-  Typography,
 } from "@material-tailwind/react";
 import UserInput from "@/widgets/forms/UserInput.jsx";
 import DynamicDropdown from "@/widgets/forms/DynamicDropdown.jsx";
-import DynamicCheckbox from "@/widgets/forms/DynamicCheckBox.jsx";
 import DynamicRadioButton from "@/widgets/forms/DynamicRadioButton.jsx";
 import Swal from "sweetalert2";
 import axios, {
   CREATE_RESERVATION_URL,
-  RESERVATION_UPDATE_URL,
+  GET_ALL_ROOMS_URL,
 } from "@/api/axios.js";
 import { useNavigate } from "react-router-dom";
 
@@ -40,18 +33,30 @@ const AddReservation = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [roomsNo, setRoomsNo] = useState("");
   const [specialRequirements, setSpecialRequirements] = useState("");
+  const [roomNames, setRoomNames] = useState("");
 
-  const [roomTypeOptions, setRoomTypeOptions] = useState([
-    { label: "Single", value: "1" },
-    { label: "Double", value: "2" },
-    { label: "Suite", value: "3" },
-  ]);
+  const [roomTypeOptions, setRoomTypeOptions] = useState([]);
 
   const [roomsNoOptions, setRoomsNoOptions] = useState([
     { label: "One", value: "1" },
     { label: "Two", value: "2" },
     { label: "Three", value: "3" },
   ]);
+
+  useEffect(() => {
+    const fetchRoomTypes = async () => {
+      try {
+        const res = await axios.get(GET_ALL_ROOMS_URL);
+        
+        setRoomTypeOptions(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchRoomTypes();
+  }, []);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,7 +121,7 @@ const AddReservation = () => {
             arrivalTime,
             departureDate,
             departureTime,
-            roomType,
+            roomId: roomType,
             noOfRooms: roomsNo,
             foodType: selectedOptions,
             noOfAdults: NoofAdults,
@@ -154,6 +159,17 @@ const AddReservation = () => {
       console.error(error);
     }
   };
+
+  const handleChange = (e) => {
+    roomTypeOptions.find((room) => {
+      if (room._id === e) {
+        setRoomType(room._id);
+      }
+    });
+  }
+
+  console.log(roomType);
+
 
   const handleRadioButton = (e) => {
     const { value } = e.target;
@@ -321,8 +337,8 @@ const AddReservation = () => {
 
             <DynamicDropdown
               label="Type of Room"
-              value={roomType}
-              onChange={(e) => setRoomType(e)}
+              value={roomNames}
+              onChange={handleChange}
               options={roomTypeOptions}
             />
             <DynamicDropdown
