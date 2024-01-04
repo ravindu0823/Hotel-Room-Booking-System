@@ -2,51 +2,29 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   Button,
   Input,
-  Option,
-  Select,
   Textarea,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import axios, {
+  GET_ALL_ROOMS_URL,
   RESERVATION_BY_ID_URL,
   RESERVATION_UPDATE_URL,
 } from "@/api/axios";
-import { format } from "date-fns/fp";
 import Swal from "sweetalert2";
+import DynamicDropdown from "@/widgets/forms/DynamicDropdown";
+import DynamicRadioButton from "@/widgets/forms/DynamicRadioButton";
+import { UpdateRservationsModel } from "@/models/reservation";
 
 const UpdateReservation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-
-  const userId = {
-    _id: String,
-    fullName: String,
-    contactNumber: String,
-    userName: String,
-  };
-  const reservation = {
-    _id: String,
-    arrivalDate: Date,
-    arrivalTime: String,
-    departureDate: Date,
-    departureTime: String,
-    roomType: String,
-    noOfRooms: Number,
-    foodType: String,
-    noOfAdults: Number,
-    noOfChildren: Number,
-    specialRequirements: String,
-    userId,
-  };
-
   console.log(id);
 
-  const [reservationData, setResevationData] = useState(reservation);
-
-  /*const convertDate = (date) => {
-    return (date.split("T")[0]);
-    
-  }*/
+  const [reservationData, setResevationData] = useState(UpdateRservationsModel);
+  const [roomNames, setRoomNames] = useState("");
+  const [roomTypeOptions, setRoomTypeOptions] = useState([]);
+  const [roomType, setRoomType] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,8 +33,12 @@ const UpdateReservation = () => {
 
     try {
       const res = await axios.put(
-        RESERVATION_UPDATE_URL + id,
-        reservationData,
+        `${RESERVATION_UPDATE_URL}/${id}`,
+        {
+          ...reservationData,
+          roomId: roomType,
+          foodType: selectedOptions,
+        },
         {
           headers: {
             headers: { "Content-Type": "application/json" },
@@ -71,7 +53,7 @@ const UpdateReservation = () => {
         text: `Reservation Updated!`,
         icon: "success",
       }).then(() => {
-        navigate("/reservation");
+        navigate("/dashboard/reservation");
       });
 
       console.log(res.data);
@@ -83,7 +65,7 @@ const UpdateReservation = () => {
   useEffect(() => {
     const getReservationData = async () => {
       try {
-        const res = await axios.get(RESERVATION_BY_ID_URL + id, {
+        const res = await axios.get(`${RESERVATION_BY_ID_URL}/${id}`, {
           headers: {
             headers: { "Content-Type": "application/json" },
           },
@@ -100,6 +82,33 @@ const UpdateReservation = () => {
 
     getReservationData();
   }, []);
+
+  useEffect(() => {
+    const fetchRoomTypes = async () => {
+      try {
+        const res = await axios.get(GET_ALL_ROOMS_URL);
+        
+        setRoomTypeOptions(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchRoomTypes();
+  }, []);
+
+  const handleChange = (e) => {
+    roomTypeOptions.find((room) => {
+      if (room._id === e) {
+        setRoomType(room._id);
+      }
+    });
+  }
+
+  const handleRadioButton = (e) => {
+    const { value } = e.target;
+    setSelectedOptions(value);
+  };
 
   // console.log(reservationData.arrivalDate)
 
@@ -235,34 +244,14 @@ const UpdateReservation = () => {
               />
             </div>
           </div>
-          <div className="col-span-1 sm:col-span-1">
-            <label
-              htmlFor="roomType"
-              className="block text-sm font-medium text-blue-gray-700"
-            >
-              Room Type
-            </label>
-            <Select
-              id="roomType"
-              selected={reservationData.roomType}
-              value={reservationData.roomType}
-              onChange={(e) => {
-                setResevationData({
-                  ...reservationData,
-                  roomType: e,
-                });
-              }}
-              name="roomType"
-              autoComplete="roomType"
-              defaultValue={"Single Room"}
-              className="mt-1 block w-full rounded-md border border-blue-gray-300 bg-white px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-            >
-              <Option value={"Single Room"}>Single Room</Option>
-              <Option value={"Double Room"}>Double Room</Option>
-              <Option value={"Family Room"}>Family Room</Option>
-              <Option value={"Presidential Room"}>Presidential Room</Option>
-            </Select>
-          </div>
+          
+          <DynamicDropdown
+              label="Type of Room"
+              value={roomNames}
+              onChange={handleChange}
+              options={roomTypeOptions}
+            />
+
           <div className="col-span-1 sm:col-span-1">
             <label
               htmlFor="noOfRooms"
@@ -286,33 +275,16 @@ const UpdateReservation = () => {
             />
           </div>
 
-          <div className="col-span-1 sm:col-span-1">
-            <label
-              htmlFor="foodType"
-              className="block text-sm font-medium text-blue-gray-700"
-            >
-              Food Type
-            </label>
-            <Select
-              id="foodType"
-              value={reservationData.foodType}
-              onChange={(e) => {
-                setResevationData({
-                  ...reservationData,
-                  foodType: e,
-                });
-              }}
-              defaultValue={"No Food"}
-              name="foodType"
-              autoComplete="foodType"
-              className="mt-1 block w-full rounded-md border border-blue-gray-300 bg-white px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-            >
-              <Option value={"Full Board"}>Full Board</Option>
-              <Option value={"Half Board"}>Half Board</Option>
-              <Option value={"Breakfast Only"}>Breakfast Only</Option>
-              <Option value={"No Food"}>No Food</Option>
-            </Select>
-          </div>
+          <DynamicRadioButton
+              label={"Food Type"}
+              selectedOption={selectedOptions}
+              onChange={handleRadioButton}
+              options={[
+                { label: "Breakfast", value: "Breakfast" },
+                { label: "Lunch", value: "Lunch" },
+                { label: "Dinner", value: "Dinner" },
+              ]}
+            />
 
           <div className="col-span-1 sm:col-span-1">
             <label
