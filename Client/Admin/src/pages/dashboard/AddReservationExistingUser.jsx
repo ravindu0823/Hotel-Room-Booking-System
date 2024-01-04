@@ -6,6 +6,7 @@ import DynamicRadioButton from "@/widgets/forms/DynamicRadioButton.jsx";
 import axios, {
   CREATE_RESERVATION_URL,
   CREATE_RESERVATION_WITH_EXISTING_USER_URL,
+  GET_ALL_ROOMS_URL,
   GET_ALL_USERS_URL,
   RESERVAION_URL,
 } from "@/api/axios.js";
@@ -33,18 +34,29 @@ const AddReservationExistingUser = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [roomsNo, setRoomsNo] = useState("");
   const [specialRequirements, setSpecialRequirements] = useState("");
+  const [roomNames, setRoomNames] = useState("");
 
-  const [roomTypeOptions, setRoomTypeOptions] = useState([
-    { label: "Single", value: "1" },
-    { label: "Double", value: "2" },
-    { label: "Suite", value: "3" },
-  ]);
+  const [roomTypeOptions, setRoomTypeOptions] = useState([]);
 
   const [roomsNoOptions, setRoomsNoOptions] = useState([
     { label: "One", value: "1" },
     { label: "Two", value: "2" },
     { label: "Three", value: "3" },
   ]);
+
+  useEffect(() => {
+    const fetchRoomTypes = async () => {
+      try {
+        const res = await axios.get(GET_ALL_ROOMS_URL);
+        
+        setRoomTypeOptions(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchRoomTypes();
+  }, []);
 
   useEffect(() => {
     const getReservationData = async () => {
@@ -80,6 +92,14 @@ const AddReservationExistingUser = () => {
       }
     });
   };
+
+  const handleChange = (e) => {
+    roomTypeOptions.find((room) => {
+      if (room._id === e) {
+        setRoomType(room._id);
+      }
+    });
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -125,7 +145,7 @@ const AddReservationExistingUser = () => {
             arrivalTime,
             departureDate,
             departureTime,
-            roomType,
+            roomId: roomType,
             noOfRooms: roomsNo,
             foodType: selectedOptions,
             noOfAdults: NoofAdults,
@@ -316,8 +336,8 @@ const AddReservationExistingUser = () => {
 
               <DynamicDropdown
                 label="Type of Room"
-                value={roomType}
-                onChange={(e) => setRoomType(e)}
+                value={roomNames}
+                onChange={handleChange}
                 options={roomTypeOptions}
               />
               <DynamicDropdown
