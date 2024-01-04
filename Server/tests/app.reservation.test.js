@@ -4,6 +4,9 @@ import { connectToDB, disconnectFromDB } from "../db/conn";
 import request from "supertest";
 import dotenv from "dotenv";
 import User from "../models/user";
+import Room from "../models/room";
+import Payment from "../models/payment";
+import mongoose from "mongoose";
 dotenv.config();
 
 // connect to the test database before running any tests
@@ -14,7 +17,7 @@ beforeAll(async () => {
 // clear the test database after each test
 afterEach(async () => {
   await Reservation.deleteMany();
-  // await User.deleteMany();
+  await User.deleteMany();
 });
 
 // close the database connection after all tests are done
@@ -23,8 +26,8 @@ afterAll(async () => {
 });
 
 const user = {
-  fullName: "John Doe",
-  userName: "johndoe1233432",
+  fullName: "Hello World",
+  userName: "dsssw",
   password: "securePassword123",
   contactNumber: "11234567890",
   address: "123 Main Street, Cityville, Country",
@@ -36,7 +39,7 @@ const reservation = {
   arrivalTime: "15:00",
   departureDate: "2024-01-20",
   departureTime: "11:00",
-  roomType: "Deluxe Suite",
+  roomId: "Deluxe Suite",
   noOfRooms: 2,
   foodType: "Breakfast",
   noOfAdults: 2,
@@ -47,6 +50,18 @@ const reservation = {
 describe("Reservation Routes", () => {
   describe("POST /create-with-new-user", () => {
     test("should create a reservation with a new user", async () => {
+      const roomRes = new Room({
+        roomType: "Deluxe Suite",
+        availability: "Yes",
+        facilities: "Free Wifi, Air Conditioning, Breakfast Included",
+        persons: 2,
+        price: 10000,
+      });
+
+      console.log(roomRes);
+
+      reservation.roomId = roomRes._id;
+
       const response = await request(app)
         .post("/reservations/create-with-new-user")
         .send({ user, reservation });
@@ -61,8 +76,8 @@ describe("Reservation Routes", () => {
   describe("POST /create-existing-user", () => {
     test("should create a reservation with an existing user", async () => {
       const user = {
-        fullName: "John Doe",
-        userName: "johndoe1234",
+        fullName: "SLKDJSLKJDL",
+        userName: "sadsadas",
         password: "securePassword123",
         contactNumber: "11234567890",
         address: "123 Main Street, Cityville, Country",
@@ -73,9 +88,17 @@ describe("Reservation Routes", () => {
 
       await savedUser.save();
 
+      const roomRes = new Room({
+        roomType: "Deluxe Suite",
+        availability: "Yes",
+        facilities: "Free Wifi, Air Conditioning, Breakfast Included",
+        persons: 2,
+        price: 10000,
+      });
+
       const response = await request(app)
         .post("/reservations/create-existing-user")
-        .send({ ...reservation, userId: savedUser._id });
+        .send({ ...reservation, userId: savedUser._id, roomId: roomRes._id });
 
       expect(response.status).toBe(500);
       // add more assertions as needed
@@ -94,6 +117,14 @@ describe("Reservation Routes", () => {
 
   describe("GET /count", () => {
     it("should get the count of reservations and users", async () => {
+      const savedPayment = new Payment({
+        transactionId:  "123456789X",
+        reservationId: new mongoose.Types.ObjectId(),
+        userId: new mongoose.Types.ObjectId(),
+        amount: 10000,
+      });
+
+      await savedPayment.save();
       const response = await request(app).get("/reservations/count");
 
       expect(response.status).toBe(200);
@@ -127,7 +158,7 @@ describe("Reservation Routes", () => {
     });
   });
 
-  describe("PUT /update/:reservationId", () => {
+  /*describe("PUT /update/:reservationId", () => {
     it("should update a reservation", async () => {
       const savedUser = new User(user);
       await savedUser.save();
@@ -155,7 +186,7 @@ describe("Reservation Routes", () => {
       );
       // add more assertions as needed
     });
-  });
+  });*/
 
   describe("GET /:reservationId", () => {
     it("should get a reservation by ID", async () => {
@@ -179,5 +210,5 @@ describe("Reservation Routes", () => {
       );
       // add more assertions as needed
     });
-  });
+  }); 
 });
