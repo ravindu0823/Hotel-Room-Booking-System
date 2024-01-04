@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios, { USER_REGISTER_URL } from "../api/axios";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Swal from "sweetalert2";
-import styled from "styled-components";
-import Logo from "../assets/logo.svg";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
