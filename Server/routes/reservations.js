@@ -9,6 +9,7 @@ import {
   validateReservationId,
 } from "../validations/reservationValidation.js";
 import Staff from "../models/staff.js";
+import Payment from "../models/payment.js";
 
 dotenv.config();
 const reservationRouter = express.Router();
@@ -78,7 +79,9 @@ reservationRouter.get("/", async (req, res) => {
   try {
     await connectToDB();
 
-    const reservations = await Reservation.find().populate("userId");
+    const reservations = await Reservation.find()
+      .populate("userId")
+      .populate("roomId");
 
     if (!reservations) {
       return res.status(404).json({ error: "No Reservations" });
@@ -99,6 +102,16 @@ reservationRouter.get("/count", async (req, res) => {
     const reservations = await Reservation.countDocuments();
     const users = await User.countDocuments();
     const staff = await Staff.countDocuments();
+    const payment = await Payment.aggregate([
+      {
+        $group: {
+          _id: null,
+          total: { $sum: "$amount" },
+        },
+      },
+    ]);
+
+    const total = `$ ${payment[0].total}`;
 
     /* if (!users) {
       return res.status(404).json({ error: "No Users" });
@@ -109,7 +122,7 @@ reservationRouter.get("/count", async (req, res) => {
     } */
 
     console.log(users);
-    return res.status(200).json({ users, reservations, staff });
+    return res.status(200).json({ users, reservations, staff, total });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
@@ -153,7 +166,7 @@ reservationRouter.put(
       arrivalTime,
       departureDate,
       departureTime,
-      roomType,
+      roomId,
       noOfRooms,
       foodType,
       noOfAdults,
@@ -171,7 +184,7 @@ reservationRouter.put(
           arrivalTime,
           departureDate,
           departureTime,
-          roomType,
+          roomId,
           noOfRooms,
           foodType,
           noOfAdults,
@@ -182,9 +195,9 @@ reservationRouter.put(
 
       await updateReservation.save();
 
-      const updatedReservation = await Reservation.findById(
-        reservationId
-      ).populate("userId");
+      const updatedReservation = await Reservation.findById(reservationId)
+        .populate("userId")
+        .populate("roomId");
 
       if (!updatedReservation) {
         return res.status(404).json({ error: "Update Failed" });
@@ -208,9 +221,9 @@ reservationRouter.get(
     try {
       await connectToDB();
 
-      const reservation = await Reservation.findById(reservationId).populate(
-        "userId"
-      );
+      const reservation = await Reservation.findById(reservationId)
+        .populate("userId")
+        .populate("roomId");
 
       if (!reservation) {
         return res.status(404).json({ error: "Reservation not found" });
@@ -224,5 +237,27 @@ reservationRouter.get(
     }
   }
 );
+
+reservationRouter.get("/user/:userId", async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    await connectToDB();
+
+    const reservations = await Reservation.find({ userId })
+      .populate("userId")
+      .populate("roomId");
+
+    if (!reservations) {
+      return res.status(404).json({ error: "No Reservations" });
+    }
+
+    console.log(reservations);
+    return res.status(200).json(reservations);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 export default reservationRouter;
