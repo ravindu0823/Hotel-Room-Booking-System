@@ -18,6 +18,7 @@ export function Home() {
       setCard(statisticsCardsData[0].value = res.data.reservations);
       setCard(statisticsCardsData[1].value = res.data.users);
       setCard(statisticsCardsData[2].value = res.data.staff);
+      setCard(statisticsCardsData[3].value = res.data.total);
       
     }
 
