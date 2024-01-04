@@ -3,10 +3,6 @@ import axios, { DELETE_ROOM_BY_ID_URL, GET_ALL_ROOMS_URL } from '@/api/axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import {
-  CardBody,
-  Typography,
-  Avatar,
-  Chip,
   Button,
 } from "@material-tailwind/react";
 const Rooms = () => {
