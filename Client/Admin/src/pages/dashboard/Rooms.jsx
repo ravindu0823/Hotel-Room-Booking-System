@@ -94,7 +94,12 @@ const Rooms = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {rooms.map((room) => (
                 <tr key={room._id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{room.roomType}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex items-center">
+                        <img className="rounded-full w-20 h-20" src={room.image} alt="image description" />
+                        <div className="ml-4">{room.roomType}</div>
+                    </div>
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap">{room.availability ? 'Available' : 'Not Available'}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{room.facilities}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{room.persons}</td>
