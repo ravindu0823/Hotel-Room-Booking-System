@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from '@/api/axios';
 import Swal from 'sweetalert2'; // Import SweetAlert
-import { Input } from "@material-tailwind/react";
 import { CREATE_OFFER_URL } from '@/api/axios';
-import { useNavigate } from 'react-router-dom';
 
 class Addoffer extends Component {
   constructor(props) {
