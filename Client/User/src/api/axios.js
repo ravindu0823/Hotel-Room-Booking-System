@@ -7,6 +7,7 @@ export const CREATE_RESERVATION_URL = "/reservations/create-existing-user";
 export const loginRoute = "/users/login";
 export const GET_ALL_ROOMS_URL = "/rooms/read";
 export const GET_ALL_OFFERS_URL = "/offers";
+export const GET_ALL_FOOD_URL = "/foods/read";
 
 export const logoutRoute = "/users/logout";
 export const allUsersRoute = "/users/all";

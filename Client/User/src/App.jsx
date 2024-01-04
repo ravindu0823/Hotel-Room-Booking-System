@@ -11,6 +11,8 @@ import { useState } from "react";
 import Reservation from "./pages/Reservation";
 import Payment from "./pages/Payment";
 import Userprofile from "./pages/Userprofile";
+import Foodshow from "./pages/Foodshow";
+import FoodDetails from "./pages/FoodDetails";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -28,6 +30,8 @@ function App() {
             <Route path="/reservation" element={<Reservation />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/profile" element={<Userprofile />} />
+            <Route path="/foodshow" element={<Foodshow/>}/>
+            <Route path="/foods/:id" element={<FoodDetails />} />
             {/* <Route path="/set-avatar" element={<SetAvatar />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/chat/login" element={<ChatLogin />} />
