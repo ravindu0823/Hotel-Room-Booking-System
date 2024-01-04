@@ -30,6 +30,7 @@ export const GET_ALL_STAFF_URL = "/staff/read";
 export const DELETE_STAFF_BY_ID_URL = "/staff";
 export const UPDATE_STAFF_BY_ID_URL = "/staff";
 export const GET_STAFF_BY_ID_URL = "/staff";
+export const GET_PAYMENTS = "/payment";
 
 export default axios.create({
   baseURL: import.meta.env.VITE_BASEURL,
