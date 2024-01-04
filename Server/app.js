@@ -11,6 +11,7 @@ import reservationRouter from "./routes/reservations.js";
 import messageRouter from "./routes/messages.js";
 import chatUserRouter from "./routes/chatUsers.js";
 import staffRouter from "./routes/staff.js";
+import paymentsRouter from "./routes/payments.js";
 
 dotenv.config();
 
@@ -56,5 +57,6 @@ app.use("/reservations", reservationRouter);
 app.use("/messages", messageRouter);
 app.use("/chat", chatUserRouter);
 app.use("/staff", staffRouter);
+app.use("/payment", paymentsRouter);
 
 export default app;
