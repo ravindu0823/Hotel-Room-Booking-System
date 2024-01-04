@@ -111,7 +111,7 @@ reservationRouter.get("/count", async (req, res) => {
       },
     ]);
 
-    const total = `$ ${payment[0].total}`;
+    const total = `$ ${payment[0].total.toFixed(2)}`;
 
     /* if (!users) {
       return res.status(404).json({ error: "No Users" });
