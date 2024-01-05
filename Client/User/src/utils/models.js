@@ -26,3 +26,9 @@ export const ReservationModel = {
   noOfChildren: Number,
   specialRequirements: String,
 };
+
+export const FeedbackModel = {
+  name: String,
+  email: String,
+  feedback: String,
+};
