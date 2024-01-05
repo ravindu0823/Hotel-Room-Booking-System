@@ -47,12 +47,25 @@ jobs:
         working-directory: ./Client/User/
 
       - name: Install Dependecies in Chat
+        run: yarn
+        working-directory: ./Client/Chat/
+
+      - name: Build Chat
+        run: yarn build
+        working-directory: ./Client/Chat/
+
+      - name: Save version Chat
+        id: version-chat
+        run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
+        working-directory: ./Client/Chat/
+
+      - name: Install Dependecies in Server
         run: |
           npm install
           npm ci
         working-directory: ./Server/
 
-      - name: Save version Chat
+      - name: Save version Server
         id: version-server
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
         working-directory: ./Server/
@@ -66,7 +79,7 @@ jobs:
 
           docker tag admin-image:local ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
           docker tag user-image:local ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
-          docker tag chat-image:local ${{ secrets.DOCKERHUB_USERNAME }}/frontend-chat:${{ steps.version-server.outputs.tag }}
+          docker tag chat-image:local ${{ secrets.DOCKERHUB_USERNAME }}/frontend-chat:${{ steps.version-chat.outputs.tag }}
           docker tag server-image:local ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
 
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
