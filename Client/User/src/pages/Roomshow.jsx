@@ -6,17 +6,15 @@ import Hero from "../components/Hero.jsx";
 import Midheading from "../components/Midheading.jsx";
 import Navbar from "../components/Navbar.jsx";
 
-
-
 const Roomshow = () => {
   return (
     <div>
       <Navbar />
       <Hero />
       <Midheading />
-      <Rooms/>
-      <Contact />    
-     <Footer />
+      <Rooms />
+      <Contact />
+      <Footer />
     </div>
   );
 };

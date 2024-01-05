@@ -6,6 +6,7 @@ import {
   CakeIcon,
   TableCellsIcon,
   ServerStackIcon,
+  CurrencyDollarIcon
 } from "@heroicons/react/24/solid";
 import { Home } from "@/pages/dashboard";
 import { SignIn } from "@/pages/auth";
@@ -25,6 +26,7 @@ import AddFood from "./pages/dashboard/AddFood";
 import UpdateFood from "./pages/dashboard/UpdateFood";
 import UpdateStaff from "./pages/dashboard/UpdateStaff";
 import AddStaff from "./pages/dashboard/AddStaff";
+import Payment from "./pages/dashboard/Payment";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -74,6 +76,13 @@ export const routes = [
         name: "Manage Special Offers",
         path: "/offers",
         element: <Offers />,
+      },
+      {
+        // Thisarani --Manage Special Offers
+        icon: <CurrencyDollarIcon {...icon} />,
+        name: "Manage Payments",
+        path: "/payments",
+        element: <Payment />,
       },
 
       /* {

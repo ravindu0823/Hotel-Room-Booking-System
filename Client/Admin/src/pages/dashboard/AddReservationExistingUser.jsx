@@ -4,11 +4,9 @@ import { Button, Input, Textarea } from "@material-tailwind/react";
 import DynamicDropdown from "@/widgets/forms/DynamicDropdown.jsx";
 import DynamicRadioButton from "@/widgets/forms/DynamicRadioButton.jsx";
 import axios, {
-  CREATE_RESERVATION_URL,
   CREATE_RESERVATION_WITH_EXISTING_USER_URL,
   GET_ALL_ROOMS_URL,
   GET_ALL_USERS_URL,
-  RESERVAION_URL,
 } from "@/api/axios.js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";

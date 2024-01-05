@@ -1,16 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom"; // Added 'Link' import
-import axios from "axios";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-  Tooltip,
-  IconButton,
-} from "@material-tailwind/react";
+import { useParams } from "react-router-dom"; // Added 'Link' import
+import axios, { GET_ROOM_BY_ID } from "../api/axios";
+import { CardBody, Typography, Tooltip } from "@material-tailwind/react";
+
 const RoomDetails = () => {
   const { id } = useParams();
   const [room, setRoom] = useState(null);
@@ -18,7 +10,7 @@ const RoomDetails = () => {
   useEffect(() => {
     const fetchRoomData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/rooms/${id}`);
+        const response = await axios.get(`${GET_ROOM_BY_ID}/${id}`);
         setRoom(response.data);
 
         // Print room data to the console
@@ -32,14 +24,6 @@ const RoomDetails = () => {
   }, [id]);
   // Simulating four smaller images
 
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleImageClick = (image) => {
-    setSelectedImage(image);
-  };
-
-  // Your room data in Database
-
   return (
     <>
       <div
@@ -50,15 +34,15 @@ const RoomDetails = () => {
         }}
       >
         <div className="flex relative z-20 items-center overflow-hidden">
-          <div className="container mx-auto px-6 py-10 flex relative mt-10 mb-20 bg-white bg-opacity-60  border border-white hover:scale-105 shadow-xl rounded-2xl" >
+          <div className="container mx-auto px-6 py-10 flex relative mt-10 mb-20 bg-white bg-opacity-60  border border-white hover:scale-105 shadow-xl rounded-2xl">
             <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20 ">
-            <h1 className="font-bebas-neue uppercase text-4xl sm:text-7xl font-black flex flex-col leading-none dark:text-dark text-gray-900 mx-5">
-               Be on
+              <h1 className="font-bebas-neue uppercase text-4xl sm:text-7xl font-black flex flex-col leading-none dark:text-dark text-gray-900 mx-5">
+                Be on
                 <span className="text-4xl sm:text-6xl">Time Book Room</span>
               </h1>
               <CardBody>
-              <div className="mb-3 flex items-left mt-10 justify-between">
-              <Tooltip content="1000$ upwords">
+                <div className="mb-3 flex items-left mt-10 justify-between">
+                  <Tooltip content="1000$ upwords">
                     <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +127,7 @@ const RoomDetails = () => {
                       +20
                     </span>
                   </Tooltip>
-              </div>
+                </div>
               </CardBody>
               <div className="mx-5">
                 {room && (
@@ -166,7 +150,7 @@ const RoomDetails = () => {
                   </>
                 )}
               </div>
-              <div className="flex mt-8 mx-5" >
+              <div className="flex mt-8 mx-5">
                 <a
                   href="#"
                   className="uppercase py-2 px-4 rounded-lg bg-transparent border-4 border-black text-black dark:text-dark text-bold hover:bg-black hover:text-white text-md"
@@ -211,10 +195,9 @@ const RoomDetails = () => {
                 5.0
               </Typography>
             </div>
-            </div>
           </div>
         </div>
-     
+      </div>
     </>
   );
 };

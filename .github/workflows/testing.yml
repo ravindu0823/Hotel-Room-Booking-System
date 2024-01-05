@@ -1,4 +1,4 @@
-name: Run Tests - CI
+name: Run Tests - Server
 
 on:
   push:

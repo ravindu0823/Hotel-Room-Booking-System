@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import FoodCard from '../components/FoodCard'; 
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import FoodCard from "../components/FoodCard";
+import axios, { GET_ALL_FOOD_URL } from "../api/axios";
 
 const Foods = () => {
   const [foods, setFoods] = useState([]);
@@ -9,10 +9,10 @@ const Foods = () => {
     // Fetch food data from the backend
     const fetchFoods = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/foods/read'); // Replace with your actual API endpoint for food
+        const response = await axios.get(GET_ALL_FOOD_URL); // Replace with your actual API endpoint for food
         setFoods(response.data);
       } catch (error) {
-        console.error('Error fetching food data:', error);
+        console.error("Error fetching food data:", error);
       }
     };
 

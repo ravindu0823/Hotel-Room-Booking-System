@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import RoomCard from '../components/roomcard';
-import axios from 'axios'; // Import axios for making HTTP requests
+import { useEffect, useState } from "react";
+import RoomCard from "../components/roomcard";
+import axios, { GET_ALL_ROOMS_URL } from "../api/axios"; // Import axios for making HTTP requests
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
@@ -8,13 +8,15 @@ const Rooms = () => {
     // Fetch room data from the backend
     const fetchRooms = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/rooms/read'); // Replace with your actual API endpoint
+        const response = await axios.get(GET_ALL_ROOMS_URL); // Replace with your actual API endpoint
         setRooms(response.data);
       } catch (error) {
-        console.error('Error fetching room data:', error);
+        console.error("Error fetching room data:", error);
       }
-    };fetchRooms();
+    };
+    fetchRooms();
   }, []);
+
   return (
     <div>
       <div className="flex flex-wrap justify-center">

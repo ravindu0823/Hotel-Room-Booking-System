@@ -15,6 +15,10 @@ const ReservationCard = ({
   onClick,
   reservationId,
 }) => {
+  const convertDate = (date) => {
+    return new Date(date).toDateString();
+  };
+
   return (
     <div className="w-full sm:w-2/3 md:w-1/2 lg:w-1/2 px-4 mb-8 ">
       <div className="block max-w-xl p-6 bg-gray-900 lg:flex-1 border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-700">
@@ -29,7 +33,9 @@ const ReservationCard = ({
                   <p className="text-gray-500 text-left">ARRIVAL DATE</p>
                 </td>
                 <td className="mx-2 mb-2">
-                  <p className="text-gray-500 text-left">{arrivalDate}</p>
+                  <p className="text-gray-500 text-left">
+                    {convertDate(arrivalDate)}
+                  </p>
                 </td>
               </tr>
               <tr>
@@ -45,7 +51,9 @@ const ReservationCard = ({
                   <p className="text-gray-500 text-left">DEPARTURE DATE</p>
                 </td>
                 <td className="mx-2 mb-2">
-                  <p className="text-gray-500 text-left">{departureDate}</p>
+                  <p className="text-gray-500 text-left">
+                    {convertDate(departureDate)}
+                  </p>
                 </td>
               </tr>
               <tr>

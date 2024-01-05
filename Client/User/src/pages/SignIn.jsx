@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import axios from "../api/axios";
+import axios, { USER_LOGIN } from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -35,7 +35,7 @@ const SignIn = () => {
 
     try {
       const response = await axios.post(
-        "/users/login",
+        USER_LOGIN,
         JSON.stringify({ userName, password }),
         {
           headers: { "Content-Type": "application/json" },
