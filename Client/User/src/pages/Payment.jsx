@@ -126,14 +126,14 @@ const Payment = () => {
   }, []);
 
   return (
-    <div className="bg-gray-100 h-screen py-8">
+<div className="bg-gray-100 h-screen py-8 flex  justify-center bg-cover" style={{ backgroundImage: 'url("https://page.mysoftinn.com/hs-fs/hubfs/Images%20used%20for%20blog%20(1)-1.png?width=1920&name=Images%20used%20for%20blog%20(1)-1.png")' }}>
       <PayPalScriptProvider options={{ "client-id": CLIENT_ID }}>
         <div className="container mx-auto px-4">
-          <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
+          <h1 className="text-4xl font-semibold mb-4">Shopping Cart</h1>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="md:w-3/4">
               <div className="bg-white rounded-lg shadow-md p-6 mb-4">
-                <table className="w-full">
+                <table className="w-full border-collapse border border-gray-300 ml-2">
                   <thead>
                     <tr>
                       <th className="text-left font-semibold">Product</th>
