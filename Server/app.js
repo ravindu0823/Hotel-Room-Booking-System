@@ -12,6 +12,7 @@ import messageRouter from "./routes/messages.js";
 import chatUserRouter from "./routes/chatUsers.js";
 import staffRouter from "./routes/staff.js";
 import paymentsRouter from "./routes/payments.js";
+import feedbackRouter from "./routes/feedbacks.js";
 
 dotenv.config();
 
@@ -59,5 +60,6 @@ app.use("/messages", messageRouter);
 app.use("/chat", chatUserRouter);
 app.use("/staff", staffRouter);
 app.use("/payment", paymentsRouter);
+app.use("/feedback", feedbackRouter);
 
 export default app;
