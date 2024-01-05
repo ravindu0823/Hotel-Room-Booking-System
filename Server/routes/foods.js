@@ -5,8 +5,15 @@ import express from "express";
 const foodsRouter = express.Router();
 
 foodsRouter.post("/new", async (req, res) => {
-  const { foodName, foodCategory, foodType, price, persons, spicinessLevel,image } =
-    req.body;
+  const {
+    foodName,
+    foodCategory,
+    foodType,
+    price,
+    persons,
+    spicinessLevel,
+    image,
+  } = req.body;
 
   if (
     !foodName ||
