@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import axios, { USER_LOGIN } from "../api/axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
@@ -183,12 +183,12 @@ const SignIn = () => {
 
               <div className="mt-6 grid grid-cols-3 gap-3">
                 <div className="mt-4 flex justify-center">
-                  <a
-                    href="/sign-up"
+                  <Link
+                    to="/sign-up"
                     className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     Register
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
