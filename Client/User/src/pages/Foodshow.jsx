@@ -4,6 +4,9 @@ import Midheading from "../components/Midheading";
 import Foods from "./Foods.jsx";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import Knowledge from "../components/Knowledge.jsx";
+import Comrades from "../components/Comrades.jsx";
+
 
 const Foodshow = () => {
   return (
@@ -12,6 +15,8 @@ const Foodshow = () => {
       <Hero />
       <Midheading />
       <Foods />
+      <Knowledge />
+      <Comrades />
       <Contact />
       <Footer />
     </div>
