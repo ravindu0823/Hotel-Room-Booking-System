@@ -5,6 +5,7 @@ import Foods from "./Foods.jsx";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
+
 const Foodshow = () => {
   return (
     <div>
@@ -12,6 +13,8 @@ const Foodshow = () => {
       <Hero />
       <Midheading />
       <Foods />
+      <Knowledge />
+      <Comrades />
       <Contact />
       <Footer />
     </div>
