@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios, { USER_REGISTER_URL } from "../api/axios";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
@@ -264,12 +264,12 @@ const SignUp = () => {
 
               <div className="mt-6 grid grid-cols-3 gap-3">
                 <div className="mt-4 flex justify-center">
-                  <a
-                    href="/sign-in"
+                  <Link
+                    to="/sign-in"
                     className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     Sign In
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
