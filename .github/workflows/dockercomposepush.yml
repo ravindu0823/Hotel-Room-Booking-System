@@ -1,8 +1,9 @@
-name: Docker Compose CI
+name: Docker Compose - Staging Deployment
 
 on:
   push:
-    branches: ["dev"]
+    tags: 
+      - stage-*
 
 jobs:
   Build-and-Push:
