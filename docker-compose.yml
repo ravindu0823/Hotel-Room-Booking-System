@@ -23,6 +23,17 @@ services:
     networks:
       - mynetwork
 
+  frontend-chat:
+    container_name: chat-container
+    build:
+      context: ./Client/Chat
+      dockerfile: Dockerfile
+    image: chat-image:local
+    ports:
+      - "8000:80"
+    networks:
+      - mynetwork
+
   backend:
     container_name: server-container
     build:
