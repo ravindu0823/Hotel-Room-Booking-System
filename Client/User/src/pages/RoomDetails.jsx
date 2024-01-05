@@ -152,7 +152,7 @@ const RoomDetails = () => {
               </div>
               <div className="flex mt-8 mx-5">
                 <a
-                  href="#"
+                  href="/reservation"
                   className="uppercase py-2 px-4 rounded-lg bg-transparent border-4 border-black text-black dark:text-dark text-bold hover:bg-black hover:text-white text-md"
                 >
                   Book My Room
