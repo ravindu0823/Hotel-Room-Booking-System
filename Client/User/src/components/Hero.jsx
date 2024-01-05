@@ -1,6 +1,5 @@
 import { Button } from "@material-tailwind/react";
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -23,10 +22,9 @@ const Hero = () => {
           </h1>
           <p className="max-w-[600px] drop-shadow-2xl py-2 text-xl font-inter">
             Explore our exquisite selection of rooms and suites designed to make
-            your stay unforgettable. Whether it's a luxurious suite or a cozy
-            room with a view, find your ideal accommodation with us.
+            your stay unforgettable. Whether it{"'"}s a luxurious suite or a
+            cozy room with a view, find your ideal accommodation with us.
           </p>
-
 
           <div className="flex">
             <Button
@@ -37,14 +35,15 @@ const Hero = () => {
               Book Your Stay&nbsp;
             </Button>
 
-
-            <Button
-              className="bg-white text-black hover:bg-transparent hover:text-white hover:scale-105 ease-in duration-300 ms-5"
-              disabled={false}
-              onClick={() => navigate("/reservation")}
+            <a
+              href="http://localhost:8000/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Chat&nbsp;
-            </Button>
+              <Button className="bg-white text-black hover:bg-transparent hover:text-white hover:scale-105 ease-in duration-300 ms-5">
+                Chat&nbsp;
+              </Button>
+            </a>
           </div>
         </div>
       </div>
