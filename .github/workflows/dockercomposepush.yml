@@ -18,41 +18,41 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
 
-      - name: Dependecies
+      - name: Install Dependecies in Admin
         run: |
           npm install
           npm ci
         working-directory: ./Client/Admin/
 
-      - name: Build
+      - name: Build Admin
         run: npm run build
         working-directory: ./Client/Admin/
 
-      - name: Save version
+      - name: Save version Admin
         id: version-admin
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
         working-directory: ./Client/Admin/
 
-      - name: Dependecies
+      - name: Install Dependecies in User
         run: yarn
         working-directory: ./Client/User/
 
-      - name: Build
+      - name: Build User
         run: yarn build
         working-directory: ./Client/User/
 
-      - name: Save version
+      - name: Save version User
         id: version-user
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
         working-directory: ./Client/User/
 
-      - name: Dependecies
+      - name: Install Dependecies in Chat
         run: |
           npm install
           npm ci
         working-directory: ./Server/
 
-      - name: Save version
+      - name: Save version Chat
         id: version-server
         run: echo ::set-output name=tag::$(echo $(node -p -e "require('./package.json').version"))
         working-directory: ./Server/
@@ -66,8 +66,10 @@ jobs:
 
           docker tag admin-image:local ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
           docker tag user-image:local ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
+          docker tag chat-image:local ${{ secrets.DOCKERHUB_USERNAME }}/frontend-chat:${{ steps.version-server.outputs.tag }}
           docker tag server-image:local ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
-          
+
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-admin:${{ steps.version-admin.outputs.tag }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-user:${{ steps.version-user.outputs.tag }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-chat:${{ steps.version-server.outputs.tag }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ steps.version-server.outputs.tag }}
