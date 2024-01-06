@@ -3,6 +3,7 @@ import { connectToDB } from "../db/conn.js";
 import express from "express";
 import dotenv from "dotenv";
 import { validatePaymentCreate } from "../validations/validatePayment.js";
+import { sendPaymentConfirmationEmail } from "../emails/emailController.js";
 
 dotenv.config();
 const paymentsRouter = express.Router();
@@ -20,7 +21,36 @@ paymentsRouter.post("/create", validatePaymentCreate, async (req, res) => {
     console.log(savedPayment);
     if (!savedPayment) res.send("Payment creation failed").status(404);
 
-    return res.status(201).json(savedPayment);
+    const payments = await Payment.findById(savedPayment._id)
+      .populate("reservationId")
+      .populate({
+        path: "reservationId",
+        populate: {
+          path: "roomId",
+          model: "Room",
+        },
+      })
+      .populate("userId");
+
+    const emailData = await sendPaymentConfirmationEmail({
+      email: savedPayment.email,
+      transactionId: savedPayment.transactionId,
+      roomType: payments.reservationId.roomId.roomType,
+      noOfRooms: payments.reservationId.noOfRooms,
+      reservationId: savedPayment.reservationId._id,
+      checksIn: payments.reservationId.arrivalDate,
+      checksOut: payments.reservationId.departureDate,
+      amount: savedPayment.amount,
+      image: payments.reservationId.roomId.image,
+    });
+
+    if (!emailData) {
+      return res.status(500).json({ error: "Server Error" });
+    }
+
+    const emailResponse = emailData.response;
+
+    return res.status(201).json({ savedPayment, emailResponse });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });

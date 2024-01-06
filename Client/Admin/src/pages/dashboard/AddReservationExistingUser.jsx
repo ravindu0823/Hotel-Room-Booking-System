@@ -33,6 +33,7 @@ const AddReservationExistingUser = () => {
   const [roomsNo, setRoomsNo] = useState("");
   const [specialRequirements, setSpecialRequirements] = useState("");
   const [roomNames, setRoomNames] = useState("");
+  const [total, setTotal] = useState(0);
 
   const [roomTypeOptions, setRoomTypeOptions] = useState([]);
 
@@ -95,6 +96,8 @@ const AddReservationExistingUser = () => {
     roomTypeOptions.find((room) => {
       if (room._id === e) {
         setRoomType(room._id);
+
+        setTotal(room.price * roomsNo);
       }
     });
   }
@@ -333,16 +336,17 @@ const AddReservationExistingUser = () => {
               </table>
 
               <DynamicDropdown
-                label="Type of Room"
-                value={roomNames}
-                onChange={handleChange}
-                options={roomTypeOptions}
-              />
-              <DynamicDropdown
                 label="Number of Rooms"
                 value={roomsNo}
                 onChange={(e) => setRoomsNo(e)}
                 options={roomsNoOptions}
+              />
+
+              <DynamicDropdown
+                label="Type of Room"
+                value={roomNames}
+                onChange={handleChange}
+                options={roomTypeOptions}
               />
               {/*<DynamicCheckbox
               label="Food Type"
@@ -409,6 +413,26 @@ const AddReservationExistingUser = () => {
                 </Button>
               </div>
             </div>
+            <div className="flex items-center justify-center h-screen border-gray-900">
+                <div className="bg-white/[.54] h-60 w-80 rounded-lg text-center mt-3 border-gray-900 border">
+                  <div className="p-1 rounded-tl-2xl rounded-tr-2xl bg-gray-700"></div>
+                  <div className="text-black">
+                    <h1 className="text-dark font-bebas-neue uppercase text-2xl mt-2 font-bold">
+                      Total Price
+                    </h1>
+                    <p className="text-6xl font-bold text-black mb-6 mt-5">
+                      ${total}
+                    </p>
+                  </div>
+                  <div>
+                    <img
+                      src="https://pngimg.com/uploads/paypal/paypal_PNG20.png"
+                      alt="Cashless Payment"
+                      className="h-20 w-20 object-cover  mx-auto"
+                    />
+                  </div>
+                </div>
+              </div>
           </div>
         </form>
       </div>

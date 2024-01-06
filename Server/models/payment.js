@@ -19,6 +19,11 @@ const PaymentSchema = new Schema({
     required: [true, "Please add userId"],
   },
 
+  email: {
+    type: String,
+    required: [true, "Please add email"],
+  },
+
   amount: {
     type: Number,
     required: [true, "Please add amount"],
