@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
-import { Link, NavLink } from "react-router-dom";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { NavLink } from "react-router-dom";
+import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/solid";
 import {
-  Avatar,
   Button,
-  IconButton,
   Typography,
 } from "@material-tailwind/react";
-import { useMaterialTailwindController, setOpenSidenav } from "@/context";
+import { useMaterialTailwindController } from "@/context";
 
 export function Sidenav({ brandImg, brandName, routes }) {
   const [controller, dispatch] = useMaterialTailwindController();
@@ -57,6 +55,22 @@ export function Sidenav({ brandImg, brandName, routes }) {
                     </NavLink>
                   </li>
                 ))}
+                <li>
+                  <NavLink target="_blank" to={import.meta.env.VITE_CHAT_APP_URL}>
+                    <Button
+                      color={
+                         "blue-gray"
+                      }
+                      className="flex items-center gap-4 px-4 capitalize"
+                      fullWidth
+                    >
+                      <ChatBubbleLeftRightIcon className="w-5 h-5 text-inherit" />
+                      <Typography color="inherit" className="font-medium capitalize">
+                        Chat
+                      </Typography>
+                    </Button>
+                  </NavLink>
+                </li>
               </ul>
             ),
         )}

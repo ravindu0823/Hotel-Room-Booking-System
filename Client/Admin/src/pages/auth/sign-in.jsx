@@ -5,8 +5,8 @@ import axios from "@/api/axios";
 import { jwtDecode } from "jwt-decode";
 import Swal from "sweetalert2";
 import { LOGIN_URL } from "@/api/axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { validateLogin } from "@/validations/login";
+
 
 export function SignIn() {
   const navigate = useNavigate();
@@ -16,21 +16,7 @@ export function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!userName || !password)
-      return toast.error("Please enter your username and password!", {
-        position: "bottom-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: "light",
-        bodyStyle: {
-          fontFamily: "Inter",
-          fontSize: "1rem",
-        },
-      });
+    if (!validateLogin(userName, password)) return;
 
     try {
       const response = await axios.post(
