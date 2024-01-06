@@ -1,7 +1,7 @@
 import Feedback from "../models/feedback.js";
 import { connectToDB } from "../db/conn.js";
 import express from "express";
-import sendEmail from "../emails/emailController.js";
+import { sendEmail } from "../emails/emailController.js";
 
 const feedbackRouter = express.Router();
 
