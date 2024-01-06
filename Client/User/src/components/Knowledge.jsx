@@ -34,7 +34,7 @@ const Knowledge = () => {
       {/* Right side */}
       <div className="flex flex-col h-full justify-center">
         <h4 className="text-5xl md:text-6xl font-bold hover:shadow-lg hover:shadow-black/70 hover:p-1 rounded-lg hover:bg-blue-100 ease-in duration-300">
-          Experience the Magic of Ceylon Sea&nbsp;.
+          Experience the Magic of Cinnamon red &nbsp;.
         </h4>
         <p className="text-2xl py-6">
           Discover the allure of a beachside paradise at Celon Sea Hotel.

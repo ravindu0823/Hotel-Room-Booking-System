@@ -63,7 +63,7 @@ function FoodDetails() {
             </h1>
             <CardBody>
               <div className="mb-3 flex items-left mt-10 justify-between">
-                <Tooltip content="And +20 more">
+                <Tooltip content="Fresh">
                   <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@ function FoodDetails() {
                     </svg>
                   </span>
                 </Tooltip>
-                <Tooltip content="Take Away">
+                <Tooltip content="Take away">
                   <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@ function FoodDetails() {
                     </svg>
                   </span>
                 </Tooltip>
-                <Tooltip content="Free wifi">
+                <Tooltip content="Dining">
                   <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +133,7 @@ function FoodDetails() {
                     </svg>
                   </span>
                 </Tooltip>
-                <Tooltip content={`65" HDTV`}>
+                <Tooltip content={`Online Order`}>
                   <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +150,7 @@ function FoodDetails() {
                     </svg>
                   </span>
                 </Tooltip>
-                <Tooltip content="Fire alert">
+                <Tooltip content="Hot">
                   <span className="cursor-pointer rounded-full border border-gray-900/5 bg-white p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +196,7 @@ function FoodDetails() {
             </div>
             <div className="flex mt-8">
               <a
-                href="#"
+                href="/reservation"
                 className="uppercase py-2 px-4 rounded-lg bg-transparent border-4 border-black text-black dark:text-dark text-bold hover:bg-black hover:text-white text-md"
               >
                 Order Now

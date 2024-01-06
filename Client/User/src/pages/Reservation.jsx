@@ -464,6 +464,29 @@ const Reservation = () => {
                 </Button>
               </div>
             </div>
+            <div className="">
+              <div className="flex items-center justify-center h-screen">
+                
+                <div className="bg-white/[.54] h-60 w-80 rounded-lg text-center mt-3">
+                  <div class="p-1 rounded-tl-2xl rounded-tr-2xl bg-gray-700"></div>
+                  <div className="text-black">
+                    <h1 className="text-dark font-bebas-neue uppercase text-2xl mt-2 font-bold">
+                      Total Price
+                    </h1>
+                    <p class="text-6xl font-bold text-black mb-6 mt-5">
+                      $99.99
+                    </p>
+                  </div>
+                  <div>
+                    <img
+                      src="https://pngimg.com/uploads/paypal/paypal_PNG20.png"
+                      alt="Cashless Payment"
+                      className="h-20 w-20 object-cover  mx-auto"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
         <Footer />

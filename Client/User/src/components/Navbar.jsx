@@ -48,7 +48,7 @@ const Navbar = () => {
   return (
     <div className="absolute w-full flex justify-between p-4 items-center">
       <h1 className="text-white font-bold text-2xl tracking-wide font-oswald z-20 hover:text-[gold] hover:scale-105 ease-in duration-300">
-        Ceylon Sea&nbsp;
+      Cinnamon red &nbsp;
       </h1>
       <HiMenuAlt3
         onClick={handleNav}
