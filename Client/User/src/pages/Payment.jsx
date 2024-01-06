@@ -21,6 +21,7 @@ const Payment = () => {
     transactionId: "",
     reservationId: "",
     userId: "",
+    email: "",
   });
   const { id } = useParams();
 
@@ -45,6 +46,7 @@ const Payment = () => {
           transactionId: orderID,
           reservationId: reservation._id,
           userId: reservation.userId._id,
+          email: payment.email
         });
         return orderID;
       });
@@ -82,6 +84,7 @@ const Payment = () => {
               reservationId: payment.reservationId,
               userId: payment.userId,
               amount: amount,
+              email: payment.email,
             },
           });
           console.log(response.data);
@@ -93,7 +96,7 @@ const Payment = () => {
           Swal.fire({
             icon: "success",
             title: "Hotel Room Booking System",
-            text: "Your payment was successful",
+            text: "Your payment was successful Please check your email for confirmation",
           }).then(() => {
             navigate("/");
           });
@@ -126,10 +129,18 @@ const Payment = () => {
   }, []);
 
   return (
-<div className="bg-gray-100 h-screen py-8 flex  justify-center bg-cover" style={{ backgroundImage: 'url("https://page.mysoftinn.com/hs-fs/hubfs/Images%20used%20for%20blog%20(1)-1.png?width=1920&name=Images%20used%20for%20blog%20(1)-1.png")' }}>
+    <div
+      className="bg-gray-100 h-screen py-8 flex  justify-center bg-cover"
+      style={{
+        backgroundImage:
+          'url("https://page.mysoftinn.com/hs-fs/hubfs/Images%20used%20for%20blog%20(1)-1.png?width=1920&name=Images%20used%20for%20blog%20(1)-1.png")',
+      }}
+    >
       <PayPalScriptProvider options={{ "client-id": CLIENT_ID }}>
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-semibold mb-4">Shopping Cart</h1>
+          <h1 className="text-4xl font-semibold text-white text-center mb-10">
+            Shopping Cart
+          </h1>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="md:w-3/4">
               <div className="bg-white rounded-lg shadow-md p-6 mb-4">
@@ -171,8 +182,23 @@ const Payment = () => {
                         </>
                       )}
                     </tr>
+                    <tr></tr>
                   </tbody>
                 </table>
+                <div className="mt-5">
+                  <label htmlFor="email" className="block mb-2 font-semibold">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="border border-gray-300 rounded-md px-3 py-2 w-1/2"
+                    value={payment.email}
+                    onChange={(e) =>
+                      setPayment({ ...payment, email: e.target.value })
+                    }
+                  />
+                </div>
               </div>
             </div>
             <div className="md:w-1/4">
