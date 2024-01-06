@@ -42,6 +42,8 @@ const Reservation = () => {
     roomTypeOptions: [],
   });
 
+  const [total, setTotal] = useState(1);
+
   // const [roomTypeOptions, setRoomTypeOptions] = useState([]);
 
   const roomsNoOptions = [
@@ -129,6 +131,7 @@ const Reservation = () => {
           roomTypeOptions: res.data.map((room) => ({
             label: room.roomType,
             value: room._id,
+            price: room.price,
           })),
         });
       } catch (error) {
@@ -137,7 +140,7 @@ const Reservation = () => {
     };
 
     fetchRoomTypes();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRadioButton = (e) => {
@@ -167,10 +170,12 @@ const Reservation = () => {
           ...reservationData,
           roomType: room.value,
         });
+
+        setTotal(room.price * reservationData.roomsNo);
       }
     });
   };
-
+  console.log(total);
   console.log(reservationData.roomType);
 
   const handleSubmit = async (e) => {
@@ -230,11 +235,11 @@ const Reservation = () => {
         </div>
 
         <form
-          className="mb-20 ms-8 mt-5 max-w-xl ml-40 "
+          className="mb-20 ms-8 mt-5 max-w-xl"
           method="POST"
           onSubmit={handleSubmit}
         >
-          <div className="flex justify-start">
+          <div className="md:flex flex-grow justify-start">
             <div className="mx-3 mb-3 mt-3 w-full min-w-full rounded-md border border-solid border-white p-6 bg-white/[.54] ">
               <h2 className="mb-4 text-2xl font-bold ont-bebas-neue uppercase text-left">
                 User Details
@@ -379,18 +384,20 @@ const Reservation = () => {
               </table>
 
               <DynamicDropdown
+                label="Number of Rooms"
+                value={reservationData.roomsNo}
+                onChange={(e) => {
+                  setReservationData({ ...reservationData, roomsNo: e });
+                  // setTotal(e * reservationData.roomType.price);
+                }}
+                options={roomsNoOptions}
+              />
+
+              <DynamicDropdown
                 label="Type of Room"
                 value={reservationData.roomNames}
                 onChange={handleChange}
                 options={reservationData.roomTypeOptions}
-              />
-              <DynamicDropdown
-                label="Number of Rooms"
-                value={reservationData.roomsNo}
-                onChange={(e) =>
-                  setReservationData({ ...reservationData, roomsNo: e })
-                }
-                options={roomsNoOptions}
               />
 
               <DynamicRadioButton
@@ -466,15 +473,14 @@ const Reservation = () => {
             </div>
             <div className="">
               <div className="flex items-center justify-center h-screen">
-                
                 <div className="bg-white/[.54] h-60 w-80 rounded-lg text-center mt-3">
-                  <div class="p-1 rounded-tl-2xl rounded-tr-2xl bg-gray-700"></div>
+                  <div className="p-1 rounded-tl-2xl rounded-tr-2xl bg-gray-700"></div>
                   <div className="text-black">
                     <h1 className="text-dark font-bebas-neue uppercase text-2xl mt-2 font-bold">
                       Total Price
                     </h1>
-                    <p class="text-6xl font-bold text-black mb-6 mt-5">
-                      $99.99
+                    <p className="text-6xl font-bold text-black mb-6 mt-5">
+                      ${total}
                     </p>
                   </div>
                   <div>
