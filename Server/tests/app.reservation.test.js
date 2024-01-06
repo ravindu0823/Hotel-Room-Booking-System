@@ -121,6 +121,7 @@ describe("Reservation Routes", () => {
         transactionId:  "123456789X",
         reservationId: new mongoose.Types.ObjectId(),
         userId: new mongoose.Types.ObjectId(),
+        email: "test@gmail.com",
         amount: 10000,
       });
 
