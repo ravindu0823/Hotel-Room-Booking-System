@@ -36,7 +36,7 @@ const Hero = () => {
             </Button>
 
             <a
-              href="http://localhost:8000/"
+              href={import.meta.env.VITE_CHAT_APP_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
