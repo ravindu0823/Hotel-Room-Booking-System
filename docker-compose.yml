@@ -6,9 +6,9 @@ services:
     build:
       context: ./Client/Admin
       dockerfile: Dockerfile
-    image: admin-image:local
+    image: ravindu0823/frontend-admin:1.5.7
     ports:
-      - "5173:80"
+      - "5173:5173"
     networks:
       - mynetwork
 
@@ -17,9 +17,9 @@ services:
     build:
       context: ./Client/User
       dockerfile: Dockerfile
-    image: user-image:local
+    image: ravindu0823/frontend-user:1.5.7
     ports:
-      - "5000:80"
+      - "5000:5000"
     networks:
       - mynetwork
 
@@ -28,9 +28,9 @@ services:
     build:
       context: ./Client/Chat
       dockerfile: Dockerfile
-    image: chat-image:local
+    image: ravindu0823/frontend-chat:1.5.7
     ports:
-      - "8000:80"
+      - "8000:8000"
     networks:
       - mynetwork
 
@@ -39,7 +39,7 @@ services:
     build:
       context: ./Server
       dockerfile: Dockerfile
-    image: server-image:local
+    image: ravindu0823/backend:1.5.7
     environment:
       - ATLAS_URI=mongodb+srv://dhanu:dhanu751@full-stack-development.nipgpqd.mongodb.net/?retryWrites=true&w=majority
       - DUMMY_ATLAS_URI=mongodb+srv://dhanu:dhanu751@linkedin.vmlw5fb.mongodb.net/?retryWrites=true&w=majority
@@ -47,6 +47,22 @@ services:
       - PORT=3000
     ports:
       - "3000:3000"
+    networks:
+      - mynetwork
+  
+  web:
+    image: nginx:mainline-alpine-slim
+    container_name: nginx_service
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/certificate.crt:/etc/ssl/certs/certificate.crt
+      - ./nginx/private.key:/etc/ssl/private/private.key
+      - ./nginx/snippets/ssl-params.conf:/etc/nginx/snippets/ssl-params.conf
+      - ./nginx/snippets/proxy-params.conf:/etc/nginx/snippets/proxy-params.conf
     networks:
       - mynetwork
 
