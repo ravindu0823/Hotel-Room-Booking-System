@@ -1,6 +1,6 @@
 export const host =
   process.env.NODE_ENV === "production"
-    ? "http://159.223.74.216:3000"
+    ? "https://cinnamonred.companiaa.online"
     : "http://localhost:3000";
 export const loginRoute = `${host}/chat/login`;
 export const registerRoute = `${host}/chat/register`;
