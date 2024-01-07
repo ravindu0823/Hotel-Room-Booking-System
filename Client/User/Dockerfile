@@ -1,3 +1,18 @@
-FROM nginx
-COPY dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
+FROM node:18.18.2-alpine3.18
+
+# Set the working directory
+WORKDIR /app/user
+
+# Copy the application code to the container
+
+COPY . .
+
+# Install dependencies
+RUN yarn
+RUN yarn build
+
+# Expose the port on which the application will run
+EXPOSE 5000
+
+# Start the application
+CMD ["yarn", "preview"]
