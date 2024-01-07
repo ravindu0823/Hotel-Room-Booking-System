@@ -109,7 +109,7 @@ const AddFood = () => {
       <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url('/img/background-image.png')] bg-cover bg-center">
         <div className="absolute inset-0 h-full w-full bg-gray-900/75">
           <div className="flex h-full items-center justify-center">
-            <p className="text-4xl font-bold text-white">Add new Room</p>
+            <p className="text-4xl font-bold text-white">Add Food</p>
           </div>
         </div>
       </div>
@@ -197,7 +197,7 @@ const AddFood = () => {
             </div>
             <div className="mb-6 pt-4">
               <label className="block text-sm font-medium text-gray-600 ">
-                Upload Room image
+                Upload Food image
               </label>
               <div className="mb-8">
                 <input type="file" name="file" id="file" className="sr-only" onChange={convertToBase64} />
