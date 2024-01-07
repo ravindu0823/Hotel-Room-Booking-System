@@ -1,66 +1,87 @@
-# Hotel Room Booking System
+<h1 align="center" id="title">Cinnamon Red Hotel Room Booking System</h1>
 
-This is a Hotel Room Booking System that allows users to book rooms in a hotel.
+<p align="center"><img src="https://socialify.git.ci/ravindu0823/Hotel-Room-Booking-System/image?description=1&amp;descriptionEditable=This%20is%20a%20Hotel%20Room%20Booking%20System%20that%20allows%20users%20to%20book%20rooms%20in%20a%20hotel.&amp;font=Bitter&amp;forks=1&amp;issues=1&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Floating%20Cogs&amp;pulls=1&amp;stargazers=1&amp;theme=Light" alt="project-image"></p>
 
-The system provides various features such as user registration and login, room availability checking, room booking and cancellation, payment processing, and user profile management.
+<p id="description">This is a Hotel Room Booking System that allows users to book rooms in a hotel. The system provides various features such as user registration and login room availability checking room booking and cancellation payment processing and user profile management.</p>
 
-To get started with the system, follow the installation steps below:
+<p align="center"><img src="https://img.shields.io/github/issues-pr-closed-raw/ravindu0823/Hotel-Room-Booking-System?style=for-the-badge" alt="shields"><img src="https://img.shields.io/github/contributors/ravindu0823/Hotel-Room-Booking-System?style=for-the-badge" alt="shields"><img src="https://img.shields.io/github/commit-activity/m/ravindu0823/Hotel-Room-Booking-System?style=for-the-badge" alt="shields"><img src="https://img.shields.io/github/v/tag/ravindu0823/Hotel-Room-Booking-System?include_prereleases&amp;style=for-the-badge&amp;color=%23FF0000" alt="shields"></p>
 
-## Installation
+<h2>🧐 Features</h2>
 
-1. Clone the repository:
+Here're some of the project's best features:
 
-   ```bash
-   git clone https://github.com/your-username/Hotel-Room-Booking-System.git
-   ```
+*   User registration and login
+*   Room availability checking
+*   Room booking and cancellation
+*   Payment processing
+*   User profile management
+*   Chat interface in between client and admin
 
-2. Install the dependencies:
+<h2>🛠️ Installation Steps:</h2>
 
-   ```bash
-   npm install
-   ```
+<p>1. Clone the repository</p>
 
-3. Set up the database:
+```
+git clone https://github.com/your-username/Hotel-Room-Booking-System.git
+```
 
-   - Create a MySQL database and import the provided SQL file.
+<p>2. Install the dependencies of User and start</p>
 
-4. Configure the application:
+```
+cd Client/User
 
-   - Rename the `.env.example` file to `.env` and update the necessary environment variables.
+yarn
 
-5. Start the application:
+yarn run dev
+```
 
-   ```bash
-   npm start
-   ```
+<p>3. Install the dependencies of Admin and run</p>
 
-The technologies used in this project include Node.js, Express.js, MySQL, and HTML/CSS.
+```
+cd Client/Admin
 
-Contributions to the project are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+yarn
 
-This project is licensed under the [MIT License](LICENSE).
+yarn run dev
+```
 
-## Features
+<p>4. Install the dependencies of Chat and run</p>
 
-- User registration and login
-- Room availability checking
-- Room booking and cancellation
-- Payment processing
-- User profile management
+```
+cd Client/Chat
 
-## Technologies Used
+yarn
 
-- Node.js
-- Express.js
-- MySQL
-- HTML/CSS
+yarn start
+```
 
-## Contributing
+<p>5. Install the dependencies of Server</p>
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+```
+cd Server
 
-## License
+yarn
 
-This project is licensed under the [MIT License](LICENSE)..
-hello world
-test world
+yarn run dev
+```
+
+  
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   Node.js
+*   Express.js
+*   MongoDB
+*   React
+*   Nodemailer
+*   PayPal Sandbox
+
+## 👨🏼‍🎓 Authors
+
+- [@Ravindu Dhanushka](https://github.com/ravindu0823)
+- [@Sakya Rasadi](https://github.com/sakyarasadi)
+- [@Shehan Randika](https://github.com/shehanrandika99)
+- [@Chamithra Sanjeewani Herath](https://github.com/chamithra1999)
+- [@Thisarani kaushalya](https://github.com/Thisarani123)
+
