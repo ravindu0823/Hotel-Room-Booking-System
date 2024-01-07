@@ -17,12 +17,9 @@ const server = app.listen(PORT, async () => {
 const io = new Server(server, {
   cors: {
     origin: [
-      "http://localhost:5173",
-      "http://localhost:5000",
-      "http://localhost:8000",
-      "http://159.223.74.216:5173",
-      "http://159.223.74.216:5000",
-      "http://159.223.74.216:8000",
+      "http://frontend-admin",
+      "http://frontend-user",
+      "http://frontend-chat",
     ],
     credentials: true,
   },
