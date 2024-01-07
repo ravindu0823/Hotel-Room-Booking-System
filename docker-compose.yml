@@ -31,6 +31,11 @@ services:
     image: ravindu0823/frontend-chat:1.5.7
     ports:
       - "8000:8000"
+    environment:
+      - VITE_BASEURL=http://backend
+      - VITE_CHAT_APP_URL=http://frontend-chat
+      - VITE_CLIENT_ID=Ad-7mbjUJw-hAoMSw_Icdmci5Ujmdvf6NqbX6R_TPnwawLCXUR-mktkRIQQP9fu79GmAi15VX_ajNqM3
+      - VITE_SECRET_KEY=EMIrjA9__g0u69vNOgjfpKEJoZp2cU96i8KZHafh8503_wBcXwb6g1sF_fEMkTHfHfnF2weHYESEQac1
     networks:
       - mynetwork
 
