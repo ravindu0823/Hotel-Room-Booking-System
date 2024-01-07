@@ -15,5 +15,8 @@ export default defineConfig({
     watch: {
       usePolling: true
     }
-  }
+  },
+  preview: {
+    port: 5000,
+  },
 })
