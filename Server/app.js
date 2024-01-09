@@ -13,18 +13,20 @@ import chatUserRouter from "./routes/chatUsers.js";
 import staffRouter from "./routes/staff.js";
 import paymentsRouter from "./routes/payments.js";
 import feedbackRouter from "./routes/feedbacks.js";
-
 dotenv.config();
 
 const app = express();
 const corsOptions = {
   origin: [
+    "http://localhost:5000",
     "http://frontend-admin",
     "http://frontend-user",
     "http://frontend-chat",
     "http://frontend-user:5000",
     "http://frontend-admin:5173",
     "http://frontend-chat:8000",
+    "https://cinnamonred.companiaa.online",
+    "https://cinnamonred.companiaa.online:5000"
   ],
   credentials: true,
   optionSuccessStatus: 200,
