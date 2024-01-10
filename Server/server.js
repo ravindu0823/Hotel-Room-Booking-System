@@ -4,7 +4,7 @@ import { Server } from "socket.io";
 import fs from "fs";
 import https from "https";
 import http from "http";
-const HTTP_PORT = process.env.PORT || 3000;
+const HTTP_PORT = process.env.PORT || 4000;
 const HTTPS_PORT = process.env.PORT || 8443;
 
 const options = {
